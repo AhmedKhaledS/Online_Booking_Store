@@ -1,5 +1,6 @@
 package view;
 
+import controller.DatabaseConnector;
 import view.util.WindowChanger;
 
 import javax.swing.*;
@@ -83,12 +84,6 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
             if (!pwdText.equals(confirmedPwdText)) {
                 errorLabel.setText("Password and confirmed password do not match !");
             }
-            /*if (userText.equalsIgnoreCase("mehtab") && pwdText.equalsIgnoreCase("12345")) {
-                JOptionPane.showMessageDialog(this, "Login Successful");
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
-            }*/
-
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
