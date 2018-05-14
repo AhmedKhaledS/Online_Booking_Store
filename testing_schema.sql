@@ -26,8 +26,8 @@ INSERT INTO `USER` VALUES ( "ahmed@ahmed1", "AhmedK1", "aks1", "khaled1", "ahmed
 INSERT INTO `USER` VALUES ( "ahmed@ahmed2", "AhmedK2", "aks2", "khaled2", "ahmed2", "123123123", "102.st.inplasd", "Customer");
 INSERT INTO `USER` VALUES ( "ahmed@ahmed3", "AhmedK3", "aks3", "2etshh", "2etsh", "123123123", "103.st.inplasd", "Manager");
 
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed.com", 1, 5, 'IN_PROGRESS' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed.com", 2, 40, 'IN_PROGRESS' );
+INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 1, 5, 'IN_PROGRESS' );
+INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 2, 40, 'IN_PROGRESS' );
 
 SELECT * FROM `ORDER`;
 SELECT * FROM `BOOK`;

@@ -4,7 +4,7 @@ import java.sql.*;
 public class DatabaseConnector {
 
     static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    static final String SCHEMA_NAME = "library";
+    static final String SCHEMA_NAME = "book_store";
     static final String CONNECTION_NAME = "jdbc:mysql://localhost:3306/";
     static final String USERNAME = "root";
     static final String PASSWORD = "admin";
@@ -37,9 +37,9 @@ public class DatabaseConnector {
         try{
             Statement stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
-            while(rs.next())
-                System.out.println(rs.getInt(1));
-            con.close();
+            /*while(rs.next())
+                System.out.println(rs.getInt(1));*/
+            //con.close();
         } catch (Exception e){
             System.out.println(e);
         }
