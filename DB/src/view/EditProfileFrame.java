@@ -1,6 +1,5 @@
 package view;
 
-import controller.DatabaseConnector;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -11,7 +10,7 @@ import java.awt.event.ActionListener;
 
 import static view.util.GUIConstants.*;
 
-public class SignUpFrame extends JFrame implements ActionListener, WindowChanger {
+public class EditProfileFrame extends JFrame implements ActionListener, WindowChanger {
 
     Container container = getContentPane();
     // Labels
@@ -22,7 +21,6 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
     JLabel shoppingAddressLabel = new JLabel("Shopping Address");
     JLabel passwordLabel = new JLabel("Password");
     JLabel confirmPasswordLabel = new JLabel("Confirm Password");
-    JLabel accountTypeLabel = new JLabel("Account Type");
     // Error Label to display error in sign up info
     JLabel errorLabel = new JLabel("");
 
@@ -35,14 +33,10 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
     JPasswordField passwordField = new JPasswordField();
     JPasswordField confirmPasswordField = new JPasswordField();
     // Buttons
-    JButton signUpButton = new JButton("Sign Up");
+    JButton signUpButton = new JButton("Save Changes");
     JButton resetButton = new JButton("Reset");
 
-    //Radio Buttons for Account Type
-    JRadioButton customerRB = new JRadioButton("Customer");
-    JRadioButton managerRB = new JRadioButton("Manager");
-
-    SignUpFrame() {
+    EditProfileFrame() {
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -78,18 +72,10 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
         shoppingAddressLabel.setBounds(initX, initY + 6 *offsetY, width, height);
         shoppingAddressTextField.setBounds(initX + offsetX, initY + 6 *offsetY, width, height);
 
-        accountTypeLabel.setBounds(initX, initY + 7 * offsetY, width, height);
-        customerRB.setBounds(initX + 100, initY + 7 * offsetY, width, height);
-        managerRB.setBounds(initX + width * 2, initY + offsetY * 7, width, height);
-        ButtonGroup group = new ButtonGroup();
-        group.add(customerRB);
-        group.add(managerRB);
+        signUpButton.setBounds(initX, initY + 7 * offsetY, width, height);
+        resetButton.setBounds(initX + offsetX, initY + 7 * offsetY, width, height);
 
-
-        signUpButton.setBounds(initX, initY + 8 * offsetY, width, height);
-        resetButton.setBounds(initX + offsetX, initY + 8 * offsetY, width, height);
-
-        errorLabel.setBounds(initX, initY + offsetY * 9, width, height);
+        errorLabel.setBounds(initX, initY + offsetY * 8, width, height);
     }
 
     public void addComponentsToContainer() {
@@ -109,9 +95,6 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
         container.add(phoneTextField);
         container.add(shoppingAddressLabel);
         container.add(shoppingAddressTextField);
-        container.add(customerRB);
-        container.add(managerRB);
-        container.add(accountTypeLabel);
         container.add(errorLabel);
     }
 
@@ -148,16 +131,15 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
     }
 
     public static void changeWindow () {
-        SignUpFrame frame = new SignUpFrame();
-        frame.setTitle("Sign Up Form");
+        EditProfileFrame frame = new EditProfileFrame();
+        frame.setTitle("Edit Profile Form");
         frame.setVisible(true);
         frame.setBounds(10, 10, 600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }
-
     public static void main (String[] args) {
-        SignUpFrame.changeWindow();
+        EditProfileFrame.changeWindow();
 
     }
 }

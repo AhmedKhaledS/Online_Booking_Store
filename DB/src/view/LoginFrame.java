@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
+import controller.DatabaseConnector;
 import view.util.WindowChanger;
 
 public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
@@ -66,11 +68,7 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            if (userText.equalsIgnoreCase("mehtab") && pwdText.equalsIgnoreCase("12345")) {
-                JOptionPane.showMessageDialog(this, "Login Successful");
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
-            }
+            ResultSet users = DatabaseConnector.executeQuery("select * from ");
 
         }
         //Coding Part of RESET button
