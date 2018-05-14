@@ -1,0 +1,158 @@
+package view;
+
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import controller.DatabaseConnector;
+import view.util.WindowChanger;
+
+public class AddBookFrame extends JFrame implements WindowChanger {
+
+	Container container = getContentPane();
+
+	private JTextField book_ISBN = new JTextField();
+	private JTextField book_tile = new JTextField();
+	private JTextField book_publisher = new JTextField();
+	private JTextField book_year = new JTextField();
+	JComboBox book_category = new JComboBox();
+	private JTextField book_price = new JTextField();
+	private JTextField book_quantity = new JTextField();
+	private JTextField book_thershold = new JTextField();
+
+	private JLabel lblIsbn = new JLabel("ISBN");
+	private JLabel lblTitle = new JLabel("Title");
+	private JLabel lblPublisher = new JLabel("Publisher");
+	private JLabel lblYear = new JLabel("Year");
+	private JLabel lblCategory = new JLabel("Category");
+	private JLabel lblPrice = new JLabel("Price");
+	private JLabel lblQunatity = new JLabel("Quantity");
+	private JLabel lblThreshold = new JLabel("Minimum");
+
+	private JButton btnAdd = new JButton("ADD");
+	private JButton btnReset = new JButton("RESET");
+	private JButton btnBack = new JButton("BACK");
+
+	AddBookFrame() {
+		setLayoutManager();
+		setLocationAndSize();
+		addComponentsToContainer();
+		addActionEvent();
+	}
+
+	public void setLayoutManager() {
+		container.setLayout(null);
+	}
+
+	public void setLocationAndSize() {
+		book_ISBN.setBounds(97, 12, 114, 19);
+		book_tile.setBounds(97, 60, 114, 19);
+		book_publisher.setBounds(97, 108, 114, 19);
+		book_year.setBounds(97, 159, 114, 19);
+		book_category.setModel(
+				new DefaultComboBoxModel(new String[] { "Science", "Art", "Religion", "History", "Geography" }));
+		book_category.setBounds(107, 201, 104, 24);
+		book_price.setBounds(307, 60, 114, 19);
+		book_quantity.setBounds(307, 108, 114, 19);
+		book_thershold.setBounds(307, 159, 114, 19);
+
+		btnAdd.setBounds(242, 242, 77, 25);
+		btnReset.setBounds(333, 242, 77, 25);
+		btnBack.setBounds(12, 263, 117, 25);
+
+		lblIsbn.setBounds(35, 14, 70, 15);
+		lblTitle.setBounds(35, 62, 70, 15);
+		lblPublisher.setBounds(12, 110, 67, 15);
+		lblYear.setBounds(35, 161, 70, 15);
+		lblCategory.setBounds(35, 206, 70, 15);
+		lblPrice.setBounds(242, 62, 70, 15);
+		lblQunatity.setBounds(230, 110, 70, 15);
+		lblThreshold.setBounds(229, 161, 70, 15);
+	}
+
+	public void addComponentsToContainer() {
+		container.add(book_ISBN);
+		container.add(book_tile);
+		container.add(book_publisher);
+		container.add(book_year);
+		container.add(book_category);
+		container.add(book_price);
+		container.add(book_quantity);
+		container.add(book_thershold);
+
+		container.add(btnAdd);
+		container.add(btnReset);
+		container.add(btnBack);
+
+		container.add(lblIsbn);
+		container.add(lblTitle);
+		container.add(lblPublisher);
+		container.add(lblYear);
+		container.add(lblCategory);
+		container.add(lblPrice);
+		container.add(lblQunatity);
+		container.add(lblThreshold);
+	}
+
+	public void addActionEvent() {
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String data[] = new String[8];
+				data[0] = book_ISBN.getText();
+				data[1] = book_tile.getText();
+				data[2] = book_publisher.getText();
+				data[3] = book_year.getText();
+				data[4] = book_category.getActionCommand();
+				data[5] = book_price.getText();
+				data[6] = book_quantity.getText();
+				data[7] = book_thershold.getText();
+				System.out.println("SELECT * FROM PUBLISHER WHERE Name='" + data[2] + "'");
+				ResultSet rs;
+				rs = DatabaseConnector.executeQuery("SELECT * FROM PUBLISHER WHERE Name='" + data[2] + "'");
+				try {
+					while(rs.next()) {
+						System.out.println(rs.getString(1));
+						System.out.println(rs.getString(2));
+						System.out.println(rs.getString(3));
+						System.out.println(rs.getString(4));
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/// TO BE FILLED...
+			}
+		});
+
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManagerFrame.changeWindow();
+			}
+		});
+
+	}
+
+	public static void changeWindow() {
+		AddBookFrame frame = new AddBookFrame();
+		frame.setTitle("Add New Book");
+		frame.setVisible(true);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+	}
+
+}
