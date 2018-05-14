@@ -1,11 +1,13 @@
 package view;
 
+import view.util.WindowChanger;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class StartUpFrame extends JFrame implements ActionListener {
+public class StartUpFrame extends JFrame implements ActionListener, WindowChanger {
 
     Container container = getContentPane();
     JLabel welcome = new JLabel("Welcome");
@@ -45,21 +47,24 @@ public class StartUpFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Coding Part of LOGIN button
+        dispose();
         if (e.getSource() == loginButton) {
-            dispose();
-            LoginFrame frame = new LoginFrame();
-            frame.setTitle("Login Form");
-            frame.setVisible(true);
-            frame.setBounds(10, 10, 370, 600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setResizable(false);
+            LoginFrame.changeWindow();
         }
         //Coding Part of RESET button
         if (e.getSource() == signUpButton) {
-
+            SignUpFrame.changeWindow();
         }
     }
 
+    public static void changeWindow () {
+        StartUpFrame frame = new StartUpFrame();
+        frame.setTitle("Welcome");
+        frame.setVisible(true);
+        frame.setBounds(10, 10, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+    }
 }
+
 

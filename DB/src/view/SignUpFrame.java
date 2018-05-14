@@ -1,11 +1,13 @@
 package view;
 
+import view.util.WindowChanger;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SignUpFrame extends JFrame implements ActionListener {
+public class SignUpFrame extends JFrame implements ActionListener, WindowChanger {
 
     Container container = getContentPane();
     // Labels
@@ -99,5 +101,13 @@ public class SignUpFrame extends JFrame implements ActionListener {
         confirmPasswordField.setEchoChar('*');
     }
 
+    public static void changeWindow () {
+        SignUpFrame frame = new SignUpFrame();
+        frame.setTitle("Sign Up Form");
+        frame.setVisible(true);
+        frame.setBounds(10, 10, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+    }
 }
 

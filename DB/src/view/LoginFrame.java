@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginFrame extends JFrame implements ActionListener {
+import view.util.WindowChanger;
+
+public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
 
     Container container = getContentPane();
     JLabel userLabel = new JLabel("E-mail");
@@ -86,6 +88,15 @@ public class LoginFrame extends JFrame implements ActionListener {
 
 
         }
+    }
+
+    public static void changeWindow () {
+        LoginFrame frame = new LoginFrame();
+        frame.setTitle("Login Form");
+        frame.setVisible(true);
+        frame.setBounds(10, 10, 370, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
     }
 
 }
