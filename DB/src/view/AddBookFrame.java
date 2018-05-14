@@ -28,6 +28,7 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	private JTextField book_price = new JTextField();
 	private JTextField book_quantity = new JTextField();
 	private JTextField book_thershold = new JTextField();
+	private JTextField book_authors = new JTextField();
 
 	private JLabel lblIsbn = new JLabel("ISBN");
 	private JLabel lblTitle = new JLabel("Title");
@@ -37,6 +38,7 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	private JLabel lblPrice = new JLabel("Price");
 	private JLabel lblQunatity = new JLabel("Quantity");
 	private JLabel lblThreshold = new JLabel("Minimum");
+	private JLabel lblAuthors = new JLabel("Authors");
 
 	private JButton btnAdd = new JButton("ADD");
 	private JButton btnReset = new JButton("RESET");
@@ -60,10 +62,12 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		book_year.setBounds(97, 159, 114, 19);
 		book_category.setModel(
 				new DefaultComboBoxModel(new String[] { "Science", "Art", "Religion", "History", "Geography" }));
-		book_category.setBounds(107, 201, 104, 24);
+		book_category.setBounds(307, 9, 104, 24);
 		book_price.setBounds(307, 60, 114, 19);
 		book_quantity.setBounds(307, 108, 114, 19);
 		book_thershold.setBounds(307, 159, 114, 19);
+		book_authors.setBounds(179, 196, 180, 19);
+
 
 		btnAdd.setBounds(242, 242, 77, 25);
 		btnReset.setBounds(333, 242, 77, 25);
@@ -73,10 +77,12 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		lblTitle.setBounds(35, 62, 70, 15);
 		lblPublisher.setBounds(12, 110, 67, 15);
 		lblYear.setBounds(35, 161, 70, 15);
-		lblCategory.setBounds(35, 206, 70, 15);
+		lblCategory.setBounds(230, 14, 70, 15);
 		lblPrice.setBounds(242, 62, 70, 15);
 		lblQunatity.setBounds(230, 110, 70, 15);
 		lblThreshold.setBounds(229, 161, 70, 15);
+		lblAuthors.setBounds(74, 198, 70, 15);
+
 	}
 
 	public void addComponentsToContainer() {
@@ -88,6 +94,7 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		container.add(book_price);
 		container.add(book_quantity);
 		container.add(book_thershold);
+		container.add(book_authors);
 
 		container.add(btnAdd);
 		container.add(btnReset);
@@ -101,6 +108,8 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		container.add(lblPrice);
 		container.add(lblQunatity);
 		container.add(lblThreshold);
+		container.add(lblAuthors);
+
 	}
 
 	public void addActionEvent() {
