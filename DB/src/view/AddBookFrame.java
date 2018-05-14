@@ -68,7 +68,6 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		book_thershold.setBounds(307, 159, 114, 19);
 		book_authors.setBounds(179, 196, 180, 19);
 
-
 		btnAdd.setBounds(242, 242, 77, 25);
 		btnReset.setBounds(333, 242, 77, 25);
 		btnBack.setBounds(12, 263, 117, 25);
@@ -115,6 +114,8 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	public void addActionEvent() {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String authors[] = book_authors.getText().split(",");
 				String data[] = new String[8];
 				data[0] = book_ISBN.getText();
 				data[1] = book_tile.getText();
@@ -124,16 +125,38 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 				data[5] = book_price.getText();
 				data[6] = book_quantity.getText();
 				data[7] = book_thershold.getText();
+				
 				System.out.println("SELECT * FROM PUBLISHER WHERE Name='" + data[2] + "'");
+				
+				System.out.println("INSERT INTO BOOK VALUES (" +
+										data[0] + "," +
+										"'" + data[1] + "'" + "," +
+										"'" + data[2] + "'" + "," +
+										"'" + data[3] + "'" + "," +
+										"'" + data[4] + "'" + "," +
+										data[5] + "," +
+										data[6] + "," +
+										data[7] + ");");
+				
+				for (int i = 0; i < authors.length; i++) {
+					System.out.println("INSERT INTO BOOK_AUTHORS VALUES (" +
+											data[0] + "," +
+											"'" + authors[i] + "'" + ");");
+				}
+				int resultCount = 0;
+				String publisher_ID = "";
 				ResultSet rs;
 				rs = DatabaseConnector.executeQuery("SELECT * FROM PUBLISHER WHERE Name='" + data[2] + "'");
 				try {
-					while(rs.next()) {
+					
+					while (rs.next()) {
+						resultCount++;
 						System.out.println(rs.getString(1));
 						System.out.println(rs.getString(2));
 						System.out.println(rs.getString(3));
 						System.out.println(rs.getString(4));
 					}
+					System.out.println(rs.getFetchSize());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
