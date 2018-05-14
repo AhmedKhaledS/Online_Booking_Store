@@ -24,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditProfileFram.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/EditProfileFram.java">
+      <file leaf-file-name="EditProfileFrame.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/EditProfileFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="134" column="36" lean-forward="false" selection-start-line="134" selection-start-column="36" selection-end-line="134" selection-end-column="36" />
+            <state relative-caret-position="-1953">
+              <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -97,6 +97,7 @@
         <option value="$PROJECT_DIR$/src/view/util/GUIConstants.java" />
         <option value="$PROJECT_DIR$/src/view/SignUpFrame.java" />
         <option value="$PROJECT_DIR$/src/view/EditProfileFram.java" />
+        <option value="$PROJECT_DIR$/src/view/EditProfileFrame.java" />
       </list>
     </option>
   </component>
@@ -185,7 +186,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.EditProfileFram">
+  <component name="RunManager" selected="Application.EditProfileFrame">
     <configuration name="AppMainScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -205,14 +206,14 @@
       <module name="DB" />
       <envs />
     </configuration>
-    <configuration name="EditProfileFram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="EditProfileFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="view.EditProfileFram" />
+      <option name="MAIN_CLASS_NAME" value="view.EditProfileFrame" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -298,11 +299,11 @@
       <item index="1" class="java.lang.String" itemvalue="Application.Login" />
       <item index="2" class="java.lang.String" itemvalue="Application.AppMainScreen" />
       <item index="3" class="java.lang.String" itemvalue="Application.SignUpFrame" />
-      <item index="4" class="java.lang.String" itemvalue="Application.EditProfileFram" />
+      <item index="4" class="java.lang.String" itemvalue="Application.EditProfileFrame" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.EditProfileFram" />
+        <item index="0" class="java.lang.String" itemvalue="Application.EditProfileFrame" />
         <item index="1" class="java.lang.String" itemvalue="Application.SignUpFrame" />
         <item index="2" class="java.lang.String" itemvalue="Application.AppMainScreen" />
         <item index="3" class="java.lang.String" itemvalue="Application.Login" />
@@ -560,10 +561,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/EditProfileFram.java">
+    <entry file="file://$PROJECT_DIR$/src/view/EditProfileFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="134" column="36" lean-forward="false" selection-start-line="134" selection-start-column="36" selection-end-line="134" selection-end-column="36" />
+        <state relative-caret-position="-1953">
+          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
           <folding />
         </state>
       </provider>
