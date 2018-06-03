@@ -1,5 +1,6 @@
 package view;
 
+
 public class AppMainScreen {
     public static void main(String[] a) {
         try {
@@ -7,6 +8,7 @@ public class AppMainScreen {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         StartUpFrame.changeWindow();
     }
 

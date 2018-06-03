@@ -15,7 +15,7 @@ public class BooksQueryManager {
         }
         ResultSet books = DatabaseConnector.executeQuery
                 ("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity" +
-                        " from Book as B join Publisher as P on B.publisher_id = P.publisher_id "+
+                        " from BOOK as B join PUBLISHER as P on B.publisher_id = P.publisher_id "+
                         " where " + key + getOperatorString(operator) +
                         Utils.encloseInQuotes(value));
 
