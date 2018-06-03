@@ -14,8 +14,8 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 	Container container = getContentPane();
 
 	JButton btnPlaceOrder = new JButton("PLACE ORDER");
-	JButton btnAddBook = new JButton("ADD BOOK");
-	JButton btnModifyBook = new JButton("MODIFY BOOK");
+	JButton btnAddItem = new JButton("ADD ITEM");
+	JButton btnModifyItem = new JButton("MODIFY ITEM");
 	JButton btnManageOrders = new JButton("MANAGE ORDERS");
 	JButton btnPromoteUser = new JButton("PROMOTE USER");
 	JButton btnViewReports = new JButton("VIEW REPORTS");
@@ -35,8 +35,8 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 	public void setLocationAndSize() {
 		btnPlaceOrder.setBounds(139, 49, 170, 25);
-		btnAddBook.setBounds(139, 88, 170, 25);
-		btnModifyBook.setBounds(139, 125, 170, 25);
+		btnAddItem.setBounds(139, 88, 170, 25);
+		btnModifyItem.setBounds(139, 125, 170, 25);
 		btnManageOrders.setBounds(139, 162, 170, 25);
 		btnPromoteUser.setBounds(139, 199, 170, 25);
 		btnViewReports.setBounds(139, 236, 170, 25);
@@ -45,8 +45,8 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 	public void addComponentsToContainer() {
 		container.add(btnPlaceOrder);
-		container.add(btnAddBook);
-		container.add(btnModifyBook);
+		container.add(btnAddItem);
+		container.add(btnModifyItem);
 		container.add(btnManageOrders);
 		container.add(btnPromoteUser);
 		container.add(btnViewReports);
@@ -61,14 +61,14 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 			}
 		});
 
-		btnAddBook.addActionListener(new ActionListener() {
+		btnAddItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddBookFrame.changeWindow();
+				AddItemFrame.changeWindow();
 				dispose();
 			}
 		});
 
-		btnModifyBook.addActionListener(new ActionListener() {
+		btnModifyItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/// TO BE FILLED...
 			}
@@ -102,11 +102,11 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 	public static void changeWindow() {
 		ManagerFrame frame = new ManagerFrame();
-		frame.setTitle("Manager Frame");
+		frame.setTitle("Options");
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		// frame.setResizable(false);
 	}
 
 }
