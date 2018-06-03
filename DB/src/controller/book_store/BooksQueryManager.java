@@ -17,7 +17,8 @@ public class BooksQueryManager {
                 ("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity" +
                         " from BOOK as B join PUBLISHER as P on B.publisher_id = P.publisher_id "+
                         " where " + key + getOperatorString(operator) +
-                        Utils.encloseInQuotes(value));
+                        (operator == BooksQueryUtil.Operator.LIKE ?
+                                Utils.encloseInLikeFormat(value) : Utils.encloseInQuotes(value)));
 
         Vector<Vector<String>> data = new Vector<>();
         try {
@@ -51,8 +52,10 @@ public class BooksQueryManager {
             return " < ";
         } else if (operator == BooksQueryUtil.Operator.LESS_EQUAL) {
             return " <= ";
-        } else {
+        } else if (operator == BooksQueryUtil.Operator.NOT_EQUAL){
             return " != ";
+        } else {
+            return " like ";
         }
     }
 }

@@ -2,7 +2,7 @@ package controller.books.actions;
 
 import javax.swing.*;
 
-public class ManagerAction extends  Action {
+public class ManagerUserAction extends UserAction {
 
     @Override
     public void accept(JTable jTable, Integer integer) {
