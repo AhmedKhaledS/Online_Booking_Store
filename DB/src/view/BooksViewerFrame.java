@@ -1,19 +1,16 @@
 package view;
 
-import controller.DatabaseConnector;
+import controller.book_store.BooksQueryConstants;
+import controller.book_store.BooksQueryManager;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.xml.transform.Result;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Vector;
 
 public class BooksViewerFrame extends JFrame implements ActionListener, WindowChanger{
@@ -98,30 +95,10 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             }
-            ResultSet books = DatabaseConnector.executeQuery
-                    ("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity" +
-                            " from Book as B join Publisher as P on B.publisher_id = P.publisher_id "+
-                                " where B." + String.valueOf(possibleKeys.getSelectedItem()) + " = \"" +
-                                    searchKeyTextField.getText() + "\"");
-
             Vector<Vector<String>> data = new Vector<>();
-            try {
-                while (books.next()) {
-                    Vector<String> dataRow = new Vector<>();
-                    dataRow.add("Add");
-                    dataRow.add(String.valueOf(books.getInt(1)));
-                    dataRow.add(books.getString(2));
-                    dataRow.add(books.getString(3));
-                    dataRow.add(String.valueOf(books.getInt(4)));
-                    dataRow.add(books.getString(/**/5));
-                    dataRow.add(String.valueOf(books.getInt(6)));
-                    dataRow.add(String.valueOf(books.getInt(7)));
-                    dataRow.add(String.valueOf(books.getInt(8)));
-                    data.add(dataRow);
-                }
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
+            data = BooksQueryManager.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
+                    BooksQueryConstants.Operator.EQUALITY);
+
             dm.setDataVector(data, columnNames);
             table.getColumn("Add").setCellRenderer(new ButtonRenderer());
             table.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox()));
@@ -131,9 +108,11 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     public static void changeWindow(String actionName, ActionListener action) {
         BooksViewerFrame frame = new BooksViewerFrame(actionName, action);
         frame.setTitle("Book Viewer Form");
-        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
-        frame.setBounds(10, 10, 2000, 600);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        int xSize = ((int) tk.getScreenSize().getWidth());
+        int ySize = ((int) tk.getScreenSize().getHeight());
+        frame.setSize(xSize,ySize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }
