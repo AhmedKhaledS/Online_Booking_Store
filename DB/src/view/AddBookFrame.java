@@ -3,8 +3,6 @@ package view;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -13,22 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.DatabaseConnector;
 import view.util.WindowChanger;
 
 public class AddBookFrame extends JFrame implements WindowChanger {
 
 	Container container = getContentPane();
-
-	private JTextField book_ISBN = new JTextField();
-	private JTextField book_tile = new JTextField();
-	private JTextField book_publisher = new JTextField();
-	private JTextField book_year = new JTextField();
-	JComboBox book_category = new JComboBox();
-	private JTextField book_price = new JTextField();
-	private JTextField book_quantity = new JTextField();
-	private JTextField book_thershold = new JTextField();
-	private JTextField book_authors = new JTextField();
 
 	private JLabel lblIsbn = new JLabel("ISBN");
 	private JLabel lblTitle = new JLabel("Title");
@@ -40,9 +27,20 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	private JLabel lblThreshold = new JLabel("Minimum");
 	private JLabel lblAuthors = new JLabel("Authors");
 
+	private JTextField book_ISBN = new JTextField();
+	private JTextField book_tile = new JTextField();
+	private JTextField book_publisher = new JTextField();
+	private JTextField book_year = new JTextField();
+	private JComboBox book_category = new JComboBox();
+	private JTextField book_price = new JTextField();
+	private JTextField book_quantity = new JTextField();
+	private JTextField book_thershold = new JTextField();
+	private JTextField book_authors = new JTextField();
+
 	private JButton btnAdd = new JButton("ADD");
 	private JButton btnReset = new JButton("RESET");
 	private JButton btnBack = new JButton("BACK");
+	private JButton btnViewPublishers = new JButton("View Publishers");
 
 	AddBookFrame() {
 		setLayoutManager();
@@ -56,6 +54,17 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	}
 
 	public void setLocationAndSize() {
+
+		lblIsbn.setBounds(35, 14, 70, 15);
+		lblTitle.setBounds(35, 62, 70, 15);
+		lblPublisher.setBounds(12, 110, 67, 15);
+		lblYear.setBounds(35, 161, 70, 15);
+		lblCategory.setBounds(230, 14, 70, 15);
+		lblPrice.setBounds(242, 62, 70, 15);
+		lblQunatity.setBounds(230, 110, 70, 15);
+		lblThreshold.setBounds(229, 161, 70, 15);
+		lblAuthors.setBounds(74, 198, 70, 15);
+
 		book_ISBN.setBounds(97, 12, 114, 19);
 		book_tile.setBounds(97, 60, 114, 19);
 		book_publisher.setBounds(97, 108, 114, 19);
@@ -71,16 +80,7 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		btnAdd.setBounds(242, 242, 77, 25);
 		btnReset.setBounds(333, 242, 77, 25);
 		btnBack.setBounds(12, 263, 117, 25);
-
-		lblIsbn.setBounds(35, 14, 70, 15);
-		lblTitle.setBounds(35, 62, 70, 15);
-		lblPublisher.setBounds(12, 110, 67, 15);
-		lblYear.setBounds(35, 161, 70, 15);
-		lblCategory.setBounds(230, 14, 70, 15);
-		lblPrice.setBounds(242, 62, 70, 15);
-		lblQunatity.setBounds(230, 110, 70, 15);
-		lblThreshold.setBounds(229, 161, 70, 15);
-		lblAuthors.setBounds(74, 198, 70, 15);
+		btnViewPublishers.setBounds(22, 130, 176, 19);
 
 	}
 
@@ -98,6 +98,7 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		container.add(btnAdd);
 		container.add(btnReset);
 		container.add(btnBack);
+		container.add(btnViewPublishers);
 
 		container.add(lblIsbn);
 		container.add(lblTitle);
@@ -114,65 +115,47 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	public void addActionEvent() {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String authors[] = book_authors.getText().split(",");
 				String data[] = new String[8];
 				data[0] = book_ISBN.getText();
 				data[1] = book_tile.getText();
 				data[2] = book_publisher.getText();
 				data[3] = book_year.getText();
-				data[4] = book_category.getActionCommand();
+				data[4] = (String) book_category.getSelectedItem();
 				data[5] = book_price.getText();
 				data[6] = book_quantity.getText();
 				data[7] = book_thershold.getText();
-				
-				System.out.println("SELECT * FROM PUBLISHER WHERE Name='" + data[2] + "'");
-				
-				System.out.println("INSERT INTO BOOK VALUES (" +
-										data[0] + "," +
-										"'" + data[1] + "'" + "," +
-										"'" + data[2] + "'" + "," +
-										"'" + data[3] + "'" + "," +
-										"'" + data[4] + "'" + "," +
-										data[5] + "," +
-										data[6] + "," +
-										data[7] + ");");
-				
+
+				System.out.println("INSERT INTO BOOK VALUES (" + data[0] + "," + "'" + data[1] + "'" + "," + data[2]
+						+ "," + "'" + data[3] + "'" + "," + "'" + data[4] + "'" + "," + data[5] + "," + data[6] + ","
+						+ data[7] + ");");
+
 				for (int i = 0; i < authors.length; i++) {
-					System.out.println("INSERT INTO BOOK_AUTHORS VALUES (" +
-											data[0] + "," +
-											"'" + authors[i] + "'" + ");");
-				}
-				int resultCount = 0;
-				String publisher_ID = "";
-				ResultSet rs;
-				rs = DatabaseConnector.executeQuery("SELECT * FROM PUBLISHER WHERE Name='" + data[2] + "'");
-				try {
-					
-					while (rs.next()) {
-						resultCount++;
-						System.out.println(rs.getString(1));
-						System.out.println(rs.getString(2));
-						System.out.println(rs.getString(3));
-						System.out.println(rs.getString(4));
-					}
-					System.out.println(rs.getFetchSize());
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.out.println(
+							"INSERT INTO BOOK_AUTHORS VALUES (" + data[0] + "," + "'" + authors[i] + "'" + ");");
 				}
 			}
 		});
 
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// TO BE FILLED...
+				book_ISBN.setText("");
+				book_tile.setText("");
+				book_publisher.setText("");
+				book_year.setText("");
+				book_category.setSelectedIndex(0);
+				book_price.setText("");
+				book_quantity.setText("");
+				book_thershold.setText("");
+				book_authors.setText("");
 			}
 		});
 
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManagerFrame.changeWindow();
+				AddItemFrame.changeWindow();
+				dispose();
 			}
 		});
 
@@ -184,7 +167,7 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		// frame.setResizable(false);
 	}
 
 }
