@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 
-import controller.DatabaseConnector;
+import controller.users.UsersManager;
 import view.util.WindowChanger;
 
 public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
@@ -68,7 +67,9 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            ResultSet users = DatabaseConnector.executeQuery("select * from ");
+            if (UsersManager.isValidUser(userText, pwdText)) {
+                /// TODO : Show next frame.
+            }
 
         }
         //Coding Part of RESET button
