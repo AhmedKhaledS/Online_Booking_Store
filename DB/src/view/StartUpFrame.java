@@ -1,4 +1,4 @@
-package view;
+package src.view;
 
 import view.util.WindowChanger;
 
@@ -49,11 +49,11 @@ public class StartUpFrame extends JFrame implements ActionListener, WindowChange
     public void actionPerformed(ActionEvent e) {
         dispose();
         if (e.getSource() == loginButton) {
-            LoginFrame.changeWindow();
+            view.LoginFrame.changeWindow();
         }
         //Coding Part of RESET button
         if (e.getSource() == signUpButton) {
-            SignUpFrame.changeWindow();
+            view.SignUpFrame.changeWindow();
         }
     }
 

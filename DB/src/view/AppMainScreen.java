@@ -12,7 +12,7 @@ public class AppMainScreen {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        StartUpFrame.changeWindow();
+        src.view.StartUpFrame.changeWindow();
     }
 
 }
