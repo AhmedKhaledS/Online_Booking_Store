@@ -153,7 +153,7 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
         frame.setVisible(true);
         frame.setBounds(10, 10, 600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
     }
 
     public static void main (String[] args) {

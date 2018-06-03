@@ -153,7 +153,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
         int ySize = ((int) tk.getScreenSize().getHeight());
         frame.setSize(xSize,ySize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
     }
 
     public static void main(String[] args) {
