@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controller.users.UsersManager;
+import controller.users.UsersUtil;
 import view.util.WindowChanger;
 
 public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
@@ -67,10 +68,14 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            if (UsersManager.isValidUser(userText, pwdText)) {
-                /// TODO : Show next frame.
+            UsersUtil.UserType userType = (UsersManager.getUserType(userText, pwdText));
+            if (userType == UsersUtil.UserType.MANAGER) {
+                /// TODO : Manager Window
+            } else if (userType == UsersUtil.UserType.CUSTOMER) {
+                /// TODO : Customer Window
+            } else {
+                /// TODO : Invalid user Window
             }
-
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {

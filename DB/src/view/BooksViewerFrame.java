@@ -1,7 +1,8 @@
 package view;
 
-import controller.book_store.BooksQueryConstants;
+import controller.book_store.BooksQueryUtil;
 import controller.book_store.BooksQueryManager;
+import controller.books.actions.ManagerAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -12,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
+import java.util.function.BiConsumer;
 
 public class BooksViewerFrame extends JFrame implements ActionListener, WindowChanger{
 
@@ -22,17 +24,20 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     String[] keys = {"Title", "Publisher_Name", "Publication_Year", "Category"};
     JComboBox<String> possibleKeys = new JComboBox<>(keys);
     JButton searchButton = new JButton("Search");
+    JButton clearButton = new JButton("Clear");
     Vector<String> columnNames;
     DefaultTableModel dm = new DefaultTableModel();
     JTable table = new JTable(dm);
     JScrollPane scroll;
+    BiConsumer action;
 
-    BooksViewerFrame(String actionName, ActionListener action) {
+    BooksViewerFrame(String actionName, BiConsumer action) {
         initializeColumnNames();
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
-        addActionEvent(action);
+        addActionEvent();
+        this.action = action;
     }
 
     private void initializeColumnNames() {
@@ -71,6 +76,8 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
         searchButton.setBounds(GUIConstants.initX + GUIConstants.offsetX * 3,
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
+        clearButton.setBounds(GUIConstants.initX + GUIConstants.offsetX * 4,
+                GUIConstants.initY, GUIConstants.width, GUIConstants.height);
         scroll.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY,
                 GUIConstants.width * 5, GUIConstants.height * 10);
     }
@@ -80,32 +87,36 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
         container.add(searchKeyTextField);
         container.add(possibleKeys);
         container.add(searchButton);
+        container.add(clearButton);
         container.add(scroll);
     }
 
-    private  void addActionEvent(ActionListener action) {
+    private  void addActionEvent() {
         searchButton.addActionListener(this);
+        clearButton.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Vector<Vector<String>> data = new Vector<>();
         if (e.getSource() == searchButton) {
             try {
                 Class.forName("controller.DatabaseConnector");
             } catch (ClassNotFoundException e1) {
                 e1.printStackTrace();
             }
-            Vector<Vector<String>> data = new Vector<>();
             data = BooksQueryManager.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
-                    BooksQueryConstants.Operator.EQUALITY);
+                    BooksQueryUtil.Operator.EQUALITY);
 
             dm.setDataVector(data, columnNames);
             table.getColumn("Add").setCellRenderer(new ButtonRenderer());
             table.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox()));
+        } else if (e.getSource() == clearButton) {
+            dm.setDataVector(data, columnNames);
         }
     }
 
-    public static void changeWindow(String actionName, ActionListener action) {
+    public static void changeWindow(String actionName, BiConsumer action) {
         BooksViewerFrame frame = new BooksViewerFrame(actionName, action);
         frame.setTitle("Book Viewer Form");
         frame.setVisible(true);
@@ -118,14 +129,11 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     }
 
     public static void main(String[] args) {
-        BooksViewerFrame.changeWindow("", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        BooksViewerFrame.changeWindow("", new ManagerAction());
     }
 }
+
+
 
 class ButtonRenderer extends JButton implements TableCellRenderer {
 
@@ -139,7 +147,7 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
         if (isSelected) {
             setForeground(table.getSelectionForeground());
             setBackground(table.getSelectionBackground());
-
+            System.out.println("Renderer : Row #" + row);
         } else {
             setForeground(table.getForeground());
             setBackground(UIManager.getColor("Button.background"));
@@ -173,6 +181,7 @@ class ButtonEditor extends DefaultCellEditor {
         if (isSelected) {
             button.setForeground(table.getSelectionForeground());
             button.setBackground(table.getSelectionBackground());
+            System.out.println("Editor : Row #" + row);
         } else {
             button.setForeground(table.getForeground());
             button.setBackground(table.getBackground());

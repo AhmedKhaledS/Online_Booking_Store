@@ -9,13 +9,13 @@ import java.util.Vector;
 
 public class BooksQueryManager {
 
-    public static Vector<Vector<String>> getBooksList (String key, String value, BooksQueryConstants.Operator operator) {
+    public static Vector<Vector<String>> getBooksList (String key, String value, BooksQueryUtil.Operator operator) {
         if (key == "Publisher_Name") {
             key = "Name";
         }
         ResultSet books = DatabaseConnector.executeQuery
                 ("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity" +
-                        " from Book as B join Publisher as P on B.publisher_id = P.publisher_id "+
+                        " from BOOK as B join PUBLISHER as P on B.publisher_id = P.publisher_id "+
                         " where " + key + getOperatorString(operator) +
                         Utils.encloseInQuotes(value));
 
@@ -40,16 +40,16 @@ public class BooksQueryManager {
         return data;
     }
 
-    private static String getOperatorString (BooksQueryConstants.Operator operator) {
-        if (operator == BooksQueryConstants.Operator.EQUALITY) {
+    private static String getOperatorString (BooksQueryUtil.Operator operator) {
+        if (operator == BooksQueryUtil.Operator.EQUALITY) {
             return " = ";
-        } else if (operator == BooksQueryConstants.Operator.GREATER) {
+        } else if (operator == BooksQueryUtil.Operator.GREATER) {
             return " > ";
-        } else if (operator == BooksQueryConstants.Operator.GREATER_EQUAL) {
+        } else if (operator == BooksQueryUtil.Operator.GREATER_EQUAL) {
             return " >= ";
-        } else if (operator == BooksQueryConstants.Operator.LESS) {
+        } else if (operator == BooksQueryUtil.Operator.LESS) {
             return " < ";
-        } else if (operator == BooksQueryConstants.Operator.LESS_EQUAL) {
+        } else if (operator == BooksQueryUtil.Operator.LESS_EQUAL) {
             return " <= ";
         } else {
             return " != ";
