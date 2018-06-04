@@ -10,20 +10,48 @@
    pageHeight = "842" columnWidth = "555" leftMargin = "20" rightMargin = "20"
    topMargin = "20" bottomMargin = "20">
   
-   <parameter name = "field1" class = "java.lang.String"/>
-   <parameter name = "field2" class = "java.lang.String"/>
+
+   <parameter name = "ReportTitle" class = "java.lang.String"/>
+
 
    <queryString>
-      <![CDATA[SELECT Title, Publisher_id FROM `Book_Store`.`BOOK`;]]>	
+      <![CDATA[SELECT ISBN, Quantity, Title, (Quantity * Price) AS Total
+	       FROM `Book_Store`.`ORDER` NATURAL JOIN `Book_Store`.`BOOK`;]]>	
    </queryString>
    
    <field name = "Title" class = "java.lang.String">
       <fieldDescription><![CDATA[]]></fieldDescription>
    </field>
 	
-   <field name = "Publisher_id" class = "java.lang.Integer">
+   <field name = "ISBN" class = "java.lang.Integer">
       <fieldDescription><![CDATA[]]></fieldDescription>
    </field>
+
+   <field name = "Quantity" class = "java.lang.Integer">
+      <fieldDescription><![CDATA[]]></fieldDescription>
+   </field>
+
+   <field name = "Total" class = "java.lang.Double">
+      <fieldDescription><![CDATA[]]></fieldDescription>
+   </field>
+
+   <title >
+     <band height = "70">
+	     <line>
+	       <reportElement x = "0" y = "0" width = "515" height = "1"/>
+	     </line>
+	     <textField isBlankWhenNull = "false" bookmarkLevel = "1" isStretchWithOverflow="true">
+	       <reportElement x = "0" y = "10" width = "515" height = "30"/>
+	 	 <textElement textAlignment = "Center">
+		    <font size = "22"/>
+		</textElement>
+	       <textFieldExpression class = "java.lang.String">
+	      	 <![CDATA[$P{ReportTitle}]]>
+	       </textFieldExpression>
+	       <anchorNameExpression><![CDATA["Title"]]></anchorNameExpression>
+	     </textField>
+    </band>
+    </title>
 	
    <columnHeader>
       <band height = "23">
@@ -41,24 +69,46 @@
          </staticText>
 			
          <staticText>
-            <reportElement x = "414" y = "3" width = "121" height = "15" />
+            <reportElement x = "110" y = "3" width = "100" height = "15" />
             
             <textElement textAlignment = "Center" verticalAlignment = "Middle">
                <font isBold = "true" />
             </textElement>
             
-            <text><![CDATA[Country]]></text>
+            <text><![CDATA[Book Title]]></text>
          </staticText>
          
          <staticText>
-            <reportElement x = "0" y = "3" width = "136" height = "15" />
+            <reportElement x = "0" y = "3" width = "100" height = "15" />
             
             <textElement textAlignment = "Center" verticalAlignment = "Middle">
                <font isBold = "true" />
             </textElement>
             
-            <text><![CDATA[Name]]></text>
+            <text><![CDATA[ISBN]]></text>
          </staticText>
+
+         <staticText>
+            <reportElement x = "210" y = "3" width = "100" height = "15" />
+            
+            <textElement textAlignment = "Center" verticalAlignment = "Middle">
+               <font isBold = "true" />
+            </textElement>
+            
+            <text><![CDATA[Sold Copies]]></text>
+         </staticText>
+
+         <staticText>
+            <reportElement x = "310" y = "3" width = "100" height = "15" />
+            
+            <textElement textAlignment = "Center" verticalAlignment = "Middle">
+               <font isBold = "true" />
+            </textElement>
+            
+            <text><![CDATA[Total Cost]]></text>
+         </staticText>
+	
+
   
       </band>
    </columnHeader>
@@ -78,24 +128,41 @@
             <text><![CDATA[]]> </text>
          </staticText>
 			
+
+         
          <textField>
-            <reportElement x = "414" y = "0" width = "121" height = "15" />
+            <reportElement x = "0" y = "0" width = "100" height = "15" />
+            <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
-            <textElement textAlignment = "Center" verticalAlignment = "Middle">
-               <font size = "9" />
-            </textElement>
+            <textFieldExpression class = "java.lang.Integer">
+               <![CDATA[$F{ISBN}]]>
+            </textFieldExpression>
+         </textField>
+
+         <textField>
+            <reportElement x = "210" y = "0" width = "100" height = "15" />
+            <textElement textAlignment = "Center" verticalAlignment = "Middle" />
+            
+            <textFieldExpression class = "java.lang.Integer">
+               <![CDATA[$F{Quantity}]]>
+            </textFieldExpression>
+         </textField>
+
+         <textField>
+            <reportElement x = "110" y = "0" width = "100" height = "15" />
+            <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
             <textFieldExpression class = "java.lang.String">
                <![CDATA[$F{Title}]]>
             </textFieldExpression>
          </textField>
-         
+
          <textField>
-            <reportElement x = "0" y = "0" width = "136" height = "15" />
+            <reportElement x = "310" y = "0" width = "100" height = "15" />
             <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
-            <textFieldExpression class = "java.lang.Integer">
-               <![CDATA[$F{Publisher_id}]]>
+            <textFieldExpression class = "java.lang.Double">
+               <![CDATA[$F{Total}]]>
             </textFieldExpression>
          </textField>
 
