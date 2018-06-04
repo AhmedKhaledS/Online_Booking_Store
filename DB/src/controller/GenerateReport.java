@@ -10,21 +10,34 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import controller.util.ReportConstants;
 
 public class GenerateReport {
+
     public void generatePDF(Connection con, String PDFFileName) {
-        //------------------Jasper testing is here.--------------------------------------------
         Map<String, Object> mapParameters = new HashMap<>();
         try {
             System.out.println("Generating report...");
-            File jrxmlFileName = new File(getClass().getClassLoader().getResource("report1.jrxml").getFile());
-            String jasperFileName = "./report1.jasper";
-           // String pdfFileName = "./report1.pdf";
-            ArrayList<ReportData> data = generateData();
-//            JRBeanCollectionDataSource dataList = new JRBeanCollectionDataSource(data);
+            File jrxmlFileName = null;
+            switch (PDFFileName) {
+                case ReportConstants.LAST_MONTH_SALES_PDF :
+                    jrxmlFileName = new File(getClass().getClassLoader().getResource(
+                            ReportConstants.LAST_MONTH_SALES_JRXML).getFile());
+                    mapParameters.put(ReportConstants.REPORT_TITLE_PARAMETER_KEY, ReportConstants.LAST_MONTH_SALES_TTILE);
+                    break;
+                case ReportConstants.TOP_FIVE_CUSTOMERS_PDF :
+                    jrxmlFileName = new File(getClass().getClassLoader().getResource(
+                            ReportConstants.TOP_FIVE_CUSTOMERS_JRXML).getFile());
+                    mapParameters.put(ReportConstants.REPORT_TITLE_PARAMETER_KEY, ReportConstants.TOP_FIVE_CUSTOMERS_TITLE);
+                    break;
+                case ReportConstants.TOP_TEN_SALES_PDF :
+                    jrxmlFileName = new File(getClass().getClassLoader().getResource(
+                            ReportConstants.TOP_TEN_SALES_JRXML).getFile());
+                    mapParameters.put(ReportConstants.REPORT_TITLE_PARAMETER_KEY, ReportConstants.TOP_TEN_SALES_TITLE);
+                    break;
+            }
+
             JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFileName.getAbsolutePath());
-            InputStream input = new FileInputStream(jrxmlFileName.getAbsolutePath());
-            mapParameters.put("ReportTitle", "Previous-Month-Sales");
 
             // Generate jasper print
             JasperPrint jasperPrint = (JasperPrint) JasperFillManager.fillReport(jasperReport,
@@ -38,14 +51,6 @@ public class GenerateReport {
         } catch (Exception e) {
             System.out.print("Exception" + e);
         }
-        //--------------------------------------------------------------------------------------------
     }
 
-    public static ArrayList generateData() {
-        ArrayList<ReportData> data = new ArrayList<>();
-        data.add(new ReportData("Ahmed", "Miami"));
-        data.add(new ReportData("Khaled", "Miami2"));
-        data.add(new ReportData("Saad", "Miami3"));
-        return data;
-    }
 }
