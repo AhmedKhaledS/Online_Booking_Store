@@ -3,6 +3,7 @@ package controller;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -11,18 +12,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GenerateReport {
-    public static void generatePDF(Connection con) {
+    public void generatePDF(Connection con, String PDFFileName) {
         //------------------Jasper testing is here.--------------------------------------------
         Map<String, Object> mapParameters = new HashMap<>();
         try {
             System.out.println("Generating report...");
-            String jrxmlFileName = "/home/ahmed/jasper_reports/report1.jrxml";
-            String jasperFileName = "/home/ahmed/jasper_reports/report1.jasper";
-            String pdfFileName = "/home/ahmed/jasper_reports/report1.pdf";
+            File jrxmlFileName = new File(getClass().getClassLoader().getResource("report1.jrxml").getFile());
+            String jasperFileName = "./report1.jasper";
+           // String pdfFileName = "./report1.pdf";
             ArrayList<ReportData> data = generateData();
             JRBeanCollectionDataSource dataList = new JRBeanCollectionDataSource(data);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFileName);
-            InputStream input = new FileInputStream(jrxmlFileName);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFileName.getAbsolutePath());
+            InputStream input = new FileInputStream(jrxmlFileName.getAbsolutePath());
             mapParameters.put("field1", "Egypt");
             mapParameters.put("field2", "Ahmed Khaled");
 
@@ -31,7 +32,7 @@ public class GenerateReport {
                     mapParameters, dataList);
 
             // Export pdf file
-            JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFileName);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, PDFFileName);
 
             System.out.println("Done exporting reports to pdf.");
 

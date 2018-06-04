@@ -44,7 +44,8 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
         // Here is the report generation.
-        GenerateReport.generatePDF(con);
+        GenerateReport reportGenerator = new GenerateReport();
+        reportGenerator.generatePDF(con, "./report1.pdf");
 
     }
 
