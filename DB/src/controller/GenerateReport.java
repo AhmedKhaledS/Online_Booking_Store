@@ -21,11 +21,10 @@ public class GenerateReport {
             String jasperFileName = "./report1.jasper";
            // String pdfFileName = "./report1.pdf";
             ArrayList<ReportData> data = generateData();
-            JRBeanCollectionDataSource dataList = new JRBeanCollectionDataSource(data);
+//            JRBeanCollectionDataSource dataList = new JRBeanCollectionDataSource(data);
             JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlFileName.getAbsolutePath());
             InputStream input = new FileInputStream(jrxmlFileName.getAbsolutePath());
-            mapParameters.put("field1", "Egypt");
-            mapParameters.put("field2", "Ahmed Khaled");
+            mapParameters.put("ReportTitle", "Previous-Month-Sales");
 
             // Generate jasper print
             JasperPrint jasperPrint = (JasperPrint) JasperFillManager.fillReport(jasperReport,
