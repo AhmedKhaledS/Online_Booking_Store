@@ -29,7 +29,7 @@ public class GenerateReport {
 
             // Generate jasper print
             JasperPrint jasperPrint = (JasperPrint) JasperFillManager.fillReport(jasperReport,
-                    mapParameters, dataList);
+                    mapParameters, con);
 
             // Export pdf file
             JasperExportManager.exportReportToPdfFile(jasperPrint, PDFFileName);
