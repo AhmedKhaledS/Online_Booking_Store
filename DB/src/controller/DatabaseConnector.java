@@ -1,11 +1,16 @@
 package controller;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import controller.ReportData;
+import controller.GenerateReport;
 
 public class DatabaseConnector {
 
@@ -38,32 +43,9 @@ public class DatabaseConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        // Here is the report generation.
+        GenerateReport.generatePDF(con);
 
-        //------------------Jasper testing is here.--------------------------------------------
-        HashMap hm = null;
-        try {
-            System.out.println("Generating report...");
-            String jrxmlFileName = "/home/ahmed/jasper_reports/report1.jrxml";
-            String jasperFileName = "/home/ahmed/jasper_reports/report1.jasper";
-            String pdfFileName = "/home/ahmed/jasper_reports/report1.pdf";
-
-            JasperCompileManager.compileReportToFile(jrxmlFileName, jasperFileName);
-            hm = new HashMap();
-            hm.put("country", "Egypt");
-            hm.put("name", "Ahmed Khaled");
-
-            // Generate jasper print
-            JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperFileName, hm, con);
-
-            // Export pdf file
-            JasperExportManager.exportReportToPdfFile(jprint, pdfFileName);
-
-            System.out.println("Done exporting reports to pdf.");
-
-        } catch (Exception e) {
-            System.out.print("Exception" + e);
-        }
-        //--------------------------------------------------------------------------------------------
     }
 
     public static ResultSet executeQuery(String sql) {

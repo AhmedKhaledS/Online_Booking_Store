@@ -1,6 +1,5 @@
 package view;
 
-
 public class AppMainScreen {
     public static void main(String[] a) {
         try {
