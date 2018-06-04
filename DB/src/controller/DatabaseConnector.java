@@ -1,5 +1,16 @@
 package controller;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import controller.ReportData;
+import controller.GenerateReport;
 
 public class DatabaseConnector {
 
@@ -28,9 +39,14 @@ public class DatabaseConnector {
         try {
             con = DriverManager.getConnection(
                     CONNECTION_NAME + SCHEMA_NAME,USERNAME,PASSWORD);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        // Here is the report generation.
+        GenerateReport reportGenerator = new GenerateReport();
+        reportGenerator.generatePDF(con, "./report1.pdf");
+
     }
 
     public static ResultSet executeQuery(String sql) {
