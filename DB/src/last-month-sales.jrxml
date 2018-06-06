@@ -6,18 +6,18 @@
    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation = "http://jasperreports.sourceforge.net/jasperreports
    http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
-   name = "jasper_report_template" language = "groovy" pageWidth = "595"
+   name = "jasper_report_template" language = "java" pageWidth = "595"
    pageHeight = "842" columnWidth = "555" leftMargin = "20" rightMargin = "20"
    topMargin = "20" bottomMargin = "20">
   
 
    <parameter name = "ReportTitle" class = "java.lang.String"/>
 
+    <queryString>
+        <![CDATA[SELECT ISBN, Quantity, Title, (Quantity * Price) AS Total
+	        FROM `Book_Store`.`ORDER` NATURAL JOIN `Book_Store`.`BOOK`;]]>	
+    </queryString>
 
-   <queryString>
-      <![CDATA[SELECT ISBN, Quantity, Title, (Quantity * Price) AS Total
-	       FROM `Book_Store`.`ORDER` NATURAL JOIN `Book_Store`.`BOOK`;]]>	
-   </queryString>
    
    <field name = "Title" class = "java.lang.String">
       <fieldDescription><![CDATA[]]></fieldDescription>
@@ -69,7 +69,7 @@
          </staticText>
 			
          <staticText>
-            <reportElement x = "110" y = "3" width = "100" height = "15" />
+            <reportElement x = "130" y = "3" width = "130" height = "15" />
             
             <textElement textAlignment = "Center" verticalAlignment = "Middle">
                <font isBold = "true" />
@@ -79,7 +79,7 @@
          </staticText>
          
          <staticText>
-            <reportElement x = "0" y = "3" width = "100" height = "15" />
+            <reportElement x = "0" y = "3" width = "130" height = "15" />
             
             <textElement textAlignment = "Center" verticalAlignment = "Middle">
                <font isBold = "true" />
@@ -89,7 +89,7 @@
          </staticText>
 
          <staticText>
-            <reportElement x = "210" y = "3" width = "100" height = "15" />
+            <reportElement x = "260" y = "3" width = "130" height = "15" />
             
             <textElement textAlignment = "Center" verticalAlignment = "Middle">
                <font isBold = "true" />
@@ -99,7 +99,7 @@
          </staticText>
 
          <staticText>
-            <reportElement x = "310" y = "3" width = "100" height = "15" />
+            <reportElement x = "390" y = "3" width = "130" height = "15" />
             
             <textElement textAlignment = "Center" verticalAlignment = "Middle">
                <font isBold = "true" />
@@ -131,7 +131,7 @@
 
          
          <textField>
-            <reportElement x = "0" y = "0" width = "100" height = "15" />
+            <reportElement x = "0" y = "0" width = "130" height = "15" />
             <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
             <textFieldExpression class = "java.lang.Integer">
@@ -140,7 +140,7 @@
          </textField>
 
          <textField>
-            <reportElement x = "210" y = "0" width = "100" height = "15" />
+            <reportElement x = "260" y = "0" width = "130" height = "15" />
             <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
             <textFieldExpression class = "java.lang.Integer">
@@ -149,7 +149,7 @@
          </textField>
 
          <textField>
-            <reportElement x = "110" y = "0" width = "100" height = "15" />
+            <reportElement x = "130" y = "0" width = "130" height = "15" />
             <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
             <textFieldExpression class = "java.lang.String">
@@ -158,7 +158,7 @@
          </textField>
 
          <textField>
-            <reportElement x = "310" y = "0" width = "100" height = "15" />
+            <reportElement x = "390" y = "0" width = "130" height = "15" />
             <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
             <textFieldExpression class = "java.lang.Double">

@@ -169,4 +169,8 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// frame.setResizable(false);
 	}
+
+	public static void main (String[] args) {
+		AddBookFrame.changeWindow();
+	}
 }

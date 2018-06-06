@@ -1,4 +1,4 @@
-package controller.book_store;
+package controller.books.query;
 
 import controller.DatabaseConnector;
 import controller.Utils;

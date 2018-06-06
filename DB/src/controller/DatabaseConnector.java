@@ -20,6 +20,11 @@ public class DatabaseConnector {
     static final String CONNECTION_NAME = "jdbc:mysql://localhost:3306/";
     static final String USERNAME = "root";
     static final String PASSWORD = "admin";
+
+    static final String LAST_MONTH_SALES = "./last-month-sales.pdf";
+    static final String TOP_FIVE_CUSTOMERS = "./top-five-customers.pdf";
+    static final String TOP_TEN_SALES = "./last-10-sales.pdf";
+
     private static Connection con;
 
     static {
@@ -45,8 +50,9 @@ public class DatabaseConnector {
         }
         // Here is the report generation.
         GenerateReport reportGenerator = new GenerateReport();
-        reportGenerator.generatePDF(con, "./report1.pdf");
-
+        reportGenerator.generatePDF(con, LAST_MONTH_SALES);
+        reportGenerator.generatePDF(con, TOP_FIVE_CUSTOMERS);
+        reportGenerator.generatePDF(con, TOP_TEN_SALES);
     }
 
     public static ResultSet executeQuery(String sql) {

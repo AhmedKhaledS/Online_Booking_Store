@@ -1,4 +1,4 @@
-package controller.books.actions;
+package controller.books.viewer.actions;
 
 import javax.swing.*;
 import java.util.function.BiConsumer;
