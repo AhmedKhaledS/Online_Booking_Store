@@ -9,8 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import controller.DatabaseConnector;
 import view.util.WindowChanger;
 
 public class AddBookFrame extends JFrame implements WindowChanger {
@@ -127,28 +129,31 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 				data[6] = book_quantity.getText();
 				data[7] = book_thershold.getText();
 
-				System.out.println("INSERT INTO BOOK VALUES (" + data[0] + "," + "'" + data[1] + "'" + "," + data[2]
+				String add_book_sql = "INSERT INTO BOOK VALUES (" + data[0] + "," + "'" + data[1] + "'" + "," + data[2]
 						+ "," + "'" + data[3] + "'" + "," + "'" + data[4] + "'" + "," + data[5] + "," + data[6] + ","
-						+ data[7] + ");");
+						+ data[7] + ");";
 
-				for (int i = 0; i < authors.length; i++) {
-					System.out.println(
-							"INSERT INTO BOOK_AUTHORS VALUES (" + data[0] + "," + "'" + authors[i] + "'" + ");");
+				if (DatabaseConnector.executeModify(add_book_sql)) {
+
+					String add_author_sql;
+					for (int i = 0; i < authors.length; i++) {
+						add_author_sql = "INSERT INTO BOOK_AUTHORS VALUES (" + data[0] + "," + "'" + authors[i] + "'"
+								+ ");";
+						DatabaseConnector.executeModify(add_author_sql);
+					}
+
+					JOptionPane.showMessageDialog(container, "Added Successfully");
+					reset_entries();
+				} else {
+					JOptionPane.showMessageDialog(container, "Error! Please Try Again");
 				}
+
 			}
 		});
 
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				book_ISBN.setText("");
-				book_tile.setText("");
-				book_publisher.setText("");
-				book_year.setText("");
-				book_category.setSelectedIndex(0);
-				book_price.setText("");
-				book_quantity.setText("");
-				book_thershold.setText("");
-				book_authors.setText("");
+				reset_entries();
 			}
 		});
 
@@ -161,6 +166,18 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 
 	}
 
+	private void reset_entries() {
+		book_ISBN.setText("");
+		book_tile.setText("");
+		book_publisher.setText("");
+		book_year.setText("");
+		book_category.setSelectedIndex(0);
+		book_price.setText("");
+		book_quantity.setText("");
+		book_thershold.setText("");
+		book_authors.setText("");
+	}
+
 	public static void changeWindow() {
 		AddBookFrame frame = new AddBookFrame();
 		frame.setTitle("Add New Book");
@@ -168,5 +185,9 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// frame.setResizable(false);
+	}
+
+	public static void main(String[] args) {
+		AddBookFrame.changeWindow();
 	}
 }

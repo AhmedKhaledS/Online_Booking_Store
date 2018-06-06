@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/usr/share/java/mysql-connector-java-8.0.11.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/jasperreports-applet-5.6.0.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/jasperreports-fonts-5.6.0.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/jasperreports-javaflow-5.6.0.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/commons-javaflow-1209105-sources.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/commons-collections-3.2.1-1.0.0.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/groovy-all-2.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/itextpdf-5.4.0.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/iText-2.1.7.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/jfreechart.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/jcommon.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/commons-logging-1.2.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/hisham/Downloads/jasper_jars/poi-3.9.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
