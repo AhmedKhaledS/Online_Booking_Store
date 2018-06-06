@@ -23,7 +23,7 @@ public class DatabaseConnector {
 
     static final String LAST_MONTH_SALES = "./last-month-sales.pdf";
     static final String TOP_FIVE_CUSTOMERS = "./top-five-customers.pdf";
-    static final String TOP_TEN_SALES = "./last-10-sales.pdf";
+    static final String TOP_TEN_SALES = "./top-10-sales.pdf";
 
     private static Connection con;
 

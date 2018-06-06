@@ -7,21 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-8.0.11" level="project" />
-    <orderEntry type="library" exported="" name="commons-logging-1.2.1.1" level="project" />
-    <orderEntry type="library" exported="" name="commons-javaflow-1209105-sources" level="project" />
-    <orderEntry type="library" exported="" name="commons-beanutils-1.8.3" level="project" />
-    <orderEntry type="library" exported="" name="commons-collections-3.2.1-1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="commons-digester-2.1" level="project" />
-    <orderEntry type="library" exported="" name="jcommon" level="project" />
-    <orderEntry type="library" exported="" name="jfreechart" level="project" />
-    <orderEntry type="library" exported="" name="poi-3.9" level="project" />
-    <orderEntry type="library" exported="" name="groovy-all-2.1.3" level="project" />
-    <orderEntry type="library" exported="" name="iText-2.1.7" level="project" />
-    <orderEntry type="library" exported="" name="itextpdf-5.4.0" level="project" />
-    <orderEntry type="library" name="jasperreports-5.6.0" level="project" />
-    <orderEntry type="library" name="jasperreports-applet-5.6.0" level="project" />
-    <orderEntry type="library" name="jasperreports-javaflow-5.6.0" level="project" />
-    <orderEntry type="library" name="jasperreports-fonts-5.6.0" level="project" />
+    <orderEntry type="library" name="commons-beanutils-1.8.3" level="project" />
   </component>
 </module>
