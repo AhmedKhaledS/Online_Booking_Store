@@ -63,11 +63,11 @@ public class DatabaseConnector {
         } catch (Exception e){
             System.out.println(e);
         }
-        return  rs;
+        return rs;
     }
 
     public static boolean executeModify (String sql) {
-        try{
+        try {
             Statement stmt = con.createStatement();
             stmt.execute(sql);
             return true;
