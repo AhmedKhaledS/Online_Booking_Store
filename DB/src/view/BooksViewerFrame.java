@@ -2,7 +2,9 @@ package view;
 
 import controller.books.query.BooksQueryUtil;
 import controller.books.query.BooksQueryManager;
+import controller.books.viewer.actions.CustomerUserAction;
 import controller.books.viewer.actions.ManagerUserAction;
+import controller.books.viewer.actions.TargetUser;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -159,7 +161,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     }
 
     public static void main(String[] args) {
-        BooksViewerFrame.changeWindow("Edit", new ManagerUserAction());
+        BooksViewerFrame.changeWindow("Edit", new CustomerUserAction());
     }
 }
 
@@ -229,7 +231,7 @@ class ButtonEditor extends DefaultCellEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, label + ": Ouch!");
+            JOptionPane.showMessageDialog(button, label + ": Item Added");
         }
         isPushed = false;
         return label;

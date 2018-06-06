@@ -9,6 +9,7 @@ public class CustomerUserAction extends UserAction {
 
     public CustomerUserAction () {
         shoppingCart = new Vector<>();
+        this.targetUser = TargetUser.CUSTOMER;
     }
 
     @Override
