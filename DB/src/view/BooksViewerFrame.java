@@ -1,8 +1,8 @@
 package view;
 
-import controller.book_store.BooksQueryUtil;
-import controller.book_store.BooksQueryManager;
-import controller.books.actions.ManagerUserAction;
+import controller.books.query.BooksQueryUtil;
+import controller.books.query.BooksQueryManager;
+import controller.books.viewer.actions.ManagerUserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
