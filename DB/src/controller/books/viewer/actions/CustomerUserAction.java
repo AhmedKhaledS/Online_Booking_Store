@@ -27,7 +27,7 @@ public class CustomerUserAction extends UserAction {
     }
 
     @Override
-    public void addToGUI(Container container) {
+    public void addToFrame(Container container) {
         JButton viewShoppingCartButton = new JButton("View Shopping Cart");
         /// TODO : Switch to Shopping Cart Frame
         viewShoppingCartButton.addActionListener(new ActionListener() {

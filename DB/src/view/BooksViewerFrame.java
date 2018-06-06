@@ -3,10 +3,7 @@ package view;
 import controller.books.query.BooksQueryUtil;
 import controller.books.query.BooksQueryManager;
 import controller.books.viewer.actions.CustomerUserAction;
-import controller.books.viewer.actions.ManagerUserAction;
-import controller.books.viewer.actions.TargetUser;
 import controller.books.viewer.actions.UserAction;
-import controller.users.UsersUtil;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -50,7 +47,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
-        action.addToGUI(container);
+        action.addToFrame(container);
         addActionEvent();
     }
 
