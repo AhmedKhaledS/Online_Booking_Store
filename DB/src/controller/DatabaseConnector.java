@@ -15,7 +15,7 @@ public class DatabaseConnector {
     static final String TOP_TEN_SALES = "./top-10-sales.pdf";
 
     private static Connection con;
-    private static GenerateReport reportGenerator;
+    private static ReportGenerator reportGenerator;
 
     static {
         registerDriver();
@@ -39,7 +39,7 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
         // Report generation.
-        reportGenerator = new GenerateReport();
+        reportGenerator = new ReportGenerator(con);
     }
 
     public static ResultSet executeQuery(String sql) {
@@ -61,9 +61,9 @@ public class DatabaseConnector {
         } catch (Exception e){
             System.out.println(e);
         } finally {
-            reportGenerator.generatePDF(con, LAST_MONTH_SALES);
-            reportGenerator.generatePDF(con, TOP_FIVE_CUSTOMERS);
-            reportGenerator.generatePDF(con, TOP_TEN_SALES);
+            reportGenerator.generatePDF(LAST_MONTH_SALES);
+            reportGenerator.generatePDF(TOP_FIVE_CUSTOMERS);
+            reportGenerator.generatePDF(TOP_TEN_SALES);
         }
         return false;
     }

@@ -12,9 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 import controller.util.ReportConstants;
 
-public class GenerateReport {
+public class ReportGenerator {
 
-    public void generatePDF(Connection con, String PDFFileName) {
+    private Connection connection;
+
+    ReportGenerator(Connection connection) {
+        this.connection = connection;
+    }
+
+    public void generatePDF(String PDFFileName) {
         Map<String, Object> mapParameters = new HashMap<>();
         try {
             System.out.println("Generating report...");
@@ -41,7 +47,7 @@ public class GenerateReport {
 
             // Generate jasper print
             JasperPrint jasperPrint = (JasperPrint) JasperFillManager.fillReport(jasperReport,
-                    mapParameters, con);
+                    mapParameters, connection);
 
             // Export pdf file
             JasperExportManager.exportReportToPdfFile(jasperPrint, PDFFileName);
