@@ -67,15 +67,14 @@ public class DatabaseConnector {
     }
 
     public static boolean executeModify (String sql) {
-        boolean executionState = false;
         try{
             Statement stmt = con.createStatement();
-            executionState = stmt.execute(sql);
-//            con.close();
+            stmt.execute(sql);
+            return true;
         } catch (Exception e){
             System.out.println(e);
         }
-        return executionState;
+        return false;
     }
 }
 
