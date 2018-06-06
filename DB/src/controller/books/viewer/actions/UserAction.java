@@ -11,6 +11,6 @@ public abstract class UserAction implements BiConsumer<JTable, Integer> {
     @Override
     public void accept(JTable jTable, Integer row) {}
 
-    public abstract void addToGUI (Container container);
+    public abstract void addToFrame(Container container);
 }
 

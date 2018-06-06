@@ -15,7 +15,7 @@ public class ManagerUserAction extends UserAction {
     }
 
     @Override
-    public void addToGUI(Container container) {
+    public void addToFrame(Container container) {
 
     }
 }

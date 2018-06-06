@@ -1,16 +1,5 @@
 package controller;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import controller.ReportData;
-import controller.GenerateReport;
 
 public class DatabaseConnector {
 
@@ -26,6 +15,7 @@ public class DatabaseConnector {
     static final String TOP_TEN_SALES = "./top-10-sales.pdf";
 
     private static Connection con;
+    private static GenerateReport reportGenerator;
 
     static {
         registerDriver();
@@ -48,11 +38,8 @@ public class DatabaseConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // Here is the report generation.
-        GenerateReport reportGenerator = new GenerateReport();
-        reportGenerator.generatePDF(con, LAST_MONTH_SALES);
-        reportGenerator.generatePDF(con, TOP_FIVE_CUSTOMERS);
-        reportGenerator.generatePDF(con, TOP_TEN_SALES);
+        // Report generation.
+        reportGenerator = new GenerateReport();
     }
 
     public static ResultSet executeQuery(String sql) {
@@ -73,6 +60,10 @@ public class DatabaseConnector {
             return true;
         } catch (Exception e){
             System.out.println(e);
+        } finally {
+            reportGenerator.generatePDF(con, LAST_MONTH_SALES);
+            reportGenerator.generatePDF(con, TOP_FIVE_CUSTOMERS);
+            reportGenerator.generatePDF(con, TOP_TEN_SALES);
         }
         return false;
     }
