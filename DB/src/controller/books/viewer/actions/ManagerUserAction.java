@@ -5,7 +5,7 @@ import javax.swing.*;
 public class ManagerUserAction extends UserAction {
 
     @Override
-    public void accept(JTable jTable, Integer integer) {
+    public void accept(JTable jTable, Integer row) {
 
     }
 }

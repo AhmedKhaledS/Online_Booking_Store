@@ -35,21 +35,23 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     JScrollPane scroll;
     int pageIndex = 0;
     final int MAX_PAGE_LEN = 10;
-    BiConsumer action;
 
+    BiConsumer action;
+    String actionName;
 
     BooksViewerFrame(String actionName, BiConsumer action) {
+        this.actionName = actionName;
+        this.action = action;
         initializeColumnNames();
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-        this.action = action;
     }
 
     private void initializeColumnNames() {
         columnNames = new Vector<>();
-        columnNames.add("Add");
+        columnNames.add(actionName);
         columnNames.add("ISBN");
         columnNames.add("Title");
         columnNames.add("Publisher Name");
@@ -66,8 +68,8 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
 
     private  void setLocationAndSize() {
         dm.setDataVector(new Vector<>(),columnNames);
-        table.getColumn("Add").setCellRenderer(new ButtonRenderer(action));
-        table.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellRenderer(new ButtonRenderer(action));
+        table.getColumn(actionName).setCellEditor(new ButtonEditor(new JCheckBox()));
         table.setVisible(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         scroll = new JScrollPane(table);
@@ -140,8 +142,8 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
                         columnNames);
             }
         }
-        table.getColumn("Add").setCellRenderer(new ButtonRenderer(action));
-        table.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellRenderer(new ButtonRenderer(action));
+        table.getColumn(actionName).setCellEditor(new ButtonEditor(new JCheckBox()));
     }
 
     public static void changeWindow(String actionName, BiConsumer action) {
@@ -157,7 +159,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     }
 
     public static void main(String[] args) {
-        BooksViewerFrame.changeWindow("", new ManagerUserAction());
+        BooksViewerFrame.changeWindow("Edit", new ManagerUserAction());
     }
 }
 
