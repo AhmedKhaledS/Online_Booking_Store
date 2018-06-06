@@ -2,7 +2,11 @@ package view;
 
 import controller.books.query.BooksQueryUtil;
 import controller.books.query.BooksQueryManager;
+import controller.books.viewer.actions.CustomerUserAction;
 import controller.books.viewer.actions.ManagerUserAction;
+import controller.books.viewer.actions.TargetUser;
+import controller.books.viewer.actions.UserAction;
+import controller.users.UsersUtil;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -35,21 +39,24 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     JScrollPane scroll;
     int pageIndex = 0;
     final int MAX_PAGE_LEN = 10;
-    BiConsumer action;
 
+    UserAction action;
+    String actionName;
 
-    BooksViewerFrame(String actionName, BiConsumer action) {
+    BooksViewerFrame(String actionName, UserAction action) {
+        this.actionName = actionName;
+        this.action = action;
         initializeColumnNames();
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
+        action.addToGUI(container);
         addActionEvent();
-        this.action = action;
     }
 
     private void initializeColumnNames() {
         columnNames = new Vector<>();
-        columnNames.add("Add");
+        columnNames.add(actionName);
         columnNames.add("ISBN");
         columnNames.add("Title");
         columnNames.add("Publisher Name");
@@ -66,8 +73,8 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
 
     private  void setLocationAndSize() {
         dm.setDataVector(new Vector<>(),columnNames);
-        table.getColumn("Add").setCellRenderer(new ButtonRenderer(action));
-        table.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellRenderer(new ButtonRenderer(action));
+        table.getColumn(actionName).setCellEditor(new ButtonEditor(new JCheckBox()));
         table.setVisible(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         scroll = new JScrollPane(table);
@@ -140,11 +147,11 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
                         columnNames);
             }
         }
-        table.getColumn("Add").setCellRenderer(new ButtonRenderer(action));
-        table.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellRenderer(new ButtonRenderer(action));
+        table.getColumn(actionName).setCellEditor(new ButtonEditor(new JCheckBox()));
     }
 
-    public static void changeWindow(String actionName, BiConsumer action) {
+    public static void changeWindow(String actionName, UserAction action) {
         BooksViewerFrame frame = new BooksViewerFrame(actionName, action);
         frame.setTitle("Book Viewer Form");
         frame.setVisible(true);
@@ -157,7 +164,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     }
 
     public static void main(String[] args) {
-        BooksViewerFrame.changeWindow("", new ManagerUserAction());
+        BooksViewerFrame.changeWindow("Edit", new CustomerUserAction());
     }
 }
 
@@ -227,7 +234,7 @@ class ButtonEditor extends DefaultCellEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, label + ": Ouch!");
+            JOptionPane.showMessageDialog(button, label + ": Item Added");
         }
         isPushed = false;
         return label;

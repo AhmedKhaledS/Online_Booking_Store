@@ -109,4 +109,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 		// frame.setResizable(false);
 	}
 
+	public static void main (String[] args) {
+		ManagerFrame.changeWindow();
+	}
 }
