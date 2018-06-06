@@ -1,6 +1,7 @@
 package controller.books.viewer.actions;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ManagerUserAction extends UserAction {
 
@@ -10,6 +11,11 @@ public class ManagerUserAction extends UserAction {
 
     @Override
     public void accept(JTable jTable, Integer row) {
+
+    }
+
+    @Override
+    public void addToGUI(Container container) {
 
     }
 }

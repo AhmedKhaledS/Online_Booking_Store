@@ -5,6 +5,8 @@ import controller.books.query.BooksQueryManager;
 import controller.books.viewer.actions.CustomerUserAction;
 import controller.books.viewer.actions.ManagerUserAction;
 import controller.books.viewer.actions.TargetUser;
+import controller.books.viewer.actions.UserAction;
+import controller.users.UsersUtil;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -38,16 +40,17 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     int pageIndex = 0;
     final int MAX_PAGE_LEN = 10;
 
-    BiConsumer action;
+    UserAction action;
     String actionName;
 
-    BooksViewerFrame(String actionName, BiConsumer action) {
+    BooksViewerFrame(String actionName, UserAction action) {
         this.actionName = actionName;
         this.action = action;
         initializeColumnNames();
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
+        action.addToGUI(container);
         addActionEvent();
     }
 
@@ -148,7 +151,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
         table.getColumn(actionName).setCellEditor(new ButtonEditor(new JCheckBox()));
     }
 
-    public static void changeWindow(String actionName, BiConsumer action) {
+    public static void changeWindow(String actionName, UserAction action) {
         BooksViewerFrame frame = new BooksViewerFrame(actionName, action);
         frame.setTitle("Book Viewer Form");
         frame.setVisible(true);
