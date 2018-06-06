@@ -3,9 +3,9 @@ package controller.books.viewer.actions;
 import javax.swing.*;
 import java.awt.*;
 
-public class ManagerUserAction extends UserAction {
+public class ManagerAction extends UserAction {
 
-    public ManagerUserAction () {
+    public ManagerAction() {
         this.targetUser = TargetUser.MANAGER;
     }
 
