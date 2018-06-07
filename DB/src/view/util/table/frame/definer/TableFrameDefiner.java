@@ -1,25 +1,24 @@
-package view.util.observer;
+package view.util.table.frame.definer;
 
 import controller.books.viewer.actions.UserAction;
-import view.TableFrame;
 
 import java.awt.*;
 import java.util.Vector;
 
-public abstract class TableFrameObserver {
+public abstract class TableFrameDefiner {
 
     protected UserAction action;
 
     /** Observer Design Pattern Attribute. */
-    protected ObservableTableFrame observableTableFrame;
+    protected DefinableTableFrame definableTableFrame;
 
-    public TableFrameObserver () {}
+    public TableFrameDefiner() {}
 
     /** Observer Design Pattern Method. */
     public abstract void update(Object eventSource);
 
-    public void setObservableTableFrame (ObservableTableFrame observableTableFrame) {
-        this.observableTableFrame = observableTableFrame;
+    public void setDefinableTableFrame(DefinableTableFrame definableTableFrame) {
+        this.definableTableFrame = definableTableFrame;
     }
 
     public abstract Vector<String> defineTableAttributes();

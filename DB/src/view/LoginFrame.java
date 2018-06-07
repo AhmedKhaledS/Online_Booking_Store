@@ -75,7 +75,7 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             UserProfileController.getInstance().login(currentUser);
             // After return from login the type of user has been set.
             if (currentUser.getType() == UsersUtil.UserType.MANAGER) {
-                /// TODO : Manager Window
+                ManagerFrame.changeWindow();
             } else if (currentUser.getType() == UsersUtil.UserType.CUSTOMER) {
                 /// TODO : Customer Window
             } else {
