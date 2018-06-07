@@ -8,7 +8,7 @@ import javax.swing.JTable;
 public class MangerOrderAction extends UserAction {
 
 	public MangerOrderAction() {
-		this.actionName = "RECIEVED";
+		this.actionName = "RECIEVE";
 	}
 
 	@Override

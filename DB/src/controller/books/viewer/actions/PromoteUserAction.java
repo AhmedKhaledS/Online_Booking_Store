@@ -8,7 +8,7 @@ import javax.swing.JTable;
 public class PromoteUserAction extends UserAction {
 
 	public PromoteUserAction() {
-		this.actionName = "RECIEVED";
+		this.actionName = "PROMOTE";
 	}
 
 	@Override

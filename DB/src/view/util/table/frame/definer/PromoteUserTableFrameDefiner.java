@@ -9,7 +9,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 
 import controller.DatabaseConnector;
-import controller.books.viewer.actions.MangerOrderAction;
+import controller.books.viewer.actions.PromoteUserAction;
 import view.util.GUIConstants;
 
 public class PromoteUserTableFrameDefiner extends TableFrameDefiner implements ActionListener {
@@ -17,7 +17,7 @@ public class PromoteUserTableFrameDefiner extends TableFrameDefiner implements A
 	private JButton backButton;
 
 	public PromoteUserTableFrameDefiner() {
-		this.action = new MangerOrderAction();
+		this.action = new PromoteUserAction();
 	}
 
 	@Override
