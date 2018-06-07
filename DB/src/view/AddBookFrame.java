@@ -127,7 +127,9 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String data[] = fetch_data();
-				editorAction.target_button_action(data);
+				if(editorAction.target_button_action(data)) {
+					reset_entries();
+				}					
 			}
 		});
 
@@ -197,31 +199,4 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		AddBookFrame.changeWindow(new AddAction());
 	}
 
-	private void edit_action() {
-
-		String authors[] = book_authors.getText().split(",");
-		String data[] = new String[8];
-		data[0] = book_ISBN.getText();
-		data[1] = book_tile.getText();
-		data[2] = book_publisher.getText();
-		data[3] = book_year.getText();
-		data[4] = (String) book_category.getSelectedItem();
-		data[5] = book_price.getText();
-		data[6] = book_quantity.getText();
-		data[7] = book_thershold.getText();
-
-		String update_query = "UPDATE BOOK SET ISBN=?,Title=?,Publisher_id=?,Publication_year=?,Category=?,Price=?,No_of_copies=?,Min_Quantity=?,WHERE ISBN=?";
-
-		update_query.replaceFirst("?", data[0]);
-		update_query.replaceFirst("?", '\'' + data[1] + '\'');
-		update_query.replaceFirst("?", data[2]);
-		update_query.replaceFirst("?", '\'' + data[3] + '\'');
-		update_query.replaceFirst("?", '\'' + data[4] + '\'');
-		update_query.replaceFirst("?", data[5]);
-		update_query.replaceFirst("?", data[6]);
-		update_query.replaceFirst("?", data[7]);
-
-		System.out.println(update_query);
-	}
-	
 }

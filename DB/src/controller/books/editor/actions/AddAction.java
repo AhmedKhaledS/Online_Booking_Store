@@ -12,9 +12,9 @@ public class AddAction implements EditorAction {
 	}
 
 	@Override
-	public void target_button_action(String[] data) {
+	public boolean target_button_action(String[] data) {
 		DatabaseConnector.setCommitLevel(false);
-		BooksQueryManagerController.addBook(data);
+		return BooksQueryManagerController.addBook(data);
 	}
 
 	@Override
