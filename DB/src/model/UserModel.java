@@ -18,8 +18,8 @@ public class UserModel {
     private UserModel() {
     }
 
-    boolean isRegisteredUser(String email) {
-        String getUserStmt = "SELECT * FROM USER WHERE E-mail=" + "'" + email + "';";
+    public boolean isRegisteredUser(String email) {
+        String getUserStmt = "SELECT * FROM USER WHERE `E-mail`=" + "'" + email + "';";
         ResultSet rs = DatabaseConnector.executeQuery(getUserStmt);
         try {
             if (rs.next()) {
@@ -31,9 +31,11 @@ public class UserModel {
         return false;
     }
 
-    void registerUser(UserProfile user) {
+    public void registerUser(UserProfile user) {
         if (isRegisteredUser(user.getEmail())) {
             System.out.println("Error: You are already registered!");
+            JOptionPane.showMessageDialog(null,
+                    "Error: You are already registered!");
             return;
         }
         String registerStmt = "INSERT INTO USER VALUES ("  + "'" + user.getEmail()
@@ -58,31 +60,31 @@ public class UserModel {
         return "Manager";
     }
 
-    void updateUserName(final String newUserName) {
+    public void updateUserName(final String newUserName) {
 
     }
 
-    void updatePassword(final String newPassword) {
+    public void updatePassword(final String newPassword) {
 
     }
 
-    void updateLastName(final String newLastName) {
+    public void updateLastName(final String newLastName) {
 
     }
 
-    void updateFirstName(final String newFirstName) {
+    public void updateFirstName(final String newFirstName) {
 
     }
 
-    void updatePhoneNum(final String newPhoneNum) {
+    public void updatePhoneNum(final String newPhoneNum) {
 
     }
 
-    void upadteShoppingAddress(final String newShoppingAddress) {
+    public void upadteShoppingAddress(final String newShoppingAddress) {
 
     }
 
-    void updateUserType(final String newUserType) {
+    public void updateUserType(final String newUserType) {
 
     }
 
