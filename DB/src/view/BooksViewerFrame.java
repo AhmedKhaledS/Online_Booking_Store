@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 import java.util.function.BiConsumer;
 
-public class BooksViewerFrame extends JFrame implements ActionListener, WindowChanger{
+public class BooksViewerFrame extends JFrame implements ActionListener, WindowChanger {
 
     Container container = getContentPane();
 
