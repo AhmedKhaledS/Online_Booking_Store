@@ -141,8 +141,7 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
             // New Edit...
             UserProfile currentUser = new UserProfile(emailTextField.getText(), userTextField.getText(),
                     new String(passwordField.getPassword()), nameTextField.getText(), nameTextField.getText(),
-                    phoneTextField.getText(), shoppingAddressTextField.getText(), customerRB.isSelected() ?
-                    UsersUtil.UserType.CUSTOMER : (managerRB.isSelected() ? UsersUtil.UserType.MANAGER : null));
+                    phoneTextField.getText(), shoppingAddressTextField.getText(), UsersUtil.UserType.CUSTOMER);
             UserProfileController.getInstance().registerUser(currentUser);
 
         } else if (e.getSource() == resetButton) {
