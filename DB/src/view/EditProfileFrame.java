@@ -1,5 +1,8 @@
 package view;
 
+import controller.users.UserProfileController;
+import controller.users.UsersUtil;
+import model.UserProfile;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -119,6 +122,11 @@ public class EditProfileFrame extends JFrame implements ActionListener, WindowCh
                 errorLabel.setText("Password and confirmed password do not match !");
             }
             /// TODO: Here calling the controller to handle Editing profile.
+            UserProfile currentUser = new UserProfile(emailTextField.getText(), userTextField.getText(),
+                    new String(passwordField.getPassword()), nameTextField.getText(), nameTextField.getText(),
+                    phoneTextField.getText(), shoppingAddressTextField.getText(), UserProfileController.getInstance()
+                    .getCurrentLoggedInUser().getType());
+            UserProfileController.getInstance().updateUser(currentUser);
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
