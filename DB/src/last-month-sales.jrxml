@@ -15,7 +15,7 @@
 
     <queryString>
         <![CDATA[SELECT ISBN, Quantity, Title, (Quantity * Price) AS Total
-	        FROM `Book_Store`.`ORDER` NATURAL JOIN `Book_Store`.`BOOK`;]]>	
+	        FROM `Book_Store`.`ORDER` NATURAL JOIN `Book_Store`.`BOOK` WHERE `Date` >= now()-interval 1 month;]]>	
     </queryString>
 
    
