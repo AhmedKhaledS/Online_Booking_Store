@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import static view.util.GUIConstants.offsetX;
+
 public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
     private JLabel searchKeyLabel;
@@ -18,7 +20,9 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
     private JComboBox<String> possibleKeys;
     private JButton searchButton;
     private JButton clearButton;
-    private JButton viewShoppinCartButton;
+    private JButton viewShoppingCartButton;
+    private JLabel quantityLabel;
+    private JTextField quantityTextField;
 
     public BooksSearcherTableFrameDefiner(String actionName) {
         this.action = new CustomerAction();
@@ -46,24 +50,30 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
 
     @Override
     public void modifyFrame(Container container) {
+        quantityTextField = new JTextField();
+        quantityLabel = new JLabel("Book Quantity");
         searchKeyLabel = new JLabel("Search By");
         searchKeyTextField = new JTextField();
         String[] keys = {"Title", "Publisher_Name", "Publication_Year", "Category"};
         possibleKeys = new JComboBox<>(keys);
         searchButton = new JButton("Search");
         clearButton = new JButton("Clear");
-        viewShoppinCartButton = new JButton("View Shopping Cart");
+        viewShoppingCartButton = new JButton("View Shopping Cart");
         searchKeyLabel.setBounds(GUIConstants.initX, GUIConstants.initY,
                 GUIConstants.width, GUIConstants.height);
-        searchKeyTextField.setBounds(GUIConstants.initX + GUIConstants.offsetX,
+        searchKeyTextField.setBounds(GUIConstants.initX + offsetX,
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
-        possibleKeys.setBounds(GUIConstants.initX + GUIConstants.offsetX * 2,
+        possibleKeys.setBounds(GUIConstants.initX + offsetX * 2,
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
-        searchButton.setBounds(GUIConstants.initX + GUIConstants.offsetX * 3,
+        searchButton.setBounds(GUIConstants.initX + offsetX * 3,
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
-        clearButton.setBounds(GUIConstants.initX + GUIConstants.offsetX * 6,
+        clearButton.setBounds(GUIConstants.initX + offsetX * 6,
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
-        viewShoppinCartButton.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY * 8,
+        viewShoppingCartButton.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY * 8,
+                GUIConstants.width, GUIConstants.height);
+        quantityLabel.setBounds(GUIConstants.initX + offsetX, GUIConstants.initY + GUIConstants.offsetY * 8,
+                GUIConstants.width, GUIConstants.height);
+        quantityTextField.setBounds(GUIConstants.initX + offsetX * 2, GUIConstants.initY + GUIConstants.offsetY * 8,
                 GUIConstants.width, GUIConstants.height);
         setActionListeners();
         addToContainer(container);
@@ -79,7 +89,9 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
         container.add (possibleKeys);
         container.add (searchButton);
         container.add (clearButton);
-        container.add (viewShoppinCartButton);
+        container.add (viewShoppingCartButton);
+        container.add (quantityLabel);
+        container.add (quantityTextField);
     }
 
     @Override
@@ -96,7 +108,7 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
             this.definableTableFrame.setData(data);
         } else if (e.getSource() == clearButton) {
             searchKeyTextField.setText("");
-        } else if (e.getSource() == viewShoppinCartButton) {
+        } else if (e.getSource() == viewShoppingCartButton) {
 
         }
     }
