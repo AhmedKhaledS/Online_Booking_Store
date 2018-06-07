@@ -10,4 +10,6 @@ public interface ObservableTableFrame {
 
     public Container getFrameContainer ();
     public Vector<Vector<String>> getTableData();
+    public void setData (Vector<Vector<String>> data);
+
 }

@@ -50,7 +50,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
-		this.observer.modifyFrame();
+		this.observer.modifyFrame(container);
 	}
 
 	private void initializeTable () {
@@ -116,6 +116,17 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		frame.setBounds(10, 10, 950, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setResizable(false);
+	}
+
+	@Override
+	public void setData (Vector<Vector<String>> data) {
+		this.data = data;
+		pageIndex = 0;
+		dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
+				columnNames);
+		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
+		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
+		return;
 	}
 
 	@Override

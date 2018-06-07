@@ -3,6 +3,7 @@ package view.util.observer;
 import controller.books.viewer.actions.UserAction;
 import view.TableFrame;
 
+import java.awt.*;
 import java.util.Vector;
 
 public abstract class TableFrameObserver {
@@ -27,5 +28,5 @@ public abstract class TableFrameObserver {
         return action;
     }
 
-    public abstract void modifyFrame();
+    public abstract void modifyFrame(Container container);
 }
