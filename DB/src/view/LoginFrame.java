@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controller.users.UserProfileController;
-import controller.users.UsersManager;
 import controller.users.UsersUtil;
 import model.UserProfile;
 import view.util.WindowChanger;
