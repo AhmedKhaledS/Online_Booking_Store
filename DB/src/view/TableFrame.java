@@ -25,7 +25,10 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	/** Main table components. */
 	Vector<Vector<String>> data;
 	Vector<String> columnNames;
-	DefaultTableModel dm = new DefaultTableModel();
+	DefaultTableModel dm = new DefaultTableModel() {
+		@Override
+		public boolean isCellEditable (int row, int column) {return false;}
+	};
 	JTable table = new JTable(dm);
 	JScrollPane scroll;
 	JButton nextPageButton = new JButton("Next");
