@@ -10,9 +10,9 @@ public class BooksQueryManagerController {
 		return ManagerQuery.getInstance().getBooksList(key, value, operator);
 	}
 
-	public static void addBook(String[] originalData) {
+	public static boolean addBook(String[] originalData) {
 
-		ManagerQuery.getInstance().addBook(originalData);
+		return ManagerQuery.getInstance().addBook(originalData);
 	}
 
 	public static void deleteBook(String ISBN) {

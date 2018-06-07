@@ -17,10 +17,10 @@ public class EditAction implements EditorAction {
 	}
 
 	@Override
-	public void target_button_action(String[] data) {
+	public boolean target_button_action(String[] data) {
 		DatabaseConnector.setCommitLevel(false);
 		BooksQueryManagerController.deleteBook(this.data[0]);
-		BooksQueryManagerController.addBook(data);
+		return BooksQueryManagerController.addBook(data);
 	}
 
 	@Override
