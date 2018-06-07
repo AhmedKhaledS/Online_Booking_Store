@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import controller.books.editor.actions.AddAction;
 import view.util.WindowChanger;
 
 public class AddItemFrame extends JFrame implements WindowChanger {
@@ -52,7 +53,7 @@ public class AddItemFrame extends JFrame implements WindowChanger {
 		buttonAddBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/// TO BE FILLED...
-				AddBookFrame.changeWindow();
+				AddBookFrame.changeWindow(new AddAction());
 				dispose();
 			}
 		});
