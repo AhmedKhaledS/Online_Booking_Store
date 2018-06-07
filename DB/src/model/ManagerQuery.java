@@ -64,6 +64,8 @@ public class ManagerQuery extends UserQuery {
 		return !error;
 	}
 
+
+
 	public void deleteBook(String ISBN) {
 
 		System.out.println(ISBN);
