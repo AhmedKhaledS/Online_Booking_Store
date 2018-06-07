@@ -6,9 +6,8 @@ import model.ManagerQuery;
 
 public class BooksQueryManagerController {
 
-	public static Vector<Vector<String>> getBooksList(String key, String value,
-                                                      BooksQueryUtil.Operator operator) {
-        return ManagerQuery.getInstance().getBooksList(key, value, operator);
+	public static Vector<Vector<String>> getBooksList(String key, String value, BooksQueryUtil.Operator operator) {
+		return ManagerQuery.getInstance().getBooksList(key, value, operator);
 	}
 
 	public static void addBook(String[] originalData) {
@@ -20,6 +19,5 @@ public class BooksQueryManagerController {
 
 		ManagerQuery.getInstance().deleteBook(ISBN);
 	}
-
 
 }
