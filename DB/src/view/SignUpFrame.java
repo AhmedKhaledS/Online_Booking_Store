@@ -1,6 +1,9 @@
 package view;
 
 import controller.DatabaseConnector;
+import controller.users.UserProfileController;
+import controller.users.UsersUtil;
+import model.UserProfile;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 
@@ -135,6 +138,12 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
             if (!pwdText.equals(confirmedPwdText)) {
                 errorLabel.setText("Password and confirmed password do not match !");
             }
+            // New Edit...
+            UserProfile currentUser = new UserProfile(emailTextField.getText(), userTextField.getText(),
+                    new String(passwordField.getPassword()), nameTextField.getText(), nameTextField.getText(),
+                    phoneTextField.getText(), shoppingAddressTextField.getText(), customerRB.isSelected() ?
+                    UsersUtil.UserType.CUSTOMER : (managerRB.isSelected() ? UsersUtil.UserType.MANAGER : null));
+            UserProfileController.getInstance().registerUser(currentUser);
 
         } else if (e.getSource() == resetButton) {
             userTextField.setText("");
