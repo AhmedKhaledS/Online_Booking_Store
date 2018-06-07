@@ -23,6 +23,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 	JButton btnPromoteUser = new JButton("PROMOTE USER");
 	JButton btnViewReports = new JButton("VIEW REPORTS");
 	JButton btnLogOut = new JButton("LOG OUT");
+	JButton btnEditProfile = new JButton("EDIT PROFILE");
 
 	ManagerFrame() {
 		setLayoutManager();
@@ -43,6 +44,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 		btnManageOrders.setBounds(139, 162, 170, 25);
 		btnPromoteUser.setBounds(139, 199, 170, 25);
 		btnViewReports.setBounds(139, 236, 170, 25);
+		btnEditProfile.setBounds(139, 270, 170, 25);
 		btnLogOut.setBounds(342, 27, 96, 15);
 	}
 
@@ -53,6 +55,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 		container.add(btnManageOrders);
 		container.add(btnPromoteUser);
 		container.add(btnViewReports);
+		container.add(btnEditProfile);
 		container.add(btnLogOut);
 	}
 
@@ -95,6 +98,14 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 		btnViewReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+			}
+		});
+
+		btnEditProfile.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EditProfileFrame.changeWindow();
+				dispose();
 			}
 		});
 

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import controller.users.UserProfileController;
 import controller.users.UsersUtil;
 import model.UserProfile;
+import sun.rmi.runtime.Log;
 import view.util.WindowChanger;
 
 public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
@@ -108,5 +109,8 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
         frame.setResizable(false);
     }
 
+    public static void main (String[] args) {
+        LoginFrame.changeWindow();
+    }
 }
 
