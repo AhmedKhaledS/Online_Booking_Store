@@ -2,11 +2,12 @@ package view.util.observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 
 public interface ObservableTableFrame {
 
     public void notifyObservers ();
 
     public Container getFrameContainer ();
-    public JTable getTable();
+    public Vector<Vector<String>> getTableData();
 }

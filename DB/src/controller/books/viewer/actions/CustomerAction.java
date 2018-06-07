@@ -13,6 +13,7 @@ public class CustomerAction extends UserAction {
     private Vector<Vector<String>> shoppingCart;
 
     public CustomerAction() {
+        this.actionName = "Add";
         shoppingCart = new Vector<>();
         this.targetUser = TargetUser.CUSTOMER;
     }

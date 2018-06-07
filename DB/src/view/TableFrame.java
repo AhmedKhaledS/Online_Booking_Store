@@ -1,8 +1,9 @@
 package view;
 
+import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
-import view.util.observer.BooksTableFrameObserver;
+import view.util.observer.BooksSearcherTableFrameObserver;
 import view.util.observer.TableFrameObserver;
 import view.util.observer.ObservableTableFrame;
 
@@ -30,22 +31,36 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	JButton nextPageButton = new JButton("Next");
 	JButton prevPageButton = new JButton("Prev");
 
+	String rowButtonActionName;
+	UserAction rowButtonAction;
+
 	/** To support dividing table into multiple pages. */
 	int pageIndex = 0;
 	final int MAX_PAGE_LEN = 10;
 
 	TableFrame(TableFrameObserver observer) {
 		this.data = new Vector<>();
-		this.observer.setObservableTableFrame(this);
 		this.observer = observer;
 		this.observer.setObservableTableFrame(this);
-		this.observer.defineTableAttributes();
+		this.columnNames = this.observer.defineTableAttributes();
+		this.rowButtonAction = this.observer.getAction();
+		this.rowButtonActionName = this.rowButtonAction.getActionName();
+		initializeTable();
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
 		addActionEvent();
 		this.observer.modifyFrame();
+	}
 
+	private void initializeTable () {
+		dm.setDataVector(new Vector<>(),columnNames);
+		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
+		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
+		table.setVisible(true);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		scroll = new JScrollPane(table);
+		scroll.setVisible(true);
 	}
 
 	public void setLayoutManager() {
@@ -53,10 +68,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public void setLocationAndSize() {
-		table.setVisible(true);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		scroll = new JScrollPane(table);
-		scroll.setVisible(true);
+
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		scroll.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY,
 				GUIConstants.width * 4, GUIConstants.height * 10);
@@ -98,7 +110,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public static void changeWindow () {
-		TableFrame frame = new TableFrame(new BooksTableFrameObserver());
+		TableFrame frame = new TableFrame(new BooksSearcherTableFrameObserver("Add"));
 		frame.setTitle("TableFrame");
 		frame.setVisible(true);
 		frame.setBounds(10, 10, 950, 600);
@@ -117,8 +129,8 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	@Override
-	public JTable getTable() {
-		return this.table;
+	public Vector<Vector<String>> getTableData() {
+		return null;
 	}
 
 	public static void main (String[] args) {

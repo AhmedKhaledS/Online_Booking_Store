@@ -7,9 +7,14 @@ import java.util.function.BiConsumer;
 public abstract class UserAction implements BiConsumer<JTable, Integer> {
 
     protected TargetUser targetUser;
+    protected  String actionName;
 
     @Override
     public void accept(JTable jTable, Integer row) {}
+
+    public String getActionName() {
+        return this.actionName;
+    }
 
     public abstract void addToFrame(Container container);
 }
