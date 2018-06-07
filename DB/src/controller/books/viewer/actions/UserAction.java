@@ -10,7 +10,7 @@ public abstract class UserAction implements BiConsumer<JTable, Integer> {
     protected  String actionName;
 
     @Override
-    public void accept(JTable jTable, Integer row) {}
+    public abstract void accept(JTable jTable, Integer row);
 
     public String getActionName() {
         return this.actionName;
