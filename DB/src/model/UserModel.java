@@ -64,11 +64,20 @@ public class UserModel {
         return "Manager";
     }
 
+    public boolean updateEmail(final String email, final String newEmail) {
+        String queryStmt = "UPDATE USER SET `E-mail`=" + "'" + newEmail + "'" +
+                " WHERE `E-mail`=" + "'" + email + "';";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating E-mail!");
+            return false;
+        }
+        return true;
+    }
+
     public boolean updateUserName(final String email, final String newUserName) {
         String queryStmt = "UPDATE USER SET `Username`=" + "'" + newUserName + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            DatabaseConnector.rollDB();
             System.out.println("Error occurred while updating Username!");
             return false;
         }
@@ -79,7 +88,6 @@ public class UserModel {
         String queryStmt = "UPDATE USER SET `Password`=" + "'" + newPassword + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            DatabaseConnector.rollDB();
             System.out.println("Error occurred while updating Password!");
             return false;
         }
@@ -90,7 +98,6 @@ public class UserModel {
         String queryStmt = "UPDATE USER SET `Lastname`=" + "'" + newLastName + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            DatabaseConnector.rollDB();
             System.out.println("Error occurred while updating Last name!");
             return false;
         }
@@ -101,7 +108,6 @@ public class UserModel {
         String queryStmt = "UPDATE USER SET `Firstname`=" + "'" + newFirstName + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            DatabaseConnector.rollDB();
             System.out.println("Error occurred while updating First name!");
             return false;
         }
@@ -112,7 +118,6 @@ public class UserModel {
         String queryStmt = "UPDATE USER SET `Phone_number`=" + "'" + newPhoneNum + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            DatabaseConnector.rollDB();
             System.out.println("Error occurred while updating Phone number!");
             return false;
         }
@@ -123,7 +128,6 @@ public class UserModel {
         String queryStmt = "UPDATE USER SET `Shopping_address`=" + "'" + newShoppingAddress + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            DatabaseConnector.rollDB();
             System.out.println("Error occurred while updating Shopping number!");
             return false;
         }
@@ -131,10 +135,9 @@ public class UserModel {
     }
 
     public boolean updateUserType(final String email, final String newUserType) {
-        String queryStmt = "UPDATE USER SET `Shopping_address`=" + "'" + newUserType + "'" +
+        String queryStmt = "UPDATE USER SET `User_type`=" + "'" + newUserType + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            DatabaseConnector.rollDB();
             System.out.println("Error occurred while updating UserType!");
             return false;
         }

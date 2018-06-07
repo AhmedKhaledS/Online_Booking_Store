@@ -30,7 +30,22 @@ public class UserProfileController {
     }
 
     public void updateUser(UserProfile user) {
-
+        String currentEmailUser = currentLoggedInUser.getEmail();
+        boolean successfullyUpdated = UserModel.getInstance().updateEmail(currentEmailUser, user.getEmail())
+                | UserModel.getInstance().updatePassword(currentEmailUser, user.getPassword())
+                | UserModel.getInstance().updateFirstName(currentEmailUser, user.getFirstName())
+                | UserModel.getInstance().updateLastName(currentEmailUser, user.getLastName())
+                | UserModel.getInstance().updatePhoneNum(currentEmailUser, user.getPhoneNum())
+                | UserModel.getInstance().upadteShoppingAddress(currentEmailUser, user.getShoppingAddress())
+                | UserModel.getInstance().updateUserName(currentEmailUser, user.getUsername())
+                | UserModel.getInstance().updateUserType(currentEmailUser, user.getType() == UsersUtil.UserType.MANAGER ?
+                "Manager" : "Customer");
+        if (successfullyUpdated) {
+            currentLoggedInUser = user;
+            JOptionPane.showMessageDialog(null, "Your is updated successfully.");
+        } else {
+        JOptionPane.showMessageDialog(null, "Error occurred while updating profile!");
+        }
     }
 
     public void login(UserProfile user) {
