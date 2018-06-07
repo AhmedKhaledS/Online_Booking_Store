@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import controller.books.viewer.actions.CustomerAction;
 import controller.books.viewer.actions.ManagerAction;
 import view.util.WindowChanger;
 
@@ -58,7 +60,9 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// TO BE FILLED...
+				CustomerAction customerAction = new CustomerAction();
+				BooksViewerFrame.changeWindow("ADD", customerAction);
+				dispose();
 			}
 		});
 
@@ -72,6 +76,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 		btnModifyItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BooksViewerFrame.changeWindow("EDIT", new ManagerAction());
+				dispose();
 			}
 		});
 
@@ -95,7 +100,13 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// TO BE FILLED...
+				int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?",
+						"Exit Program Message Box", JOptionPane.YES_NO_OPTION);
+				
+				if (confirmed == JOptionPane.YES_OPTION) {
+					StartUpFrame.changeWindow();
+					dispose();
+				}
 			}
 		});
 
