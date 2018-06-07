@@ -1,5 +1,8 @@
 package controller.books.editor.actions;
 
+import controller.DatabaseConnector;
+import controller.books.query.BooksQueryManager;
+
 public class EditAction implements EditorAction {
 
 	String[] data;
@@ -15,7 +18,9 @@ public class EditAction implements EditorAction {
 
 	@Override
 	public void target_button_action(String[] data) {
-		System.out.println("Edited");
+		DatabaseConnector.setCommitLevel(false);
+		BooksQueryManager.deleteBook(this.data[0]);
+		BooksQueryManager.addBook(data);
 	}
 
 	@Override

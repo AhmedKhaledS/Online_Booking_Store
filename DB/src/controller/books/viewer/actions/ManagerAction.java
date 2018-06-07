@@ -48,10 +48,6 @@ public class ManagerAction extends UserAction {
 			e1.printStackTrace();
 		}
 
-		for (int i = 0; i < data.length; i++) {
-			System.out.println("HELLO: " + data[i]);
-		}
-
 		AddBookFrame.changeWindow(new EditAction(data));
 	}
 

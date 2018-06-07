@@ -223,8 +223,5 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 
 		System.out.println(update_query);
 	}
-
-	private void add_action() {
-	}
-
+	
 }
