@@ -29,9 +29,7 @@ public class PromoteUserTableFrameDefiner extends TableFrameDefiner implements A
 	public Vector<String> defineTableAttributes() {
 		Vector<String> columnNames = new Vector<>();
 		columnNames.add(action.getActionName());
-		columnNames.add("Order_id");
-		columnNames.add("ISBN");
-		columnNames.add("Quantity");
+		columnNames.add("E-mail");
 		return columnNames;
 	}
 
@@ -48,15 +46,13 @@ public class PromoteUserTableFrameDefiner extends TableFrameDefiner implements A
 
 		Vector<Vector<String>> data = new Vector<>();
 
-		ResultSet orders = DatabaseConnector.executeQuery("SELECT * FROM BOOK");
+		ResultSet orders = DatabaseConnector.executeQuery("SELECT * FROM USER WHERE User_type = 'Customer'");
 
 		try {
 			while (orders.next()) {
 				Vector<String> dataRow = new Vector<>();
-				dataRow.add("DONE");
+				dataRow.add("PROMOTE");
 				dataRow.add(orders.getString(1));
-				dataRow.add(orders.getString(2));
-				dataRow.add(orders.getString(3));
 				data.add(dataRow);
 			}
 		} catch (Exception e) {

@@ -48,7 +48,7 @@ public class MangerOrderTableFrameDefiner extends TableFrameDefiner implements A
 
 		Vector<Vector<String>> data = new Vector<>();
 
-		ResultSet orders = DatabaseConnector.executeQuery("SELECT * FROM BOOK");
+		ResultSet orders = DatabaseConnector.executeQuery("SELECT * FROM MANAGER_ORDERS");
 
 		try {
 			while (orders.next()) {

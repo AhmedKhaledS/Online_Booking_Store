@@ -101,7 +101,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnViewReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 
@@ -117,7 +117,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 			public void actionPerformed(ActionEvent e) {
 				int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?",
 						"Exit Program Message Box", JOptionPane.YES_NO_OPTION);
-				
+
 				if (confirmed == JOptionPane.YES_OPTION) {
 					StartUpFrame.changeWindow();
 					dispose();
