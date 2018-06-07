@@ -5,8 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import controller.users.UserProfileController;
 import controller.users.UsersManager;
 import controller.users.UsersUtil;
+import model.UserProfile;
 import view.util.WindowChanger;
 
 public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
@@ -67,11 +69,15 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             String userText;
             String pwdText;
             userText = userTextField.getText();
-            pwdText = passwordField.getText();
-            UsersUtil.UserType userType = (UsersManager.getUserType(userText, pwdText));
-            if (userType == UsersUtil.UserType.MANAGER) {
+            pwdText = new String(passwordField.getPassword());
+            UserProfile currentUser = new UserProfile(userText, "",
+                    pwdText, "", "",
+                    "", "", null);
+            UserProfileController.getInstance().login(currentUser);
+            // After return from login the type of user has been set.
+            if (currentUser.getType() == UsersUtil.UserType.MANAGER) {
                 /// TODO : Manager Window
-            } else if (userType == UsersUtil.UserType.CUSTOMER) {
+            } else if (currentUser.getType() == UsersUtil.UserType.CUSTOMER) {
                 /// TODO : Customer Window
             } else {
                 /// TODO : Invalid user Window
