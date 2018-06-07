@@ -130,14 +130,13 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
             String pwdText;
             String confirmedPwdText;
             userText = userTextField.getText();
-            pwdText = passwordField.getText();
-            confirmedPwdText = confirmPasswordField.getText();
+            pwdText = new String (passwordField.getPassword());
+            confirmedPwdText = new String (confirmPasswordField.getPassword());
             if (!pwdText.equals(confirmedPwdText)) {
                 errorLabel.setText("Password and confirmed password do not match !");
             }
-        }
-        //Coding Part of RESET button
-        if (e.getSource() == resetButton) {
+
+        } else if (e.getSource() == resetButton) {
             userTextField.setText("");
             passwordField.setText("");
             confirmPasswordField.setText("");
