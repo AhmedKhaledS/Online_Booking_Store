@@ -1,8 +1,5 @@
 package controller.books.editor.actions;
 
-import controller.books.viewer.actions.ManagerAction;
-import view.BooksViewerFrame;
-
 public class EditAction implements EditorAction {
 
 	String[] data;
@@ -18,12 +15,12 @@ public class EditAction implements EditorAction {
 
 	@Override
 	public void target_button_action(String[] data) {
-		// TODO Auto-generated method stub
+		System.out.println("Edited");
 	}
 
 	@Override
 	public void back_button_action() {
-		BooksViewerFrame.changeWindow("Edit", new ManagerAction());
+		// DO NOTHING
 	}
 
 	@Override

@@ -52,7 +52,6 @@ public class AddItemFrame extends JFrame implements WindowChanger {
 
 		buttonAddBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// TO BE FILLED...
 				AddBookFrame.changeWindow(new AddAction());
 				dispose();
 			}

@@ -148,14 +148,14 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 
 	private void initializeData(String[] data) {
 		book_ISBN.setText(data[0]);
-		book_tile.setText(data[0]);
-		book_publisher.setText(data[0]);
-		book_year.setText(data[0]);
-		book_category.setSelectedItem(data[0]);
-		book_price.setText(data[0]);
-		book_quantity.setText(data[0]);
-		book_thershold.setText(data[0]);
-		book_authors.setText(data[0]);
+		book_tile.setText(data[1]);
+		book_publisher.setText(data[2]);
+		book_year.setText(data[3]);
+		book_category.setSelectedItem(data[4]);
+		book_price.setText(data[5]);
+		book_quantity.setText(data[6]);
+		book_thershold.setText(data[7]);
+		book_authors.setText(data[8]);
 	}
 
 	private String[] fetch_data() {

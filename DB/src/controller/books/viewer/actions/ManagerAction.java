@@ -3,11 +3,13 @@ package controller.books.viewer.actions;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
 
+import controller.DatabaseConnector;
 import controller.books.editor.actions.EditAction;
 import view.AddBookFrame;
 import view.ManagerFrame;
@@ -21,16 +23,36 @@ public class ManagerAction extends UserAction {
 
 	@Override
 	public void accept(JTable jTable, Integer row) {
-		Vector<String> dataRow = new Vector<>();
-		for (int i = 1; i < jTable.getModel().getColumnCount(); i++) {
-			dataRow.add((String) jTable.getModel().getValueAt(row, i));
+
+		String ISBN = (String) jTable.getModel().getValueAt(row, 1);
+
+		String[] data = new String[9];
+
+		String sql_basic_data = "SELECT * FROM BOOK WHERE ISBN=" + ISBN + ";";
+		String sql_author_data = "SELECT * FROM BOOK_AUTHORS WHERE ISBN=" + ISBN + ";";
+
+		ResultSet basic_data = DatabaseConnector.executeQuery(sql_basic_data);
+		ResultSet author_data = DatabaseConnector.executeQuery(sql_author_data);
+
+		try {
+			basic_data.next();
+			for (int i = 0; i < 8; i++) {
+				data[i] = basic_data.getString(i + 1);
+			}
+			data[8] = "";
+			while (author_data.next()) {
+				data[8] += author_data.getString("Author_name") + ",";
+			}
+			data[8] = data[8].substring(0, data[8].length() - 1);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-		for (int i = 0; i < dataRow.size(); i++) {
-			System.out.println(dataRow.get(i));
+
+		for (int i = 0; i < data.length; i++) {
+			System.out.println("HELLO: " + data[i]);
 		}
-		/// TO DO: GO TO EDIT
-//		String[] data = null;
-//		AddBookFrame.changeWindow(new EditAction(data));
+
+		AddBookFrame.changeWindow(new EditAction(data));
 	}
 
 	@Override
