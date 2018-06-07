@@ -40,9 +40,9 @@ INSERT INTO `USER` VALUES ( "edited@me", "AhmedK", "aks", "khaled", "ahmed", "12
 INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 1, 5, 'IN_PROGRESS', '2018-05-20' );
 INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 2, 40, 'IN_PROGRESS', '2018-03-20' );
 INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 3, 12, 'IN_PROGRESS', '2018-02-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 4, 3, 'IN_PROGRESS', '2018-01-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 5, 6, 'IN_PROGRESS', '2018-02-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 6, 17, 'IN_PROGRESS', '2018-05-20' );
+INSERT INTO `ORDER` VALUES ( "ahmed@ahmed3", 4, 3, 'IN_PROGRESS', '2018-01-20' );
+INSERT INTO `ORDER` VALUES ( "ahmed@ahmed3", 5, 6, 'IN_PROGRESS', '2018-02-20' );
+INSERT INTO `ORDER` VALUES ( "ahmed@ahmed3", 6, 17, 'IN_PROGRESS', '2018-05-20' );
 
 #Edited
 INSERT INTO `ORDER` VALUES ( "edited@me", 7, 412, 'IN_PROGRESS', '2018-04-20' );
@@ -51,6 +51,7 @@ INSERT INTO `ORDER` VALUES ( "edited@me", 9, 22, 'IN_PROGRESS', '2018-05-08' );
 INSERT INTO `ORDER` VALUES ( "edited@me", 10, 333, 'IN_PROGRESS', '2018-05-30' );
 INSERT INTO `ORDER` VALUES ( "edited@me", 11, 125, 'IN_PROGRESS', '2018-06-01' );
 INSERT INTO `ORDER` VALUES ( "edited@me", 12, 92, 'IN_PROGRESS', '2018-05-06' );
+
 
 SELECT * FROM `ORDER`;
 SELECT * FROM `BOOK`;
@@ -62,3 +63,4 @@ SET SQL_SAFE_UPDATES = 1;
 SELECT * FROM `ORDER`;
 
 SELECT * FROM `BOOK`;
+SELECT * FROM `USER`;
