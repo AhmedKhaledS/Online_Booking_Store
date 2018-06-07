@@ -3,6 +3,7 @@ package view.util.table.frame.definer;
 import controller.books.query.BooksQueryManagerController;
 import controller.books.query.BooksQueryUtil;
 import controller.books.viewer.actions.CustomerAddBookAction;
+import view.TableFrame;
 import view.util.GUIConstants;
 
 import javax.swing.*;
@@ -102,7 +103,8 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
         } else if (e.getSource() == clearButton) {
             searchKeyTextField.setText("");
         } else if (e.getSource() == viewShoppingCartButton) {
-//            ShoppingCartTableFrameDefiner spCartDefiner = new ShoppingCartTableFrameDefiner();
+            ShoppingCartTableFrameDefiner spCartDefiner = new ShoppingCartTableFrameDefiner(this.action.getData());
+            TableFrame.changeWindow(spCartDefiner);
         }
     }
 }

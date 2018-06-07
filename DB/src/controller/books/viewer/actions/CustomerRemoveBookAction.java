@@ -2,8 +2,10 @@ package controller.books.viewer.actions;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 
 public class CustomerRemoveBookAction extends UserAction {
+
 
     public CustomerRemoveBookAction () {
         this.actionName = "Remove";
@@ -18,5 +20,10 @@ public class CustomerRemoveBookAction extends UserAction {
     @Override
     public void addToFrame(Container container) {
 
+    }
+
+    @Override
+    public Vector<Vector<String>> getData() {
+        return null;
     }
 }

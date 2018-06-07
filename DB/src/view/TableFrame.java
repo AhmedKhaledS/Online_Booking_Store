@@ -115,8 +115,8 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
 	}
 
-	public static void changeWindow () {
-		TableFrame frame = new TableFrame(new BooksSearcherTableFrameDefiner());
+	public static void changeWindow (TableFrameDefiner definer) {
+		TableFrame frame = new TableFrame(definer);
 //		TableFrame frame = new TableFrame(new ShoppingCartTableFrameDefiner());
 		frame.setTitle("TableFrame");
 		frame.setVisible(true);
@@ -142,7 +142,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public static void main (String[] args) {
-		TableFrame.changeWindow();
+		TableFrame.changeWindow(new BooksSearcherTableFrameDefiner());
 	}
 }
 

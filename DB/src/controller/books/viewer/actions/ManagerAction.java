@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -64,5 +65,10 @@ public class ManagerAction extends UserAction {
 		});
 		backButton.setBounds(GUIConstants.initX, GUIConstants.initY * 10, GUIConstants.width, GUIConstants.height);
 		container.add(backButton);
+	}
+
+	@Override
+	public Vector<Vector<String>> getData() {
+		return null;
 	}
 }

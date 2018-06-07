@@ -43,6 +43,11 @@ public class CustomerAddBookAction extends UserAction {
         container.add(viewShoppingCartButton);
     }
 
+    @Override
+    public Vector<Vector<String>> getData() {
+        return getShoppingCart();
+    }
+
     public Vector<Vector<String>> getShoppingCart () {
         return shoppingCart;
     }
