@@ -43,7 +43,8 @@ public class ManagerAction extends UserAction {
 			while (author_data.next()) {
 				data[8] += author_data.getString("Author_name") + ",";
 			}
-			data[8] = data[8].substring(0, data[8].length() - 1);
+			if(data[8].length() > 1)
+				data[8] = data[8].substring(0, data[8].length() - 1);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
