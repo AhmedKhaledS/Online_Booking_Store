@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `Book_Store`.`ORDER` (
   `ISBN` INT NOT NULL,
   `Quantity` INT NULL,
   `State` ENUM('IN_PROGRESS', 'COMPLETED') NOT NULL,
+  `Date` Date,
   PRIMARY KEY (`ISBN`, `E-mail`),
   INDEX `E-mail_idx` (`E-mail` ASC),
   INDEX `ISBN_idx` (`ISBN` ASC),
