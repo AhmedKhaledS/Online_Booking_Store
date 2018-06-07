@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class CustomerUserAction extends UserAction {
+public class CustomerAction extends UserAction {
 
     private Vector<Vector<String>> shoppingCart;
 
-    public CustomerUserAction () {
+    public CustomerAction() {
         shoppingCart = new Vector<>();
         this.targetUser = TargetUser.CUSTOMER;
     }
