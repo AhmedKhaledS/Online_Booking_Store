@@ -2,6 +2,7 @@ package controller.books.viewer.actions;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 import java.util.function.BiConsumer;
 
 public abstract class UserAction implements BiConsumer<JTable, Integer> {
@@ -17,5 +18,6 @@ public abstract class UserAction implements BiConsumer<JTable, Integer> {
     }
 
     public abstract void addToFrame(Container container);
+
 }
 

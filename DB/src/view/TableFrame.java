@@ -4,6 +4,7 @@ import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 import view.util.table.frame.definer.BooksSearcherTableFrameDefiner;
+import view.util.table.frame.definer.ShoppingCartTableFrameDefiner;
 import view.util.table.frame.definer.TableFrameDefiner;
 import view.util.table.frame.definer.DefinableTableFrame;
 
@@ -110,10 +111,13 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		} else {
 			this.observer.update(e.getSource());
 		}
+		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
+		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
 	}
 
 	public static void changeWindow () {
 		TableFrame frame = new TableFrame(new BooksSearcherTableFrameDefiner());
+//		TableFrame frame = new TableFrame(new ShoppingCartTableFrameDefiner());
 		frame.setTitle("TableFrame");
 		frame.setVisible(true);
 		frame.setBounds(10, 10, 950, 600);

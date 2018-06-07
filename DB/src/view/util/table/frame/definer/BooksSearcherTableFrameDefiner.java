@@ -37,14 +37,7 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
     public Vector<String> defineTableAttributes() {
         Vector<String> columnNames = new Vector<>();
         columnNames.add(action.getActionName());
-        columnNames.add("ISBN");
-        columnNames.add("Title");
-        columnNames.add("Publisher Name");
-        columnNames.add("Publication Year");
-        columnNames.add("Category");
-        columnNames.add("Price");
-        columnNames.add("No of Copies");
-        columnNames.add("Min_Quantity");
+        columnNames.addAll(Constants.getBookTableColumnNames());
         return columnNames;
     }
 
@@ -109,7 +102,7 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
         } else if (e.getSource() == clearButton) {
             searchKeyTextField.setText("");
         } else if (e.getSource() == viewShoppingCartButton) {
-
+//            ShoppingCartTableFrameDefiner spCartDefiner = new ShoppingCartTableFrameDefiner();
         }
     }
 }
