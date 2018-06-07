@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class BooksSearcherTableFrameObserver extends TableFrameObserver implements ActionListener {
+public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
     private JLabel searchKeyLabel;
     private JTextField searchKeyTextField;
@@ -20,7 +20,7 @@ public class BooksSearcherTableFrameObserver extends TableFrameObserver implemen
     private JButton clearButton;
     private JButton viewShoppinCartButton;
 
-    public BooksSearcherTableFrameObserver(String actionName) {
+    public BooksSearcherTableFrameDefiner(String actionName) {
         this.action = new CustomerAction();
     }
 
@@ -93,7 +93,7 @@ public class BooksSearcherTableFrameObserver extends TableFrameObserver implemen
             Vector<Vector<String>> data = new Vector<>();
             data = BooksQueryManagerController.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
                     BooksQueryUtil.Operator.LIKE);
-            this.observableTableFrame.setData(data);
+            this.definableTableFrame.setData(data);
         } else if (e.getSource() == clearButton) {
             searchKeyTextField.setText("");
         } else if (e.getSource() == viewShoppinCartButton) {

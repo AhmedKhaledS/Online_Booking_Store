@@ -3,9 +3,9 @@ package view;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
-import view.util.observer.BooksSearcherTableFrameObserver;
-import view.util.observer.TableFrameObserver;
-import view.util.observer.ObservableTableFrame;
+import view.util.observer.BooksSearcherTableFrameDefiner;
+import view.util.observer.TableFrameDefiner;
+import view.util.observer.DefinableTableFrame;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,13 +14,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class TableFrame extends JFrame implements ActionListener, WindowChanger, ObservableTableFrame {
+public class TableFrame extends JFrame implements ActionListener, WindowChanger, DefinableTableFrame {
 
 	/** main container. */
 	Container container = getContentPane();
 
 	/** The class observing the frame. */
-	TableFrameObserver observer;
+	TableFrameDefiner observer;
 
 	/** Main table components. */
 	Vector<Vector<String>> data;
@@ -41,10 +41,10 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	int pageIndex = 0;
 	final int MAX_PAGE_LEN = 10;
 
-	TableFrame(TableFrameObserver observer) {
+	TableFrame(TableFrameDefiner observer) {
 		this.data = new Vector<>();
 		this.observer = observer;
-		this.observer.setObservableTableFrame(this);
+		this.observer.setDefinableTableFrame(this);
 		this.columnNames = this.observer.defineTableAttributes();
 		this.rowButtonAction = this.observer.getAction();
 		this.rowButtonActionName = this.rowButtonAction.getActionName();
@@ -113,7 +113,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public static void changeWindow () {
-		TableFrame frame = new TableFrame(new BooksSearcherTableFrameObserver("Add"));
+		TableFrame frame = new TableFrame(new BooksSearcherTableFrameDefiner("Add"));
 		frame.setTitle("TableFrame");
 		frame.setVisible(true);
 		frame.setBounds(10, 10, 950, 600);
@@ -130,16 +130,6 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
 		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
 		return;
-	}
-
-	@Override
-	public void notifyObservers() {
-
-	}
-
-	@Override
-	public Container getFrameContainer() {
-		return this.container;
 	}
 
 	@Override

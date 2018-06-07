@@ -4,11 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
 
-public interface ObservableTableFrame {
+public interface DefinableTableFrame {
 
-    public void notifyObservers ();
-
-    public Container getFrameContainer ();
     public Vector<Vector<String>> getTableData();
     public void setData (Vector<Vector<String>> data);
 
