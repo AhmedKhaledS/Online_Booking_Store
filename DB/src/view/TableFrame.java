@@ -45,7 +45,6 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		addComponentsToContainer();
 		addActionEvent();
 		this.observer.modifyFrame();
-
 	}
 
 	public void setLayoutManager() {
@@ -98,7 +97,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public static void changeWindow () {
-		TableFrame frame = new TableFrame(new BooksTableFrameObserver());
+		TableFrame frame = new TableFrame(new BooksTableFrameObserver("Add"));
 		frame.setTitle("TableFrame");
 		frame.setVisible(true);
 		frame.setBounds(10, 10, 950, 600);

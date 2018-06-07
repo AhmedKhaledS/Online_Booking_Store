@@ -5,7 +5,8 @@ import java.util.Vector;
 
 public class BooksTableFrameObserver extends TableFrameObserver {
 
-    public BooksTableFrameObserver() {
+    public BooksTableFrameObserver(String actionName) {
+        super(actionName);
     }
 
     @Override
@@ -22,7 +23,16 @@ public class BooksTableFrameObserver extends TableFrameObserver {
     public void defineTableAttributes() {
         JTable table = this.observableTableFrame.getTable();
         Vector<String> columnNames = new Vector<>();
-        /// TODO :
+        columnNames.add("ISBN");
+        columnNames.add(actionName);
+        columnNames.add("ISBN");
+        columnNames.add("Title");
+        columnNames.add("Publisher Name");
+        columnNames.add("Publication Year");
+        columnNames.add("Category");
+        columnNames.add("Price");
+        columnNames.add("No of Copies");
+        columnNames.add("Min_Quantity");
     }
 
     @Override
