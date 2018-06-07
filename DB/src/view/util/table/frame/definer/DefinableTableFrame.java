@@ -1,4 +1,4 @@
-package view.util.observer;
+package view.util.table.frame.definer;
 
 import javax.swing.*;
 import java.awt.*;

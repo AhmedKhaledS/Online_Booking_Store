@@ -3,9 +3,9 @@ package view;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
-import view.util.observer.BooksSearcherTableFrameDefiner;
-import view.util.observer.TableFrameDefiner;
-import view.util.observer.DefinableTableFrame;
+import view.util.table.frame.definer.BooksSearcherTableFrameDefiner;
+import view.util.table.frame.definer.TableFrameDefiner;
+import view.util.table.frame.definer.DefinableTableFrame;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
