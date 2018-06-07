@@ -23,6 +23,7 @@ public class CustomerAction extends UserAction {
         Vector<String> dataRow = new Vector<>();
         for (int i = 1; i < jTable.getModel().getColumnCount(); i++) {
             dataRow.add((String) jTable.getModel().getValueAt(row, i));
+            System.out.println((String) jTable.getModel().getValueAt(row, i));
         }
         shoppingCart.add(dataRow);
     }
