@@ -136,7 +136,6 @@ public class EditProfileFrame extends JFrame implements ActionListener, WindowCh
         frame.setVisible(true);
         frame.setBounds(10, 10, 600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
     }
     public static void main (String[] args) {
         EditProfileFrame.changeWindow();

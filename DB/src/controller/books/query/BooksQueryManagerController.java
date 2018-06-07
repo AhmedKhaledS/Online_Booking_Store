@@ -8,8 +8,9 @@ import javax.swing.JOptionPane;
 
 import controller.DatabaseConnector;
 import controller.Utils;
+import model.ManagerQuery;
 
-public class BooksQueryManager {
+public class BooksQueryManagerController {
 
 	public static Vector<Vector<String>> getBooksList(String key, String value, BooksQueryUtil.Operator operator) {
 		if (key == "Publisher_Name") {
