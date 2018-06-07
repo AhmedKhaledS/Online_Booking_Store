@@ -18,6 +18,7 @@ import view.util.GUIConstants;
 public class ManagerAction extends UserAction {
 
 	public ManagerAction() {
+		this.actionName = "Edit";
 		this.targetUser = TargetUser.MANAGER;
 	}
 

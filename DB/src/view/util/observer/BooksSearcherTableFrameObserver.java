@@ -1,12 +1,14 @@
 package view.util.observer;
 
+import controller.books.viewer.actions.CustomerAction;
+
 import javax.swing.*;
 import java.util.Vector;
 
-public class BooksTableFrameObserver extends TableFrameObserver {
+public class BooksSearcherTableFrameObserver extends TableFrameObserver {
 
-    public BooksTableFrameObserver(String actionName) {
-        super(actionName);
+    public BooksSearcherTableFrameObserver(String actionName) {
+        this.action = new CustomerAction();
     }
 
     @Override
@@ -15,16 +17,10 @@ public class BooksTableFrameObserver extends TableFrameObserver {
     }
 
     @Override
-    public void setObservableTableFrame(ObservableTableFrame observableTableFrame) {
-
-    }
-
-    @Override
-    public void defineTableAttributes() {
-        JTable table = this.observableTableFrame.getTable();
+    public Vector<String> defineTableAttributes() {
         Vector<String> columnNames = new Vector<>();
+        columnNames.add(action.getActionName());
         columnNames.add("ISBN");
-        columnNames.add(actionName);
         columnNames.add("ISBN");
         columnNames.add("Title");
         columnNames.add("Publisher Name");
@@ -33,6 +29,7 @@ public class BooksTableFrameObserver extends TableFrameObserver {
         columnNames.add("Price");
         columnNames.add("No of Copies");
         columnNames.add("Min_Quantity");
+        return columnNames;
     }
 
     @Override

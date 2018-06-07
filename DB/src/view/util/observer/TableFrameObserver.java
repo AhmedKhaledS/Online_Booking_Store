@@ -1,17 +1,18 @@
 package view.util.observer;
 
+import controller.books.viewer.actions.UserAction;
 import view.TableFrame;
+
+import java.util.Vector;
 
 public abstract class TableFrameObserver {
 
-    protected String actionName;
+    protected UserAction action;
 
     /** Observer Design Pattern Attribute. */
     protected ObservableTableFrame observableTableFrame;
 
-    public TableFrameObserver (String actionName) {
-        this.actionName = actionName;
-    }
+    public TableFrameObserver () {}
 
     /** Observer Design Pattern Method. */
     public abstract void update(Object eventSource);
@@ -20,7 +21,11 @@ public abstract class TableFrameObserver {
         this.observableTableFrame = observableTableFrame;
     }
 
-    public abstract void defineTableAttributes();
+    public abstract Vector<String> defineTableAttributes();
+
+    public UserAction getAction() {
+        return action;
+    }
 
     public abstract void modifyFrame();
 }
