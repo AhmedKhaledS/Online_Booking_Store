@@ -1,9 +1,11 @@
 package model;
 
+import com.sun.corba.se.impl.orb.DataCollectorBase;
 import controller.DatabaseConnector;
 import controller.users.UsersUtil;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -60,32 +62,39 @@ public class UserModel {
         return "Manager";
     }
 
-    public void updateUserName(final String newUserName) {
-
+    public boolean updateUserName(final String email, final String newUserName) {
+        String queryStmt = "UPDATE USER SET `Username`=" + "'" + newUserName + "'" +
+                " WHERE `E-mail`=" + "'" + email + "';";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            DatabaseConnector.rollDB();
+            System.out.println("Error occurred while updating username!");
+            return false;
+        }
+        return true;
     }
 
-    public void updatePassword(final String newPassword) {
-
+    public boolean updatePassword(final String email, final String newPassword) {
+        return false;
     }
 
-    public void updateLastName(final String newLastName) {
-
+    public boolean updateLastName(final String email, final String newLastName) {
+        return false;
     }
 
-    public void updateFirstName(final String newFirstName) {
-
+    public boolean updateFirstName(final String email, final String newFirstName) {
+        return false;
     }
 
-    public void updatePhoneNum(final String newPhoneNum) {
-
+    public boolean updatePhoneNum(final String email, final String newPhoneNum) {
+        return false;
     }
 
-    public void upadteShoppingAddress(final String newShoppingAddress) {
-
+    public boolean upadteShoppingAddress(final String email, final String newShoppingAddress) {
+        return false;
     }
 
-    public void updateUserType(final String newUserType) {
-
+    public boolean updateUserType(final String email, final String newUserType) {
+        return false;
     }
 
 }

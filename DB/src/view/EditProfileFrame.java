@@ -113,11 +113,12 @@ public class EditProfileFrame extends JFrame implements ActionListener, WindowCh
             String pwdText;
             String confirmedPwdText;
             userText = userTextField.getText();
-            pwdText = passwordField.getText();
-            confirmedPwdText = confirmPasswordField.getText();
+            pwdText = new String(passwordField.getPassword());
+            confirmedPwdText = new String(confirmPasswordField.getPassword());
             if (!pwdText.equals(confirmedPwdText)) {
                 errorLabel.setText("Password and confirmed password do not match !");
             }
+            /// TODO: Here calling the controller to handle Editing profile.
         }
         //Coding Part of RESET button
         if (e.getSource() == resetButton) {
