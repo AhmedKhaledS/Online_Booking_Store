@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import controller.books.viewer.actions.CustomerAction;
+import controller.books.viewer.actions.CustomerAddBookAction;
 import controller.books.viewer.actions.ManagerAction;
 import view.util.WindowChanger;
 
@@ -63,8 +63,8 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerAction customerAction = new CustomerAction();
-				BooksViewerFrame.changeWindow("ADD", customerAction);
+				CustomerAddBookAction customerAddBookAction = new CustomerAddBookAction();
+				BooksViewerFrame.changeWindow("ADD", customerAddBookAction);
 				dispose();
 			}
 		});

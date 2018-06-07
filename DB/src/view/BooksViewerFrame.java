@@ -2,7 +2,7 @@ package view;
 
 import controller.books.query.BooksQueryUtil;
 import controller.books.query.BooksQueryManagerController;
-import controller.books.viewer.actions.CustomerAction;
+import controller.books.viewer.actions.CustomerAddBookAction;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
@@ -161,7 +161,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     }
 
     public static void main(String[] args) {
-        BooksViewerFrame.changeWindow("Edit", new CustomerAction());
+        BooksViewerFrame.changeWindow("Edit", new CustomerAddBookAction());
     }
 }
 

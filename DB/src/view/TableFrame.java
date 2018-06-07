@@ -113,7 +113,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public static void changeWindow () {
-		TableFrame frame = new TableFrame(new BooksSearcherTableFrameDefiner("Add"));
+		TableFrame frame = new TableFrame(new BooksSearcherTableFrameDefiner());
 		frame.setTitle("TableFrame");
 		frame.setVisible(true);
 		frame.setBounds(10, 10, 950, 600);

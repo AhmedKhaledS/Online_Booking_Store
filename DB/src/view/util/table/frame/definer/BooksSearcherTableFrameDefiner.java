@@ -2,7 +2,7 @@ package view.util.table.frame.definer;
 
 import controller.books.query.BooksQueryManagerController;
 import controller.books.query.BooksQueryUtil;
-import controller.books.viewer.actions.CustomerAction;
+import controller.books.viewer.actions.CustomerAddBookAction;
 import view.util.GUIConstants;
 
 import javax.swing.*;
@@ -24,8 +24,8 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
     private JLabel quantityLabel;
     private JTextField quantityTextField;
 
-    public BooksSearcherTableFrameDefiner(String actionName) {
-        this.action = new CustomerAction();
+    public BooksSearcherTableFrameDefiner() {
+        this.action = new CustomerAddBookAction();
     }
 
     @Override
