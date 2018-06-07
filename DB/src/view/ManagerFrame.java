@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import controller.books.viewer.actions.ManagerAction;
 import view.util.WindowChanger;
 
 public class ManagerFrame extends JFrame implements WindowChanger {
@@ -70,7 +71,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnModifyItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// TO BE FILLED...
+				BooksViewerFrame.changeWindow("EDIT", new ManagerAction());
 			}
 		});
 
@@ -109,7 +110,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 		// frame.setResizable(false);
 	}
 
-	public static void main (String[] args) {
+	public static void main(String[] args) {
 		ManagerFrame.changeWindow();
 	}
 }

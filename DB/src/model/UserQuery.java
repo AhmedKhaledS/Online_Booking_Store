@@ -1,24 +1,27 @@
-package controller.books.query;
+package model;
 
 import controller.DatabaseConnector;
 import controller.Utils;
+import controller.books.query.BooksQueryUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-public class BooksQueryManager {
+public abstract class UserQuery {
 
-    public static Vector<Vector<String>> getBooksList (String key, String value, BooksQueryUtil.Operator operator) {
+
+    public Vector<Vector<String>> getBooksList(String key, String value,
+                                               BooksQueryUtil.Operator operator) {
         if (key == "Publisher_Name") {
             key = "Name";
         }
-        ResultSet books = DatabaseConnector.executeQuery
-                ("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity" +
-                        " from BOOK as B join PUBLISHER as P on B.publisher_id = P.publisher_id "+
-                        " where " + key + getOperatorString(operator) +
-                        (operator == BooksQueryUtil.Operator.LIKE ?
-                                Utils.encloseInLikeFormat(value) : Utils.encloseInQuotes(value)));
+        ResultSet books = DatabaseConnector
+                .executeQuery("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity"
+                        + " from BOOK as B join PUBLISHER as P on B.publisher_id = P.publisher_id " + " where " + key
+                        + this.getOperatorString(operator)
+                        + (operator == BooksQueryUtil.Operator.LIKE ? Utils.encloseInLikeFormat(value)
+                        : Utils.encloseInQuotes(value)));
 
         Vector<Vector<String>> data = new Vector<>();
         try {
@@ -39,9 +42,10 @@ public class BooksQueryManager {
             e1.printStackTrace();
         }
         return data;
+
     }
 
-    private static String getOperatorString (BooksQueryUtil.Operator operator) {
+    private String getOperatorString(BooksQueryUtil.Operator operator) {
         if (operator == BooksQueryUtil.Operator.EQUALITY) {
             return " = ";
         } else if (operator == BooksQueryUtil.Operator.GREATER) {
@@ -52,7 +56,7 @@ public class BooksQueryManager {
             return " < ";
         } else if (operator == BooksQueryUtil.Operator.LESS_EQUAL) {
             return " <= ";
-        } else if (operator == BooksQueryUtil.Operator.NOT_EQUAL){
+        } else if (operator == BooksQueryUtil.Operator.NOT_EQUAL) {
             return " != ";
         } else {
             return " like ";

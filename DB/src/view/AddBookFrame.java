@@ -9,10 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import controller.DatabaseConnector;
+import controller.books.editor.actions.AddAction;
+import controller.books.editor.actions.EditorAction;
 import view.util.WindowChanger;
 
 public class AddBookFrame extends JFrame implements WindowChanger {
@@ -39,16 +39,24 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	private JTextField book_thershold = new JTextField();
 	private JTextField book_authors = new JTextField();
 
-	private JButton btnAdd = new JButton("ADD");
+	private JButton btnAdd = new JButton();
 	private JButton btnReset = new JButton("RESET");
 	private JButton btnBack = new JButton("BACK");
 	private JButton btnViewPublishers = new JButton("View Publishers");
 
-	AddBookFrame() {
+	AddBookFrame(EditorAction editorAction) {
+
+		String btnType = editorAction.get_target_button_name();
+		btnAdd.setText(btnType);
+
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
-		addActionEvent();
+
+		if (btnType == "APPLY")
+			initializeData(editorAction.get_initial_data());
+
+		addActionEvent(editorAction);
 	}
 
 	public void setLayoutManager() {
@@ -87,6 +95,7 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	}
 
 	public void addComponentsToContainer() {
+
 		container.add(book_ISBN);
 		container.add(book_tile);
 		container.add(book_publisher);
@@ -114,40 +123,11 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 
 	}
 
-	public void addActionEvent() {
+	public void addActionEvent(EditorAction editorAction) {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				String authors[] = book_authors.getText().split(",");
-				String data[] = new String[8];
-				data[0] = book_ISBN.getText();
-				data[1] = book_tile.getText();
-				data[2] = book_publisher.getText();
-				data[3] = book_year.getText();
-				data[4] = (String) book_category.getSelectedItem();
-				data[5] = book_price.getText();
-				data[6] = book_quantity.getText();
-				data[7] = book_thershold.getText();
-
-				String add_book_sql = "INSERT INTO BOOK VALUES (" + data[0] + "," + "'" + data[1] + "'" + "," + data[2]
-						+ "," + "'" + data[3] + "'" + "," + "'" + data[4] + "'" + "," + data[5] + "," + data[6] + ","
-						+ data[7] + ");";
-
-				if (DatabaseConnector.executeModify(add_book_sql)) {
-
-					String add_author_sql;
-					for (int i = 0; i < authors.length; i++) {
-						add_author_sql = "INSERT INTO BOOK_AUTHORS VALUES (" + data[0] + "," + "'" + authors[i] + "'"
-								+ ");";
-						DatabaseConnector.executeModify(add_author_sql);
-					}
-
-					JOptionPane.showMessageDialog(container, "Added Successfully");
-					reset_entries();
-				} else {
-					JOptionPane.showMessageDialog(container, "Error! Please Try Again");
-				}
-
+				String data[] = fetch_data();
+				editorAction.target_button_action(data);
 			}
 		});
 
@@ -159,11 +139,37 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddItemFrame.changeWindow();
+				editorAction.back_button_action();
 				dispose();
 			}
 		});
 
+	}
+
+	private void initializeData(String[] data) {
+		book_ISBN.setText(data[0]);
+		book_tile.setText(data[1]);
+		book_publisher.setText(data[2]);
+		book_year.setText(data[3]);
+		book_category.setSelectedItem(data[4]);
+		book_price.setText(data[5]);
+		book_quantity.setText(data[6]);
+		book_thershold.setText(data[7]);
+		book_authors.setText(data[8]);
+	}
+
+	private String[] fetch_data() {
+		String data[] = new String[9];
+		data[0] = book_ISBN.getText();
+		data[1] = book_tile.getText();
+		data[2] = book_publisher.getText();
+		data[3] = book_year.getText();
+		data[4] = (String) book_category.getSelectedItem();
+		data[5] = book_price.getText();
+		data[6] = book_quantity.getText();
+		data[7] = book_thershold.getText();
+		data[8] = book_authors.getText();
+		return data;
 	}
 
 	private void reset_entries() {
@@ -178,8 +184,8 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 		book_authors.setText("");
 	}
 
-	public static void changeWindow() {
-		AddBookFrame frame = new AddBookFrame();
+	public static void changeWindow(EditorAction editorAction) {
+		AddBookFrame frame = new AddBookFrame(editorAction);
 		frame.setTitle("Add New Book");
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 450, 300);
@@ -188,6 +194,34 @@ public class AddBookFrame extends JFrame implements WindowChanger {
 	}
 
 	public static void main(String[] args) {
-		AddBookFrame.changeWindow();
+		AddBookFrame.changeWindow(new AddAction());
 	}
+
+	private void edit_action() {
+
+		String authors[] = book_authors.getText().split(",");
+		String data[] = new String[8];
+		data[0] = book_ISBN.getText();
+		data[1] = book_tile.getText();
+		data[2] = book_publisher.getText();
+		data[3] = book_year.getText();
+		data[4] = (String) book_category.getSelectedItem();
+		data[5] = book_price.getText();
+		data[6] = book_quantity.getText();
+		data[7] = book_thershold.getText();
+
+		String update_query = "UPDATE BOOK SET ISBN=?,Title=?,Publisher_id=?,Publication_year=?,Category=?,Price=?,No_of_copies=?,Min_Quantity=?,WHERE ISBN=?";
+
+		update_query.replaceFirst("?", data[0]);
+		update_query.replaceFirst("?", '\'' + data[1] + '\'');
+		update_query.replaceFirst("?", data[2]);
+		update_query.replaceFirst("?", '\'' + data[3] + '\'');
+		update_query.replaceFirst("?", '\'' + data[4] + '\'');
+		update_query.replaceFirst("?", data[5]);
+		update_query.replaceFirst("?", data[6]);
+		update_query.replaceFirst("?", data[7]);
+
+		System.out.println(update_query);
+	}
+	
 }
