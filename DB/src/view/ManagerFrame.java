@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import controller.books.viewer.actions.CustomerAddBookAction;
 import controller.books.viewer.actions.ManagerAction;
 import view.util.WindowChanger;
+import view.util.table.frame.definer.MangerOrderTableFrameDefiner;
+import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
 public class ManagerFrame extends JFrame implements WindowChanger {
 
@@ -85,19 +87,21 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnManageOrders.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// TO BE FILLED...
+				TableFrame.changeWindow(new MangerOrderTableFrameDefiner());
+				dispose();
 			}
 		});
 
 		btnPromoteUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/// TO BE FILLED...
+				TableFrame.changeWindow(new PromoteUserTableFrameDefiner());
+				dispose();
 			}
 		});
 
 		btnViewReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 
@@ -113,7 +117,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 			public void actionPerformed(ActionEvent e) {
 				int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?",
 						"Exit Program Message Box", JOptionPane.YES_NO_OPTION);
-				
+
 				if (confirmed == JOptionPane.YES_OPTION) {
 					StartUpFrame.changeWindow();
 					dispose();

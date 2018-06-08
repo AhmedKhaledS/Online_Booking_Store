@@ -70,7 +70,7 @@ ENGINE = InnoDB;
 -- Table `Book_Store`.`USER`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Book_Store`.`USER` (
-  `E-mail` VARCHAR(45) NOT NULL,
+  `E_mail` VARCHAR(45) NOT NULL,
   `Username` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `Lastname` VARCHAR(45) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `Book_Store`.`USER` (
   `Phone_number` VARCHAR(20) NULL,
   `Shopping_address` VARCHAR(45) NOT NULL,
   `User_type` ENUM('Customer', 'Manager') NOT NULL,
-  PRIMARY KEY (`E-mail`))
+  PRIMARY KEY (`E_mail`))
 ENGINE = InnoDB;
 
 
@@ -86,17 +86,17 @@ ENGINE = InnoDB;
 -- Table `Book_Store`.`ORDER`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Book_Store`.`ORDER` (
-  `E-mail` VARCHAR(45) NOT NULL,
+  `E_mail` VARCHAR(45) NOT NULL,
   `ISBN` INT NOT NULL,
   `Quantity` INT NULL,
   `State` ENUM('IN_PROGRESS', 'COMPLETED') NOT NULL,
   `Date` Date,
-  PRIMARY KEY (`ISBN`, `E-mail`),
-  INDEX `E-mail_idx` (`E-mail` ASC),
+  PRIMARY KEY (`ISBN`, `E_mail`),
+  INDEX `E_mail_idx` (`E_mail` ASC),
   INDEX `ISBN_idx` (`ISBN` ASC),
-  CONSTRAINT `E-mail_ORDER_USER_fk`
-    FOREIGN KEY (`E-mail`)
-    REFERENCES `Book_Store`.`USER` (`E-mail`)
+  CONSTRAINT `E_mail_ORDER_USER_fk`
+    FOREIGN KEY (`E_mail`)
+    REFERENCES `Book_Store`.`USER` (`E_mail`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE,
   CONSTRAINT `ISBN_ORDER_BOOK_fk`
