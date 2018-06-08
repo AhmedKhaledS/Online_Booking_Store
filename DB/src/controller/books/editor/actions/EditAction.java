@@ -1,7 +1,7 @@
 package controller.books.editor.actions;
 
 import controller.DatabaseConnector;
-import controller.books.query.BooksQueryManagerController;
+import controller.books.query.BookOrdersManagerController;
 
 public class EditAction implements EditorAction {
 
@@ -16,11 +16,12 @@ public class EditAction implements EditorAction {
 		return "APPLY";
 	}
 
+	// We must execute update statement not delete and add new book!!
 	@Override
 	public boolean target_button_action(String[] data) {
 		DatabaseConnector.setCommitLevel(false);
-		BooksQueryManagerController.deleteBook(this.data[0]);
-		return BooksQueryManagerController.addBook(data);
+		BookOrdersManagerController.modifyBook(this.data[0], data);
+		return BookOrdersManagerController.addBook(data);
 	}
 
 	@Override

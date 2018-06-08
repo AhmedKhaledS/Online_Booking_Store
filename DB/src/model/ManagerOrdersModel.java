@@ -75,7 +75,7 @@ public class ManagerOrdersModel extends UserQuery {
 		String sql_basic_data = "DELETE FROM BOOK WHERE ISBN=" + ISBN + ";";
 		DatabaseConnector.executeModify(sql_author_data);
 		DatabaseConnector.executeModify(sql_basic_data);
-	}
+    }
 
 	public void promoteUser(String rank) {
 		String promote_user_sql = "UPDATE USER SET User_type = 'Manager' WHERE E_mail='" + rank + "';";
@@ -88,5 +88,39 @@ public class ManagerOrdersModel extends UserQuery {
 		} else {
 			System.out.println("ERROR");
 		}
+	}
+
+	
+
+    public boolean updateISBN(String isbn, String newISBN) {
+	    return false;
+    }
+
+    public boolean updateTitle(String isbn, String newTitle) {
+        return false;
+	}
+
+    public boolean updatePublisher(String isbn, String newPublisher) {
+        return false;
+	}
+
+    public boolean updatePublicationYear(String isbn, String newYear) {
+        return false;
+	}
+
+    public boolean updateCategory(String isbn, String newCategory) {
+        return false;
+	}
+
+    public boolean updatePrice(String isbn, String newPrice) {
+        return false;
+	}
+
+    public boolean updateNoOfCoies(String isbn, String newNoOfCopies) {
+        return false;
+	}
+
+    public boolean updateMinQuantity(String isbn, String newMinQuantity) {
+        return false;
 	}
 }

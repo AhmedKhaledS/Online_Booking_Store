@@ -102,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `Book_Store`.`ORDER` (
   CONSTRAINT `ISBN_ORDER_BOOK_fk`
     FOREIGN KEY (`ISBN`)
     REFERENCES `Book_Store`.`BOOK` (`ISBN`)
-    ON DELETE IGNORE
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE) #hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 ENGINE = InnoDB;
 
 

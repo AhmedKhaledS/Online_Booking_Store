@@ -1,6 +1,6 @@
 package view.util.table.frame.definer;
 
-import controller.books.query.BooksQueryManagerController;
+import controller.books.query.BookOrdersManagerController;
 import controller.books.query.BooksQueryUtil;
 import controller.books.viewer.actions.CustomerAddBookAction;
 import view.TableFrame;
@@ -98,7 +98,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
                 e1.printStackTrace();
             }
             Vector<Vector<String>> data = new Vector<>();
-            data = BooksQueryManagerController.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
+            data = BookOrdersManagerController.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
                     BooksQueryUtil.Operator.LIKE);
             this.definableTableFrame.setData(data);
         } else if (e.getSource() == clearButton) {
