@@ -106,7 +106,6 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
         } else if (e.getSource() == viewShoppingCartButton) {
             ShoppingCartTableFrameDefiner spCartDefiner = new ShoppingCartTableFrameDefiner(this.action.getData());
             TableFrame.changeWindow(spCartDefiner);
-            System.out.println("ShoppingCart Available");
         }
     }
 }

@@ -30,6 +30,8 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
         Vector<String> columnNames = new Vector<>();
         columnNames.add(action.getActionName());
         columnNames.addAll(Constants.getBookTableColumnNames());
+        columnNames.set(7, "Quantity");
+        columnNames.remove(8);
         return columnNames;
     }
 
