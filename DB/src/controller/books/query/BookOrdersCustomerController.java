@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class BookOrdersCustomerController {
 
-    public void insertOrder(String[] order) {
+    public static void insertOrder(String[] order) {
         UserOrderDataModel userOrder = new UserOrderDataModel(order);
         boolean isInserted =  CustomerOrdersModel.getInstance().insertOrder(UserProfileController.getInstance()
                 .getCurrentLoggedInUser().getEmail(), userOrder);
