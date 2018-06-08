@@ -8,9 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import controller.books.viewer.actions.CustomerAddBookAction;
-import controller.books.viewer.actions.ManagerAction;
 import view.util.WindowChanger;
+import view.util.table.frame.definer.BooksOrderTableFrameDefiner;
 import view.util.table.frame.definer.MangerOrderTableFrameDefiner;
 import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
@@ -65,8 +64,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerAddBookAction customerAddBookAction = new CustomerAddBookAction();
-				BooksViewerFrame.changeWindow("ADD", customerAddBookAction);
+				TableFrame.changeWindow(new BooksOrderTableFrameDefiner());
 				dispose();
 			}
 		});
@@ -80,7 +78,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnModifyItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BooksViewerFrame.changeWindow("EDIT", new ManagerAction());
+				TableFrame.changeWindow(new BooksOrderTableFrameDefiner());
 				dispose();
 			}
 		});

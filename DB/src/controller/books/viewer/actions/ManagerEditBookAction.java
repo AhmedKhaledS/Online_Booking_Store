@@ -17,9 +17,9 @@ import view.AddBookFrame;
 import view.ManagerFrame;
 import view.util.GUIConstants;
 
-public class ManagerAction extends UserAction {
+public class ManagerEditBookAction extends UserAction {
 
-	public ManagerAction() {
+	public ManagerEditBookAction() {
 		this.actionName = "Edit";
 		this.targetUser = TargetUser.MANAGER;
 	}

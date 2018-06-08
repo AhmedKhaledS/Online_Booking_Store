@@ -18,7 +18,7 @@ public class EditAction implements EditorAction {
 
 	// We must execute update statement not delete and add new book!!
 	@Override
-	public boolean target_button_action(String[] data) {
+	public boolean target_button_action(String[] newData) {
 		DatabaseConnector.setCommitLevel(false);
 		return BookOrdersManagerController.modifyBook(this.data[0], data);
 	}
