@@ -9,13 +9,18 @@ public class BooksQueryManagerController {
 	public static Vector<Vector<String>> getBooksList(String key, String value, BooksQueryUtil.Operator operator) {
 		return ManagerQuery.getInstance().getBooksList(key, value, operator);
 	}
+	
+	public static boolean updateBook(String ISBN, String[] originalData) {
+
+		return ManagerQuery.getInstance().updateBook(ISBN, originalData);
+	}
 
 	public static boolean addBook(String[] originalData) {
 
 		return ManagerQuery.getInstance().addBook(originalData);
 	}
 
-	public static void deleteBook(String ISBN) {
+	public static void deleteAuthors(String ISBN) {
 
 		ManagerQuery.getInstance().deleteAuthors(ISBN);
 	}

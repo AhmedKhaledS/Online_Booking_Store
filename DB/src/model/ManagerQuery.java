@@ -18,7 +18,7 @@ public class ManagerQuery extends UserQuery {
 		return instance;
 	}
 
-	public boolean updateBook(String[] originalData) {
+	public boolean updateBook(String ISBN, String[] originalData) {
 		boolean error = false;
 
 		String data[] = new String[8];
@@ -28,11 +28,13 @@ public class ManagerQuery extends UserQuery {
 			data[i] = originalData[i];
 		}
 
-		String add_book_sql = "UPDATE BOOK SET (" + data[0] + "," + "'" + data[1] + "'" + "," + data[2] + ","
-				+ "'" + data[3] + "'" + "," + "'" + data[4] + "'" + "," + data[5] + "," + data[6] + "," + data[7]
-				+ ");";
+		String update = "UPDATE BOOK SET ISBN=" + data[0] + ",Title='" + data[1] + "',Publisher_id=" + data[2]
+				+ ",Publication_year=" + data[3] + ",Category='" + data[4] + "',Price=" + data[5] + ",No_of_copies="
+				+ data[6] + ",Min_Quantity=" + data[7] + " WHERE ISBN =" + ISBN + ";";
 
-		if (DatabaseConnector.executeModify(add_book_sql)) {
+		System.out.println(update);
+
+		if (DatabaseConnector.executeModify(update)) {
 
 			String add_author_sql;
 
@@ -111,11 +113,8 @@ public class ManagerQuery extends UserQuery {
 
 	public void deleteAuthors(String ISBN) {
 
-		System.out.println(ISBN);
 		String sql_author_data = "DELETE FROM BOOK_AUTHORS WHERE ISBN=" + ISBN + ";";
-		// String sql_basic_data = "DELETE FROM BOOK WHERE ISBN=" + ISBN + ";";
 		DatabaseConnector.executeModify(sql_author_data);
-		// DatabaseConnector.executeModify(sql_basic_data);
 	}
 
 }
