@@ -70,8 +70,8 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
 
     private  void setLocationAndSize() {
         dm.setDataVector(new Vector<>(),columnNames);
-        table.getColumn(actionName).setCellRenderer(new ButtonRenderer(action));
-        table.getColumn(actionName).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellRenderer(new RowButtonRenderer(action));
+        table.getColumn(actionName).setCellEditor(new RowButtonEditor(new JCheckBox()));
         table.setVisible(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         scroll = new JScrollPane(table);
@@ -144,8 +144,8 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
                         columnNames);
             }
         }
-        table.getColumn(actionName).setCellRenderer(new ButtonRenderer(action));
-        table.getColumn(actionName).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellRenderer(new RowButtonRenderer(action));
+        table.getColumn(actionName).setCellEditor(new RowButtonEditor(new JCheckBox()));
     }
 
     public static void changeWindow(String actionName, UserAction action) {
@@ -167,11 +167,11 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
 
 
 
-class ButtonRenderer extends JButton implements TableCellRenderer {
+class RowButtonRenderer extends JButton implements TableCellRenderer {
 
     private BiConsumer action;
 
-    public ButtonRenderer(BiConsumer action) {
+    public RowButtonRenderer(BiConsumer action) {
         setOpaque(true);
         this.action = action;
     }
@@ -182,7 +182,7 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
         if (isSelected) {
             setForeground(table.getSelectionForeground());
             setBackground(table.getSelectionBackground());
-            System.out.println("Renderer : Row #" + row);
+            System.out.println("Renderer1 : Row #" + row);
             action.accept(table, row);
         } else {
             setForeground(table.getForeground());
@@ -193,13 +193,13 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
     }
 }
 
-class ButtonEditor extends DefaultCellEditor {
+class RowButtonEditor extends DefaultCellEditor {
 
     protected JButton button;
     private String label;
     private boolean isPushed;
 
-    public ButtonEditor(JCheckBox checkBox) {
+    public RowButtonEditor(JCheckBox checkBox) {
         super(checkBox);
         button = new JButton();
         button.setOpaque(true);
