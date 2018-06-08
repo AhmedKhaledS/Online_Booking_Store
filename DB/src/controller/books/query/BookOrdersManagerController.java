@@ -2,6 +2,7 @@ package controller.books.query;
 
 import java.util.Vector;
 
+import controller.DatabaseConnector;
 import controller.users.UsersUtil;
 import model.ManagerOrdersModel;
 import model.UserModel;
@@ -23,7 +24,7 @@ public class BookOrdersManagerController {
 
 		ManagerOrdersModel.getInstance().deleteBook(ISBN);
 	}
-	public static void modifyBook(String ISBN, String[] data) {
+	public static boolean modifyBook(String ISBN, String[] data) {
 
 		boolean successfullyUpdated = ManagerOrdersModel.getInstance().updateTitle(ISBN, data[1])
 				| ManagerOrdersModel.getInstance().updatePublisher(ISBN, data[2])
@@ -34,10 +35,12 @@ public class BookOrdersManagerController {
 				| ManagerOrdersModel.getInstance().updateMinQuantity(ISBN, data[7])
                 | ManagerOrdersModel.getInstance().updateISBN(ISBN, data[0]);
 		if (successfullyUpdated) {
-			JOptionPane.showMessageDialog(null, "Your book is updated successfully.");
+            DatabaseConnector.commitDB();
+            JOptionPane.showMessageDialog(null, "Your book is updated successfully.");
 		} else {
 			JOptionPane.showMessageDialog(null, "Error occurred while updating profile!");
 		}
+		return successfullyUpdated;
 	}
 
 }

@@ -20,8 +20,7 @@ public class EditAction implements EditorAction {
 	@Override
 	public boolean target_button_action(String[] data) {
 		DatabaseConnector.setCommitLevel(false);
-		BookOrdersManagerController.modifyBook(this.data[0], data);
-		return BookOrdersManagerController.addBook(data);
+		return BookOrdersManagerController.modifyBook(this.data[0], data);
 	}
 
 	@Override

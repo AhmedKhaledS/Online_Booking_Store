@@ -93,34 +93,82 @@ public class ManagerOrdersModel extends UserQuery {
 	
 
     public boolean updateISBN(String isbn, String newISBN) {
-	    return false;
+        String queryStmt = "UPDATE BOOK SET `ISBN`=" + newISBN +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating book-ISBN!");
+            return false;
+        }
+        return true;
     }
 
     public boolean updateTitle(String isbn, String newTitle) {
-        return false;
+        String queryStmt = "UPDATE BOOK SET `Title`=" + "'" + newTitle + "'" +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating book-title!");
+            return false;
+        }
+        return true;
 	}
 
-    public boolean updatePublisher(String isbn, String newPublisher) {
-        return false;
+    public boolean updatePublisher(String isbn, String newPublisherId) {
+        String queryStmt = "UPDATE BOOK SET `Publisher_id`=" + newPublisherId  +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating publisher-id!");
+            return false;
+        }
+        return true;
 	}
 
     public boolean updatePublicationYear(String isbn, String newYear) {
-        return false;
+        String queryStmt = "UPDATE BOOK SET `Publication_year`=" + "'" + newYear + "'" +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating publication year!");
+            return false;
+        }
+        return true;
 	}
 
     public boolean updateCategory(String isbn, String newCategory) {
-        return false;
+        String queryStmt = "UPDATE BOOK SET `Category`=" + "'" + newCategory + "'" +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating category of book!");
+            return false;
+        }
+        return true;
 	}
 
     public boolean updatePrice(String isbn, String newPrice) {
-        return false;
+        String queryStmt = "UPDATE BOOK SET `Price`=" + newPrice +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating price of book!");
+            return false;
+        }
+        return true;
 	}
 
     public boolean updateNoOfCoies(String isbn, String newNoOfCopies) {
-        return false;
+        String queryStmt = "UPDATE BOOK SET `No_of_copies`=" + newNoOfCopies +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating number of book-copies!");
+            return false;
+        }
+        return true;
 	}
 
     public boolean updateMinQuantity(String isbn, String newMinQuantity) {
-        return false;
+        String queryStmt = "UPDATE BOOK SET `Min_Quantity`=" + newMinQuantity +
+                " WHERE `ISBN`=" + isbn + ";";
+        if (!DatabaseConnector.executeModify(queryStmt)) {
+            System.out.println("Error occurred while updating minimim quantity of book-copies!");
+            return false;
+        }
+        return true;
 	}
 }
