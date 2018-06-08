@@ -5,6 +5,10 @@ import java.util.Vector;
 
 import javax.swing.JTable;
 
+import controller.DatabaseConnector;
+import view.TableFrame;
+import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
+
 public class PromoteUserAction extends UserAction {
 
 	public PromoteUserAction() {
@@ -19,7 +23,17 @@ public class PromoteUserAction extends UserAction {
 			dataRow.add((String) jTable.getModel().getValueAt(row, i));
 		}
 
-		System.out.println("DONE");
+		String promote_user_sql = "UPDATE USER SET User_type = 'Manager' WHERE E_mail='" + dataRow.get(0) + "';";
+
+		System.out.println(promote_user_sql);
+
+		if (DatabaseConnector.executeModify(promote_user_sql)) {
+			System.out.println("DONE");
+			TableFrame.changeWindow(new PromoteUserTableFrameDefiner());
+		} else {
+			System.out.println("ERROR");
+		}
+
 	}
 
 	@Override

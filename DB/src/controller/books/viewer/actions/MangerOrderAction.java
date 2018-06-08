@@ -5,6 +5,10 @@ import java.util.Vector;
 
 import javax.swing.JTable;
 
+import controller.DatabaseConnector;
+import view.TableFrame;
+import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
+
 public class MangerOrderAction extends UserAction {
 
 	public MangerOrderAction() {
@@ -19,7 +23,16 @@ public class MangerOrderAction extends UserAction {
 			dataRow.add((String) jTable.getModel().getValueAt(row, i));
 		}
 
-		System.out.println("DONE");
+		String accept_order_sql = "DELETE FROM MANAGER_ORDERS WHERE Order_id=" + dataRow.get(0) + ";";
+
+		System.out.println(accept_order_sql);
+
+		if (DatabaseConnector.executeModify(accept_order_sql)) {
+			System.out.println("DONE");
+			TableFrame.changeWindow(new PromoteUserTableFrameDefiner());
+		} else {
+			System.out.println("ERROR");
+		}
 	}
 
 	@Override
