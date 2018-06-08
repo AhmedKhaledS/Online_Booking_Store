@@ -5,10 +5,7 @@ import java.util.Vector;
 
 import javax.swing.JTable;
 
-import controller.DatabaseConnector;
-import model.ManagerQuery;
-import view.TableFrame;
-import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
+import model.ManagerOrdersModel;
 
 public class PromoteUserAction extends UserAction {
 
@@ -23,7 +20,7 @@ public class PromoteUserAction extends UserAction {
 		for (int i = 1; i < jTable.getModel().getColumnCount(); i++) {
 			dataRow.add((String) jTable.getModel().getValueAt(row, i));
 		}
-		ManagerQuery.getInstance().promoteUser(dataRow.get(0));
+		ManagerOrdersModel.getInstance().promoteUser(dataRow.get(0));
 
 	}
 

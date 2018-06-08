@@ -6,16 +6,16 @@ import controller.DatabaseConnector;
 import view.TableFrame;
 import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
-public class ManagerQuery extends UserQuery {
+public class ManagerOrdersModel extends UserQuery {
 
-	private static ManagerQuery instance;
+	private static ManagerOrdersModel instance;
 
-	private ManagerQuery() {
+	private ManagerOrdersModel() {
 	}
 
-	public static ManagerQuery getInstance() {
+	public static ManagerOrdersModel getInstance() {
 		if (instance == null) {
-			instance = new ManagerQuery();
+			instance = new ManagerOrdersModel();
 		}
 		return instance;
 	}
