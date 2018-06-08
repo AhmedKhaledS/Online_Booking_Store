@@ -25,3 +25,6 @@ hs_err_pid*
 DB/.idea/
 DB/.classpath
 DB/.project
+publisher.csv
+book_authors.csv
+book.csv

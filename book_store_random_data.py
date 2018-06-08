@@ -27,7 +27,7 @@ with open('publisher.csv', 'w') as f:
 isbn = [str(i) for i in range(BOOK_COUNT)]
 book_titles = [fake.sentence(3) for _ in range(BOOK_COUNT)]
 publisher_id_ = [publisher_id[randint(0, PUBLISHER_COUNT-1)] for _ in range(BOOK_COUNT)]
-publication_year = [fake.date() for _ in range(BOOK_COUNT)]
+publication_year = [fake.date()[:4] for _ in range(BOOK_COUNT)]
 category = [categ[randint(0, 4)] for _ in range(BOOK_COUNT)]
 price = [numpy.random.uniform(0.0, 9999.9) for _ in range(BOOK_COUNT)]
 no_of_copies = [randint(5, 5000) for _ in range(BOOK_COUNT)]
