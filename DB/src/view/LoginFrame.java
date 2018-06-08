@@ -79,7 +79,7 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             if (currentUser.getType() == UsersUtil.UserType.MANAGER) {
                 ManagerFrame.changeWindow();
             } else if (currentUser.getType() == UsersUtil.UserType.CUSTOMER) {
-                /// TODO : Customer Window
+                CustomerFrame.changeWindow();
             } else {
                 /// TODO : Invalid user Window
             }
@@ -110,7 +110,7 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
         frame.setResizable(true);
     }
 
-    public static void main (String[] args) {
+    public static    void main (String[] args) {
         LoginFrame.changeWindow();
     }
 }
