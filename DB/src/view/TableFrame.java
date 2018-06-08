@@ -119,7 +119,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 //		TableFrame frame = new TableFrame(new ShoppingCartTableFrameDefiner());
 		frame.setTitle("TableFrame");
 		frame.setVisible(true);
-		frame.setBounds(10, 10, 950, 600);
+		frame.setBounds(200, 80, 950, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setResizable(false);
 	}
