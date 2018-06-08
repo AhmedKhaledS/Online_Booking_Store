@@ -1,6 +1,8 @@
 package view.util.table.frame.definer;
 
+import controller.books.query.BookOrdersCustomerController;
 import controller.books.viewer.actions.CustomerRemoveBookAction;
+import controller.users.UserProfileController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,6 +50,15 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == checkoutShoppingCartButton) {
+            for (Vector<String> dataRow : data) {
+                String[] insertOrderParameters = new String[4];
+                insertOrderParameters[0] = UserProfileController.getInstance()
+                        .getCurrentLoggedInUser().getEmail();
+                insertOrderParameters[1] =  dataRow.get(1);
+                insertOrderParameters[2] = dataRow.get(dataRow.size() - 1);
+                insertOrderParameters[3] = "IN_PROGRESS";
+                BookOrdersCustomerController.insertOrder(insertOrderParameters);
+            }
 
         }
     }

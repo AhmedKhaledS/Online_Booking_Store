@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import static view.util.GUIConstants.offsetX;
+import static view.util.GUIConstants.*;
 
 public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
@@ -23,6 +23,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
     private JButton searchButton;
     private JButton clearButton;
     private JButton viewShoppingCartButton;
+    private JLabel errorLabel;
 
     public BooksOrderTableFrameDefiner() {
         this.action = new CustomerAddBookAction();
@@ -45,6 +46,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
 
     @Override
     public void modifyFrame(Container container) {
+        errorLabel = new JLabel("");
         searchKeyLabel = new JLabel("Search By");
         searchKeyTextField = new JTextField();
         String[] keys = {"Title", "Publisher_Name", "Publication_Year", "Category"};
@@ -64,6 +66,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
         viewShoppingCartButton.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY * 8,
                 GUIConstants.width, GUIConstants.height);
+        errorLabel.setBounds(initX + offsetX, initY + offsetY * 8, width * 5, height);
         setActionListeners();
         addToContainer(container);
     }
@@ -80,6 +83,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
         container.add (searchButton);
         container.add (clearButton);
         container.add (viewShoppingCartButton);
+        container.add (errorLabel);
     }
 
     @Override
@@ -99,7 +103,6 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
         } else if (e.getSource() == viewShoppingCartButton) {
             if (!isValidOrder()) {
                 this.action.setData(new Vector<>());
-                System.out.println("Invalid");
                 return;
             }
             ShoppingCartTableFrameDefiner spCartDefiner = new ShoppingCartTableFrameDefiner(this.action.getData());
@@ -110,10 +113,16 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
 
     private boolean isValidOrder () {
         for (Vector<String> dataRow : this.action.getData()) {
-            int noOfCopies = Integer.parseInt(dataRow.get(dataRow.size() - 3));
-            int requiredQuantity = Integer.parseInt(dataRow.get(dataRow.size() - 1));
-            if (noOfCopies <= requiredQuantity) {
-                return false;
+            try {
+                int requiredQuantity = Integer.parseInt(dataRow.get(dataRow.size() - 1));
+                int noOfCopies = Integer.parseInt(dataRow.get(dataRow.size() - 3));
+                if (noOfCopies <= requiredQuantity) {
+                    errorLabel.setText("Error : Insufficient inventory of the required book.");
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                    errorLabel.setText("Error : Invalid Quantity Number.");
+                    return false;
             }
         }
         return true;

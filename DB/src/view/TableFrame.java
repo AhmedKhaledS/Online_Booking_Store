@@ -150,12 +150,6 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	private void setRowButtonSettings () {
 		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
 		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox(), rowButtonAction));
-		table.getColumn(rowButtonActionName).addPropertyChangeListener(new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-					
-			}
-		});
 	}
 
 	@Override
