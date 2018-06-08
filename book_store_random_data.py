@@ -13,7 +13,7 @@ categ = ["Science", "Art", "Religion", "History", "Geography"]
 
 # PUBLISHER
 publisher_id = [str(i) for i in range(PUBLISHER_COUNT)]
-publisher_name = [str(fake.sha1()) for _ in range(PUBLISHER_COUNT)]
+publisher_name = [fake.name() for _ in range(PUBLISHER_COUNT)]
 publisher_address = [fake.street_address() for _ in range(PUBLISHER_COUNT)]
 telephone_number = [fake.phone_number() for _ in range(PUBLISHER_COUNT)]
 
@@ -41,10 +41,10 @@ with open('book.csv', 'w') as f:
 
 
 # BOOK_AUTHORS
-isbn = [str(i) for _ in range(AUTHORS_COUNT)]
+isbn_ = [isbn[randint(0, BOOK_COUNT-1)] for _ in range(AUTHORS_COUNT)]
 author_name = [fake.name() for _ in range(AUTHORS_COUNT)]
 
 with open('book_authors.csv', 'w') as f:
     wr = csv.writer(f, lineterminator='\n')
     for i in range(AUTHORS_COUNT):
-        wr.writerow([isbn[i]] + [author_name[i]])
+        wr.writerow([isbn_[i]] + [author_name[i]])
