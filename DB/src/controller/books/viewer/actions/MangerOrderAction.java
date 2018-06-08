@@ -7,6 +7,7 @@ import javax.swing.JTable;
 
 import controller.DatabaseConnector;
 import view.TableFrame;
+import view.util.table.frame.definer.MangerOrderTableFrameDefiner;
 import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
 public class MangerOrderAction extends UserAction {
@@ -29,7 +30,7 @@ public class MangerOrderAction extends UserAction {
 
 		if (DatabaseConnector.executeModify(accept_order_sql)) {
 			System.out.println("DONE");
-			TableFrame.changeWindow(new PromoteUserTableFrameDefiner());
+			TableFrame.changeWindow(new MangerOrderTableFrameDefiner());
 		} else {
 			System.out.println("ERROR");
 		}
