@@ -38,7 +38,8 @@ public class BookOrdersManagerController {
             DatabaseConnector.commitDB();
             JOptionPane.showMessageDialog(null, "Your book is updated successfully.");
 		} else {
-			JOptionPane.showMessageDialog(null, "Error occurred while updating profile!");
+            DatabaseConnector.rollDB();
+            JOptionPane.showMessageDialog(null, "Error occurred while updating profile!");
 		}
 		return successfullyUpdated;
 	}
