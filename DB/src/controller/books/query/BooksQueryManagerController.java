@@ -17,7 +17,7 @@ public class BooksQueryManagerController {
 
 	public static void deleteBook(String ISBN) {
 
-		ManagerQuery.getInstance().deleteBook(ISBN);
+		ManagerQuery.getInstance().deleteAuthors(ISBN);
 	}
 
 }
