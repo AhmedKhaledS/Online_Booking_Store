@@ -3,6 +3,8 @@ package model;
 import javax.swing.JOptionPane;
 
 import controller.DatabaseConnector;
+import view.TableFrame;
+import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
 public class ManagerQuery extends UserQuery {
 
@@ -75,4 +77,16 @@ public class ManagerQuery extends UserQuery {
 		DatabaseConnector.executeModify(sql_basic_data);
 	}
 
+	public void promoteUser(String rank) {
+		String promote_user_sql = "UPDATE USER SET User_type = 'Manager' WHERE E_mail='" + rank + "';";
+
+		System.out.println(promote_user_sql);
+
+		if (DatabaseConnector.executeModify(promote_user_sql)) {
+			System.out.println("DONE");
+			TableFrame.changeWindow(new PromoteUserTableFrameDefiner());
+		} else {
+			System.out.println("ERROR");
+		}
+	}
 }

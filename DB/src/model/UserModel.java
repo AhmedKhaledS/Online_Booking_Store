@@ -158,8 +158,8 @@ public class UserModel {
 
     public UsersUtil.UserType getUserType (String username, String password) {
         ResultSet users = DatabaseConnector.executeQuery
-                ("select `User_type` from USER where " + "`E-mail`" + " = " + Utils.encloseInQuotes(username) + "and " +
-                        "`Password`" + " = " + Utils.encloseInQuotes(password));
+                ("SELECT `User_type` FROM `USER` WHERE " + "`E_mail` = " + Utils.encloseInQuotes(username) + " AND " +
+                        "`Password` = " + Utils.encloseInQuotes(password));
         try {
             if (users.next())
                 return getUserType(users.getString(1));
