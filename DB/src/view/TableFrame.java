@@ -3,6 +3,8 @@ package view;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
+import view.util.table.ButtonEditor;
+import view.util.table.ButtonRenderer;
 import view.util.table.frame.definer.BooksOrderTableFrameDefiner;
 import view.util.table.frame.definer.TableFrameDefiner;
 import view.util.table.frame.definer.DefinableTableFrame;
@@ -12,7 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.Vector;
+
+import static controller.books.query.BookOrdersManagerController.getAllBooks;
 
 public class TableFrame extends JFrame implements ActionListener, WindowChanger, DefinableTableFrame {
 
@@ -25,9 +30,12 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	/** Main table components. */
 	Vector<Vector<String>> data;
 	Vector<String> columnNames;
+	HashSet<Integer> editableColumns = new HashSet<>();
 	DefaultTableModel dm = new DefaultTableModel() {
 		@Override
-		public boolean isCellEditable (int row, int column) {return false;}
+		public boolean isCellEditable (int row, int column) {
+			return editableColumns.contains(new Integer(column));
+		}
 	};
 	JTable table = new JTable(dm);
 	JScrollPane scroll;
@@ -58,12 +66,12 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 
 	private void initializeTable () {
 		dm.setDataVector(new Vector<>(),columnNames);
-		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
-		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
+		setRowButtonSettings();
 		table.setVisible(true);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scroll = new JScrollPane(table);
 		scroll.setVisible(true);
+		setData(getAllBooks());
 	}
 
 	public void setLayoutManager() {
@@ -92,7 +100,6 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		prevPageButton.addActionListener(this);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nextPageButton) {
@@ -110,8 +117,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		} else {
 			this.observer.update(e.getSource());
 		}
-		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
-		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
+		setRowButtonSettings();
 	}
 
 	public static void changeWindow (TableFrameDefiner definer) {
@@ -130,9 +136,18 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		pageIndex = 0;
 		dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
 				columnNames);
+		setRowButtonSettings();
+		return;
+	}
+
+	@Override
+	public void setEditableColumn(int editableColumn) {
+		this.editableColumns.add(new Integer(editableColumn));
+	}
+
+	private void setRowButtonSettings () {
 		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
 		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
-		return;
 	}
 
 	@Override

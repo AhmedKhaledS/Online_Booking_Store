@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class ButtonEditor extends DefaultCellEditor {
+public class ButtonEditor extends DefaultCellEditor {
 
     protected JButton button;
     private String label;

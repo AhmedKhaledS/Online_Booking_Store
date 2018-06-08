@@ -47,7 +47,12 @@ public class CustomerAddBookAction extends UserAction {
         return getShoppingCart();
     }
 
-    public Vector<Vector<String>> getShoppingCart () {
+    @Override
+    public void setData(Vector<Vector<String>> data) {
+        shoppingCart = new Vector<>();
+    }
+
+    private Vector<Vector<String>> getShoppingCart () {
         return shoppingCart;
     }
 }

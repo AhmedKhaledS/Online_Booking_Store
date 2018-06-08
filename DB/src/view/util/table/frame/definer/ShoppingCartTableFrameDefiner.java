@@ -37,6 +37,7 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
 
     @Override
     public void modifyFrame(Container container) {
+        preProcessData();
         this.definableTableFrame.setData(data);
         checkoutShoppingCartButton = new JButton("Check Out");
         checkoutShoppingCartButton.setBounds(initX, initY, width, height);
@@ -49,5 +50,14 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
         if (e.getSource() == checkoutShoppingCartButton) {
 
         }
+    }
+
+    private void preProcessData () {
+        for (Vector<String> dataRow : data) {
+            dataRow.add(0, "Remove");
+            dataRow.remove(7);
+            dataRow.remove(7);
+        }
+        return;
     }
 }

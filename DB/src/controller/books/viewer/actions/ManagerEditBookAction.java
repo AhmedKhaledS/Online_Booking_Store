@@ -53,4 +53,9 @@ public class ManagerEditBookAction extends UserAction {
 	public Vector<Vector<String>> getData() {
 		return null;
 	}
+
+	@Override
+	public void setData(Vector<Vector<String>> data) {
+
+	}
 }

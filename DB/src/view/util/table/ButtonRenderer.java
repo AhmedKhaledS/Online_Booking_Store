@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.BiConsumer;
 
-class ButtonRenderer extends JButton implements TableCellRenderer {
+public class ButtonRenderer extends JButton implements TableCellRenderer {
 
     private BiConsumer action;
 
@@ -19,12 +19,10 @@ class ButtonRenderer extends JButton implements TableCellRenderer {
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
                                                    boolean isSelected, boolean hasFocus, int row, int column) {
-        this.addActionListener((ActionEvent e) -> {
-                action.accept(table, row);
-        });
         if (isSelected) {
             setForeground(table.getSelectionForeground());
             setBackground(table.getSelectionBackground());
+            this.action.accept(table,row);
         } else {
             setForeground(table.getForeground());
             setBackground(UIManager.getColor("Button.background"));
