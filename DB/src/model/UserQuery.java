@@ -70,6 +70,10 @@ public abstract class UserQuery {
         return data;
     }
 
+    public boolean insertOrder(String email, UserOrderDataModel order) {
+        return false;
+    }
+
     private String getOperatorString(BooksQueryUtil.Operator operator) {
         if (operator == BooksQueryUtil.Operator.EQUALITY) {
             return " = ";
@@ -87,4 +91,5 @@ public abstract class UserQuery {
             return " like ";
         }
     }
+
 }
