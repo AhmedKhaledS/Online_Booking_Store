@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `Book_Store`.`BOOK` (
     FOREIGN KEY (`Publisher_id`)
     REFERENCES `Book_Store`.`PUBLISHER` (`Publisher_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
