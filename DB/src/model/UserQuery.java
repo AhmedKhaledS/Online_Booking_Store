@@ -70,6 +70,18 @@ public abstract class UserQuery {
         return data;
     }
 
+    public boolean insertOrder(String email, UserOrderDataModel order) {
+        String addOrderStmt = "INSERT INTO ORDER VALUES ('" + order.getEmail() + "'," + order.getIsbn() + "," +
+                order.getQuantity() + ",'" + order.getState() + "','" + order.getDate() + "');";
+
+        if (DatabaseConnector.executeModify(addOrderStmt)) {
+            DatabaseConnector.commitDB();
+            return true;
+        }
+        DatabaseConnector.rollDB();
+        return false;
+    }
+
     private String getOperatorString(BooksQueryUtil.Operator operator) {
         if (operator == BooksQueryUtil.Operator.EQUALITY) {
             return " = ";
@@ -87,4 +99,5 @@ public abstract class UserQuery {
             return " like ";
         }
     }
+
 }
