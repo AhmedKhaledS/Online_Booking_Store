@@ -9,8 +9,8 @@ public class CustomerRemoveBookAction extends UserAction {
 
     private Vector<Vector<String>> data;
 
-    public CustomerRemoveBookAction () {
-        data = new Vector<>();
+    public CustomerRemoveBookAction (Vector<Vector<String>> data) {
+        this.data = data;
         this.actionName = "Remove";
         this.targetUser = TargetUser.CUSTOMER;
     }
