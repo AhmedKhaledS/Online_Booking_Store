@@ -1,5 +1,7 @@
 package view.util.table;
 
+import controller.books.viewer.actions.UserAction;
+
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
@@ -9,9 +11,9 @@ import java.util.function.BiConsumer;
 
 public class ButtonRenderer extends JButton implements TableCellRenderer {
 
-    private BiConsumer action;
+    private UserAction action;
 
-    public ButtonRenderer(BiConsumer action) {
+    public ButtonRenderer(UserAction action) {
         setOpaque(true);
         this.action = action;
     }

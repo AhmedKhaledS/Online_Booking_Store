@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashSet;
 import java.util.Vector;
 
@@ -147,7 +149,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 
 	private void setRowButtonSettings () {
 		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
-		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox()));
+		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox(), rowButtonAction));
 	}
 
 	@Override

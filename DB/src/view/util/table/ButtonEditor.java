@@ -1,5 +1,7 @@
 package view.util.table;
 
+import controller.books.viewer.actions.UserAction;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,8 +12,9 @@ public class ButtonEditor extends DefaultCellEditor {
     protected JButton button;
     private String label;
     private boolean isPushed;
+    private UserAction action;
 
-    public ButtonEditor(JCheckBox checkBox) {
+    public ButtonEditor(JCheckBox checkBox, UserAction action) {
         super(checkBox);
         button = new JButton();
         button.setOpaque(true);
@@ -21,6 +24,7 @@ public class ButtonEditor extends DefaultCellEditor {
                 fireEditingStopped();
             }
         });
+        this.action = action;
     }
 
     @Override
