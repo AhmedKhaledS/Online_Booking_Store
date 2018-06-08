@@ -100,7 +100,7 @@ public class BooksEditorTableFrameDefiner extends TableFrameDefiner implements A
             }
             Vector<Vector<String>> data = new Vector<>();
             data = BookOrdersManagerController.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
-                    BooksQueryUtil.Operator.LIKE);
+                    BooksQueryUtil.Operator.EQUALITY);
             this.definableTableFrame.setData(data);
         } else if (e.getSource() == clearButton) {
             searchKeyTextField.setText("");

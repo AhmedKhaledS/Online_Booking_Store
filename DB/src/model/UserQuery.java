@@ -18,7 +18,7 @@ public abstract class UserQuery {
         }
         ResultSet books = DatabaseConnector
                 .executeQuery("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity"
-                        + " from BOOK as B join PUBLISHER as P on B.publisher_id = P.publisher_id " + " where " + key
+                        + " FROM BOOK AS B JOIN PUBLISHER AS P ON B.publisher_id = P.publisher_id " + " WHERE " + key
                         + this.getOperatorString(operator)
                         + (operator == BooksQueryUtil.Operator.LIKE ? Utils.encloseInLikeFormat(value)
                         : Utils.encloseInQuotes(value)));
@@ -42,7 +42,6 @@ public abstract class UserQuery {
             e1.printStackTrace();
         }
         return data;
-
     }
 
     private String getOperatorString(BooksQueryUtil.Operator operator) {

@@ -125,7 +125,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
             }
             data = new Vector<>();
             data = BookOrdersManagerController.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
-                    BooksQueryUtil.Operator.LIKE);
+                    BooksQueryUtil.Operator.EQUALITY);
             dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
                     columnNames);
         } else if (e.getSource() == clearButton) {
