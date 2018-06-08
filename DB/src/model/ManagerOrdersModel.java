@@ -90,6 +90,19 @@ public class ManagerOrdersModel extends UserQuery {
 		}
 	}
 
+	public boolean manageOrders(String orderID) {
+        String accept_order_sql = "DELETE FROM MANAGER_ORDERS WHERE Order_id=" + orderID + ";";
+
+        System.out.println(accept_order_sql);
+
+        if (DatabaseConnector.executeModify(accept_order_sql)) {
+            System.out.println("DONE");
+            return true;
+        }
+        System.out.println("ERROR");
+        return false;
+    }
+
 	
 
     public boolean updateISBN(String isbn, String newISBN) {
