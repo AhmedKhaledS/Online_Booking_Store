@@ -14,7 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.Vector;
+
+import static controller.books.query.BookOrdersManagerController.getAllBooks;
 
 public class TableFrame extends JFrame implements ActionListener, WindowChanger, DefinableTableFrame {
 
@@ -27,9 +30,12 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	/** Main table components. */
 	Vector<Vector<String>> data;
 	Vector<String> columnNames;
+	HashSet<Integer> editableColumns = new HashSet<>();
 	DefaultTableModel dm = new DefaultTableModel() {
 		@Override
-		public boolean isCellEditable (int row, int column) {return false;}
+		public boolean isCellEditable (int row, int column) {
+			return editableColumns.contains(new Integer(column));
+		}
 	};
 	JTable table = new JTable(dm);
 	JScrollPane scroll;
@@ -65,6 +71,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scroll = new JScrollPane(table);
 		scroll.setVisible(true);
+		setData(getAllBooks());
 	}
 
 	public void setLayoutManager() {
@@ -92,7 +99,6 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		nextPageButton.addActionListener(this);
 		prevPageButton.addActionListener(this);
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -132,6 +138,11 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 				columnNames);
 		setRowButtonSettings();
 		return;
+	}
+
+	@Override
+	public void setEditableColumn(int editableColumn) {
+		this.editableColumns.add(new Integer(editableColumn));
 	}
 
 	private void setRowButtonSettings () {

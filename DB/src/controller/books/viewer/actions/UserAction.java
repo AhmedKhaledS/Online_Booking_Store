@@ -20,5 +20,7 @@ public abstract class UserAction implements BiConsumer<JTable, Integer> {
     public abstract void addToFrame(Container container);
 
     public abstract Vector<Vector<String>> getData();
+
+    public abstract void setData (Vector<Vector<String>> data);
 }
 

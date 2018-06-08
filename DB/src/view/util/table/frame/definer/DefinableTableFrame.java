@@ -8,5 +8,5 @@ public interface DefinableTableFrame {
 
     public Vector<Vector<String>> getTableData();
     public void setData (Vector<Vector<String>> data);
-
+    public void setEditableColumn (int editableColumn);
 }

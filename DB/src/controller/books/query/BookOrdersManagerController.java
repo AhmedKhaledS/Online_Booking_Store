@@ -15,6 +15,10 @@ public class BookOrdersManagerController {
 		return ManagerOrdersModel.getInstance().getBooksList(key, value, operator);
 	}
 
+	public static Vector<Vector<String>> getAllBooks () {
+		return ManagerOrdersModel.getInstance().getAllBooks();
+	}
+
 	public static boolean addBook(String[] originalData) {
 
 		return ManagerOrdersModel.getInstance().addBook(originalData);

@@ -3,6 +3,7 @@ package view.util.table.frame.definer;
 import controller.books.query.BookOrdersManagerController;
 import controller.books.query.BooksQueryUtil;
 import controller.books.viewer.actions.CustomerAddBookAction;
+import controller.books.viewer.actions.CustomerRemoveBookAction;
 import view.TableFrame;
 import view.util.GUIConstants;
 
@@ -22,8 +23,6 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
     private JButton searchButton;
     private JButton clearButton;
     private JButton viewShoppingCartButton;
-    private JLabel quantityLabel;
-    private JTextField quantityTextField;
 
     public BooksOrderTableFrameDefiner() {
         this.action = new CustomerAddBookAction();
@@ -39,13 +38,13 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
         Vector<String> columnNames = new Vector<>();
         columnNames.add(action.getActionName());
         columnNames.addAll(Constants.getBookTableColumnNames());
+        columnNames.add("Quantity");
+        this.definableTableFrame.setEditableColumn(columnNames.size() - 1);
         return columnNames;
     }
 
     @Override
     public void modifyFrame(Container container) {
-        quantityTextField = new JTextField();
-        quantityLabel = new JLabel("Book Quantity");
         searchKeyLabel = new JLabel("Search By");
         searchKeyTextField = new JTextField();
         String[] keys = {"Title", "Publisher_Name", "Publication_Year", "Category"};
@@ -65,10 +64,6 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
                 GUIConstants.initY, GUIConstants.width, GUIConstants.height);
         viewShoppingCartButton.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY * 8,
                 GUIConstants.width, GUIConstants.height);
-        quantityLabel.setBounds(GUIConstants.initX + offsetX, GUIConstants.initY + GUIConstants.offsetY * 8,
-                GUIConstants.width, GUIConstants.height);
-        quantityTextField.setBounds(GUIConstants.initX + offsetX * 2, GUIConstants.initY + GUIConstants.offsetY * 8,
-                GUIConstants.width, GUIConstants.height);
         setActionListeners();
         addToContainer(container);
     }
@@ -85,8 +80,6 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
         container.add (searchButton);
         container.add (clearButton);
         container.add (viewShoppingCartButton);
-        container.add (quantityLabel);
-        container.add (quantityTextField);
     }
 
     @Override
@@ -104,8 +97,25 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
         } else if (e.getSource() == clearButton) {
             searchKeyTextField.setText("");
         } else if (e.getSource() == viewShoppingCartButton) {
+            if (!isValidOrder()) {
+                this.action.setData(new Vector<>());
+                System.out.println("Invalid");
+                return;
+            }
             ShoppingCartTableFrameDefiner spCartDefiner = new ShoppingCartTableFrameDefiner(this.action.getData());
             TableFrame.changeWindow(spCartDefiner);
         }
+        return;
+    }
+
+    private boolean isValidOrder () {
+        for (Vector<String> dataRow : this.action.getData()) {
+            int noOfCopies = Integer.parseInt(dataRow.get(dataRow.size() - 3));
+            int requiredQuantity = Integer.parseInt(dataRow.get(dataRow.size() - 1));
+            if (noOfCopies <= requiredQuantity) {
+                return false;
+            }
+        }
+        return true;
     }
 }
