@@ -3,9 +3,12 @@ package controller.books.query;
 import java.util.Vector;
 
 import controller.DatabaseConnector;
+import controller.users.UserProfileController;
 import controller.users.UsersUtil;
 import model.ManagerOrdersModel;
 import model.UserModel;
+import model.UserOrderDataModel;
+import model.UserProfile;
 
 import javax.swing.*;
 

@@ -71,6 +71,14 @@ public abstract class UserQuery {
     }
 
     public boolean insertOrder(String email, UserOrderDataModel order) {
+        String addOrderStmt = "INSERT INTO ORDER VALUES ('" + order.getEmail() + "'," + order.getIsbn() + "," +
+                order.getQuantity() + ",'" + order.getState() + "','" + order.getDate() + "');";
+
+        if (DatabaseConnector.executeModify(addOrderStmt)) {
+            DatabaseConnector.commitDB();
+            return true;
+        }
+        DatabaseConnector.rollDB();
         return false;
     }
 
