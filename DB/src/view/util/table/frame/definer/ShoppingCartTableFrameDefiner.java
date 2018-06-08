@@ -15,6 +15,8 @@ import static view.util.GUIConstants.*;
 public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
     private JButton checkoutShoppingCartButton;
+    private JLabel errorLabel;
+
     private Vector<Vector<String>> data;
 
     public ShoppingCartTableFrameDefiner (Vector<Vector<String>> data) {
@@ -41,15 +43,23 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
     public void modifyFrame(Container container) {
         preProcessData();
         this.definableTableFrame.setData(data);
+        errorLabel = new JLabel("");
         checkoutShoppingCartButton = new JButton("Check Out");
         checkoutShoppingCartButton.setBounds(initX, initY, width, height);
+        errorLabel.setBounds(initX + offsetX, initY, width, height);
         checkoutShoppingCartButton.addActionListener(this);
         container.add(checkoutShoppingCartButton);
+        container.add(errorLabel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == checkoutShoppingCartButton) {
+            data = this.action.getData();
+            System.out.println(data.size());
+            if (data.size() == 0) {
+                errorLabel.setText("Error Empty Shopping Cart");
+            }
             for (Vector<String> dataRow : data) {
                 String[] insertOrderParameters = new String[4];
                 insertOrderParameters[0] = UserProfileController.getInstance()
