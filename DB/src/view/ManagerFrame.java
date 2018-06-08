@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controller.books.viewer.actions.ManagerEditBookAction;
 import view.util.WindowChanger;
+import view.util.table.frame.definer.BooksEditorTableFrameDefiner;
 import view.util.table.frame.definer.BooksOrderTableFrameDefiner;
 import view.util.table.frame.definer.MangerOrderTableFrameDefiner;
 import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
@@ -78,7 +80,8 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnModifyItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TableFrame.changeWindow(new BooksOrderTableFrameDefiner());
+				TableFrame.changeWindow(new BooksEditorTableFrameDefiner());
+				// BooksViewerFrame.changeWindow("", new ManagerEditBookAction());
 				dispose();
 			}
 		});

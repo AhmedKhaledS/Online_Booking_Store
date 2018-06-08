@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import controller.DatabaseConnector;
 import model.ManagerOrdersModel;
 import view.TableFrame;
+import view.util.table.frame.definer.MangerOrderTableFrameDefiner;
 import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
 public class MangerOrderAction extends UserAction {
@@ -26,7 +27,7 @@ public class MangerOrderAction extends UserAction {
 		boolean done = ManagerOrdersModel.getInstance().manageOrders(dataRow.get(0));
         boolean isManaged = ManagerOrdersModel.getInstance().manageOrders(dataRow.get(0));
         if (isManaged) {
-            TableFrame.changeWindow(new PromoteUserTableFrameDefiner());
+            TableFrame.changeWindow(new MangerOrderTableFrameDefiner());
         }
 	}
 
