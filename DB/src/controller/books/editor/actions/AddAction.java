@@ -1,7 +1,7 @@
 package controller.books.editor.actions;
 
 import controller.DatabaseConnector;
-import controller.books.query.BooksQueryManagerController;
+import controller.books.query.BookOrdersManagerController;
 import view.AddItemFrame;
 
 public class AddAction implements EditorAction {
@@ -14,7 +14,7 @@ public class AddAction implements EditorAction {
 	@Override
 	public boolean target_button_action(String[] data) {
 		DatabaseConnector.setCommitLevel(false);
-		return BooksQueryManagerController.addBook(data);
+		return BookOrdersManagerController.addBook(data);
 	}
 
 	@Override

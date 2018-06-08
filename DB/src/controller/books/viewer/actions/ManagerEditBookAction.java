@@ -12,13 +12,14 @@ import javax.swing.JTable;
 
 import controller.DatabaseConnector;
 import controller.books.editor.actions.EditAction;
+import model.OldBookData;
 import view.AddBookFrame;
 import view.ManagerFrame;
 import view.util.GUIConstants;
 
-public class ManagerAction extends UserAction {
+public class ManagerEditBookAction extends UserAction {
 
-	public ManagerAction() {
+	public ManagerEditBookAction() {
 		this.actionName = "Edit";
 		this.targetUser = TargetUser.MANAGER;
 	}
@@ -30,26 +31,7 @@ public class ManagerAction extends UserAction {
 
 		String[] data = new String[9];
 
-		String sql_basic_data = "SELECT * FROM BOOK WHERE ISBN=" + ISBN + ";";
-		String sql_author_data = "SELECT * FROM BOOK_AUTHORS WHERE ISBN=" + ISBN + ";";
-
-		ResultSet basic_data = DatabaseConnector.executeQuery(sql_basic_data);
-		ResultSet author_data = DatabaseConnector.executeQuery(sql_author_data);
-
-		try {
-			basic_data.next();
-			for (int i = 0; i < 8; i++) {
-				data[i] = basic_data.getString(i + 1);
-			}
-			data[8] = "";
-			while (author_data.next()) {
-				data[8] += author_data.getString("Author_name") + ",";
-			}
-			if(data[8].length() > 1)
-				data[8] = data[8].substring(0, data[8].length() - 1);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
+		OldBookData.loadOldBookData(ISBN, data);
 
 		AddBookFrame.changeWindow(new EditAction(data));
 	}

@@ -8,9 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import controller.books.viewer.actions.CustomerAddBookAction;
-import controller.books.viewer.actions.ManagerAction;
+import controller.books.viewer.actions.ManagerEditBookAction;
 import view.util.WindowChanger;
+import view.util.table.frame.definer.BooksEditorTableFrameDefiner;
+import view.util.table.frame.definer.BooksOrderTableFrameDefiner;
 import view.util.table.frame.definer.MangerOrderTableFrameDefiner;
 import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
@@ -65,8 +66,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerAddBookAction customerAddBookAction = new CustomerAddBookAction();
-				BooksViewerFrame.changeWindow("ADD", customerAddBookAction);
+				TableFrame.changeWindow(new BooksOrderTableFrameDefiner());
 				dispose();
 			}
 		});
@@ -80,7 +80,8 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnModifyItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BooksViewerFrame.changeWindow("EDIT", new ManagerAction());
+				TableFrame.changeWindow(new BooksEditorTableFrameDefiner());
+				// BooksViewerFrame.changeWindow("", new ManagerEditBookAction());
 				dispose();
 			}
 		});
@@ -131,7 +132,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 		ManagerFrame frame = new ManagerFrame();
 		frame.setTitle("Options");
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(200, 80, 950, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// frame.setResizable(false);
 	}

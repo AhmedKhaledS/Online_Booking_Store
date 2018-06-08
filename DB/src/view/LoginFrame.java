@@ -73,6 +73,7 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             UserProfile currentUser = new UserProfile(userText, "",
                     pwdText, "", "",
                     "", "", null);
+
             UserProfileController.getInstance().login(currentUser);
             // After return from login the type of user has been set.
             if (currentUser.getType() == UsersUtil.UserType.MANAGER) {
@@ -106,7 +107,7 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
         frame.setVisible(true);
         frame.setBounds(10, 10, 370, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
     }
 
     public static void main (String[] args) {

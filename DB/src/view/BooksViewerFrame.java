@@ -1,7 +1,7 @@
 package view;
 
 import controller.books.query.BooksQueryUtil;
-import controller.books.query.BooksQueryManagerController;
+import controller.books.query.BookOrdersManagerController;
 import controller.books.viewer.actions.CustomerAddBookAction;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
@@ -124,8 +124,8 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
                 e1.printStackTrace();
             }
             data = new Vector<>();
-            data = BooksQueryManagerController.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
-                    BooksQueryUtil.Operator.LIKE);
+            data = BookOrdersManagerController.getBooksList(String.valueOf(possibleKeys.getSelectedItem()), searchKeyTextField.getText(),
+                    BooksQueryUtil.Operator.EQUALITY);
             dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
                     columnNames);
         } else if (e.getSource() == clearButton) {

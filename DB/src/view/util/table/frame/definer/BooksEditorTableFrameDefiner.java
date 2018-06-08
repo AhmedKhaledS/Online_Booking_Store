@@ -3,6 +3,7 @@ package view.util.table.frame.definer;
 import controller.books.query.BookOrdersManagerController;
 import controller.books.query.BooksQueryUtil;
 import controller.books.viewer.actions.CustomerAddBookAction;
+import controller.books.viewer.actions.ManagerEditBookAction;
 import view.TableFrame;
 import view.util.GUIConstants;
 
@@ -14,7 +15,7 @@ import java.util.Vector;
 
 import static view.util.GUIConstants.offsetX;
 
-public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements ActionListener {
+public class BooksEditorTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
     private JLabel searchKeyLabel;
     private JTextField searchKeyTextField;
@@ -25,8 +26,8 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
     private JLabel quantityLabel;
     private JTextField quantityTextField;
 
-    public BooksOrderTableFrameDefiner() {
-        this.action = new CustomerAddBookAction();
+    public BooksEditorTableFrameDefiner() {
+        this.action = new ManagerEditBookAction();
     }
 
     @Override
