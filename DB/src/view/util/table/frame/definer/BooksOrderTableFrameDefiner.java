@@ -14,7 +14,7 @@ import java.util.Vector;
 
 import static view.util.GUIConstants.offsetX;
 
-public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements ActionListener {
+public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
     private JLabel searchKeyLabel;
     private JTextField searchKeyTextField;
@@ -25,7 +25,7 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
     private JLabel quantityLabel;
     private JTextField quantityTextField;
 
-    public BooksSearcherTableFrameDefiner() {
+    public BooksOrderTableFrameDefiner() {
         this.action = new CustomerAddBookAction();
     }
 
@@ -75,6 +75,7 @@ public class BooksSearcherTableFrameDefiner extends TableFrameDefiner implements
 
     private void setActionListeners () {
         searchButton.addActionListener(this);
+        viewShoppingCartButton.addActionListener(this);
     }
 
     private void addToContainer(Container container) {

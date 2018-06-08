@@ -30,12 +30,14 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
         Vector<String> columnNames = new Vector<>();
         columnNames.add(action.getActionName());
         columnNames.addAll(Constants.getBookTableColumnNames());
-        this.definableTableFrame.setData(data);
+        columnNames.set(7, "Quantity");
+        columnNames.remove(8);
         return columnNames;
     }
 
     @Override
     public void modifyFrame(Container container) {
+        this.definableTableFrame.setData(data);
         checkoutShoppingCartButton = new JButton("Check Out");
         checkoutShoppingCartButton.setBounds(initX, initY, width, height);
         checkoutShoppingCartButton.addActionListener(this);

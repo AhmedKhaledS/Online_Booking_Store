@@ -3,8 +3,7 @@ package view;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
-import view.util.table.frame.definer.BooksSearcherTableFrameDefiner;
-import view.util.table.frame.definer.ShoppingCartTableFrameDefiner;
+import view.util.table.frame.definer.BooksOrderTableFrameDefiner;
 import view.util.table.frame.definer.TableFrameDefiner;
 import view.util.table.frame.definer.DefinableTableFrame;
 
@@ -142,7 +141,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public static void main (String[] args) {
-		TableFrame.changeWindow(new BooksSearcherTableFrameDefiner());
+		TableFrame.changeWindow(new BooksOrderTableFrameDefiner());
 	}
 }
 
