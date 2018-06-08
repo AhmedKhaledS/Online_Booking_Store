@@ -29,7 +29,6 @@ class ButtonEditor extends DefaultCellEditor {
         if (isSelected) {
             button.setForeground(table.getSelectionForeground());
             button.setBackground(table.getSelectionBackground());
-            System.out.println("Editor : Row #" + row);
         } else {
             button.setForeground(table.getForeground());
             button.setBackground(table.getBackground());
