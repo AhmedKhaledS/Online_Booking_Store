@@ -22,7 +22,7 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
     private Vector<Vector<String>> data;
 
     public ShoppingCartTableFrameDefiner (Vector<Vector<String>> data) {
-        this.action = new CustomerRemoveBookAction();
+        this.action = new CustomerRemoveBookAction(data);
         this.data = data;
     }
 
