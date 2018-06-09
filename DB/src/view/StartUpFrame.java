@@ -1,5 +1,6 @@
 package view;
 
+import controller.books.query.BookOrdersCustomerController;
 import view.util.WindowChanger;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class StartUpFrame extends JFrame implements ActionListener, WindowChange
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-
+        BookOrdersCustomerController.deleteOrders();
     }
 
     public void setLayoutManager() {
