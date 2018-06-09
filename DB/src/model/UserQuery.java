@@ -10,6 +10,7 @@ import java.util.Vector;
 
 public abstract class UserQuery {
 
+    private final String NULLSTRING = "NULL";
 
     public Vector<Vector<String>> getBooksList(String key, String value,
                                                BooksQueryUtil.Operator operator) {
@@ -70,12 +71,12 @@ public abstract class UserQuery {
         return data;
     }
 
-    public boolean insertOrder(String email, UserOrderDataModel order) {
-    	
+    public boolean insertOrder(UserOrderDataModel order) {
+        UserOrderDataModel compatibleAttributes = getCompatibleAttributes(order);
     	DatabaseConnector.setCommitLevel(false);
-    	
-        String addOrderStmt = "INSERT INTO ORDER VALUES ('" + order.getEmail() + "'," + order.getIsbn() + "," +
-                order.getQuantity() + ",'" + order.getState() + "','" + order.getDate() + "');";
+        String addOrderStmt = "INSERT INTO ORDER VALUES (" + compatibleAttributes.getEmail() + ","
+                                + compatibleAttributes.getIsbn() + "," + compatibleAttributes.getQuantity()
+                                + "," + compatibleAttributes.getState() + "," + compatibleAttributes.getDate() + ");";
 
         System.out.println(addOrderStmt);
         
@@ -87,6 +88,16 @@ public abstract class UserQuery {
         DatabaseConnector.rollDB();
         DatabaseConnector.setCommitLevel(true);
         return false;
+    }
+
+    private UserOrderDataModel getCompatibleAttributes(UserOrderDataModel order) {
+        UserOrderDataModel compatibleOrder = new UserOrderDataModel(
+                                            order.getEmail().isEmpty() ? NULLSTRING : Utils.encloseInQuotes(order.getEmail())
+                                          , order.getIsbn().isEmpty() ? NULLSTRING : order.getIsbn()
+                                          , order.getQuantity().isEmpty() ? NULLSTRING : order.getQuantity()
+                                          , order.getState().isEmpty() ? NULLSTRING : Utils.encloseInQuotes(order.getState())
+                                          , order.getDate().isEmpty() ? NULLSTRING : Utils.encloseInQuotes(order.getDate()));
+        return compatibleOrder;
     }
 
     private String getOperatorString(BooksQueryUtil.Operator operator) {

@@ -88,9 +88,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Book_Store`.`ORDER` (
   `E_mail` VARCHAR(45) NOT NULL,
   `ISBN` INT NOT NULL,
-  `Quantity` INT NULL,
+  `Quantity` INT NOT NULL,
   `State` ENUM('IN_PROGRESS', 'COMPLETED') NOT NULL,
-  `Date` Date,
+  `Date` Date NOT NULL,
   PRIMARY KEY (`ISBN`, `E_mail`),
   INDEX `E_mail_idx` (`E_mail` ASC),
   INDEX `ISBN_idx` (`ISBN` ASC),

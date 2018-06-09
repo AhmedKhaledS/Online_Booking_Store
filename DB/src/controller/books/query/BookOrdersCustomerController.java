@@ -10,8 +10,7 @@ public class BookOrdersCustomerController {
 
     public static void insertOrder(String[] order) {
         UserOrderDataModel userOrder = new UserOrderDataModel(order);
-        boolean isInserted =  CustomerOrdersModel.getInstance().insertOrder(UserProfileController.getInstance()
-                .getCurrentLoggedInUser().getEmail(), userOrder);
+        boolean isInserted =  CustomerOrdersModel.getInstance().insertOrder(userOrder);
         if (isInserted) {
             JOptionPane.showMessageDialog(null, "You order is placed successfully.");
         } else {
