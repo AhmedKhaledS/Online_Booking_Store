@@ -3,6 +3,7 @@ package view;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
+import view.util.table.ButtonColumn;
 import view.util.table.ButtonEditor;
 import view.util.table.ButtonRenderer;
 import view.util.table.frame.definer.BooksOrderTableFrameDefiner;
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashSet;
@@ -146,6 +148,22 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	private void setRowButtonSettings () {
+		Action buttonAction = new AbstractAction()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("Here");
+				JTable table = (JTable)e.getSource();
+				int modelRow = Integer.valueOf( e.getActionCommand() );
+				((DefaultTableModel)table.getModel()).removeRow(modelRow);
+//				rowButtonAction.accept(table, modelRow);
+			}
+		};
+//		ButtonColumn buttonColumn = new ButtonColumn(table, buttonAction, 0);
+//		buttonColumn.setMnemonic(KeyEvent.VK_D);
+//		table.getColumn(rowButtonActionName).setCellRenderer(buttonColumn);
+//		table.getColumn(rowButtonActionName).setCellEditor(buttonColumn);
+
 		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
 		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox(), rowButtonAction));
 	}
