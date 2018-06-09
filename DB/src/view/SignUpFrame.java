@@ -158,7 +158,7 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
         SignUpFrame frame = new SignUpFrame();
         frame.setTitle("Sign Up Form");
         frame.setVisible(true);
-        frame.setBounds(10, 10, 600, 600);
+        frame.setBounds(200, 80, 950, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
