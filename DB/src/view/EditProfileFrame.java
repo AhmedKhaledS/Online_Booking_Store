@@ -78,7 +78,7 @@ public class EditProfileFrame extends JFrame implements ActionListener, WindowCh
         signUpButton.setBounds(initX, initY + 7 * offsetY, width, height);
         resetButton.setBounds(initX + offsetX, initY + 7 * offsetY, width, height);
 
-        errorLabel.setBounds(initX, initY + offsetY * 8, width, height);
+        errorLabel.setBounds(initX, initY + offsetY * 8, width * 4, height);
     }
 
     public void addComponentsToContainer() {
@@ -106,12 +106,30 @@ public class EditProfileFrame extends JFrame implements ActionListener, WindowCh
         resetButton.addActionListener(this);
     }
 
+    private boolean isValidRequiredFields () {
+        if (userTextField.getText().isEmpty() && nameTextField.getText().isEmpty() &&
+                emailTextField.getText().isEmpty() && phoneTextField.getText().isEmpty() &&
+                shoppingAddressTextField.getText().isEmpty()) {
+            errorLabel.setText("Error : Please fill some fields to edit.");
+            return false;
+        } else {
+            if (passwordField.getPassword().length == 0 &&
+                    confirmPasswordField.getPassword().length == 0) {
+                errorLabel.setText("Error Please enter and confirm password to edit.");
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         errorLabel.setText("");
         //Coding Part of LOGIN button
         if (e.getSource() == signUpButton) {
+            if (!isValidRequiredFields()) {
+                return;
+            }
             String userText;
             String pwdText;
             String confirmedPwdText;
@@ -120,6 +138,7 @@ public class EditProfileFrame extends JFrame implements ActionListener, WindowCh
             confirmedPwdText = new String(confirmPasswordField.getPassword());
             if (!pwdText.equals(confirmedPwdText)) {
                 errorLabel.setText("Password and confirmed password do not match !");
+                return;
             }
             /// TODO: Here calling the controller to handle Editing profile.
             UserProfile currentUser = new UserProfile(emailTextField.getText(), userTextField.getText(),
