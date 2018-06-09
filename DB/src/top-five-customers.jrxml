@@ -14,12 +14,12 @@
    <parameter name = "ReportTitle" class = "java.lang.String"/>
 
     <queryString>
-        <![CDATA[SELECT ISBN, Quantity, `E-mail`
+        <![CDATA[SELECT ISBN, Quantity, `E_mail`
 	        FROM `Book_Store`.`ORDER` ORDER BY Quantity DESC LIMIT 5;]]>	
     </queryString>
 
    
-   <field name = "E-mail" class = "java.lang.String">
+   <field name = "E_mail" class = "java.lang.String">
       <fieldDescription><![CDATA[]]></fieldDescription>
    </field>
 	
@@ -121,7 +121,7 @@
             <textElement textAlignment = "Center" verticalAlignment = "Middle" />
             
             <textFieldExpression class = "java.lang.String">
-               <![CDATA[$F{E-mail}]]>
+               <![CDATA[$F{E_mail}]]>
             </textFieldExpression>
          </textField>
 
