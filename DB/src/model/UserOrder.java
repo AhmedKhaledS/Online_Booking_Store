@@ -98,6 +98,14 @@ public abstract class UserOrder {
         return false;
     }
 
+    public boolean deleteOrders() {
+        String confirmOrderStmt = "DELETE FROM `ORDER` WHERE `State` = 'IN_PROGRESS'";
+        if (DatabaseConnector.executeModify(confirmOrderStmt)) {
+            return true;
+        }
+        return false;
+    }
+
     private UserOrderDataModel getCompatibleAttributes(UserOrderDataModel order) {
         UserOrderDataModel compatibleOrder = new UserOrderDataModel(
                                             order.getEmail().isEmpty() ? NULLSTRING : "'" + order.getEmail() + "'"
@@ -125,5 +133,4 @@ public abstract class UserOrder {
             return " like ";
         }
     }
-
 }

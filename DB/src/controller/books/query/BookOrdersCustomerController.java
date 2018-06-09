@@ -24,4 +24,11 @@ public class BookOrdersCustomerController {
         }
         JOptionPane.showMessageDialog(null, "Error occurred while confirming order!");
     }
+
+    public static void deleteOrders() {
+        if (CustomerOrdersModel.getInstance().deleteOrders()) {
+            JOptionPane.showMessageDialog(null, "Orders are confirmed successfully.");
+        }
+        JOptionPane.showMessageDialog(null, "Error occurred while confirming order!");
+    }
 }
