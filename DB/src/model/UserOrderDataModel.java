@@ -8,12 +8,14 @@ public class UserOrderDataModel {
         this.isbn = isbn;
         this.quantity = quantity;
         this.state = state;
+        this.date = date;
     }
     public UserOrderDataModel(String[] order) {
         this.email = order[0];
         this.isbn = order[1];
         this.quantity = order[2];
         this.state = order[3];
+        this.date = order[4];
     }
     public String getEmail() {
         return email;
