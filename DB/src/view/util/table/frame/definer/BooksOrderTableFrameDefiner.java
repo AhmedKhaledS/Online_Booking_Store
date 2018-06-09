@@ -30,7 +30,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
     }
 
     @Override
-    public void update(Object eventSource) {
+    public void update(Vector<Vector<String>> data) {
 
     }
 

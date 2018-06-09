@@ -15,7 +15,7 @@ public abstract class TableFrameDefiner {
     public TableFrameDefiner() {}
 
     /** Observer Design Pattern Method. */
-    public abstract void update(Object eventSource);
+    public abstract void update(Vector<Vector<String>> data);
 
     public void setDefinableTableFrame(DefinableTableFrame definableTableFrame) {
         this.definableTableFrame = definableTableFrame;
