@@ -71,42 +71,6 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 	public void addActionEvent() {
 		
-		MouseListener m = new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println(e.getX());	
-				System.out.println(e.getY());				
-
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		};
-		
-		container.addMouseListener(m);
-
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TableFrame.changeWindow(new BooksOrderTableFrameDefiner());
