@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controller.DatabaseConnector;
+import controller.ReportGenerator;
 import controller.books.viewer.actions.ManagerEditBookAction;
 import view.util.WindowChanger;
 import view.util.table.frame.definer.BooksEditorTableFrameDefiner;
@@ -109,7 +111,8 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 
 		btnViewReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				ReportGenerator reportGenerator = new ReportGenerator(DatabaseConnector.getConnection());
+				reportGenerator.generateReports();
 			}
 		});
 

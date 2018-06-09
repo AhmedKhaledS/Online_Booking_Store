@@ -15,16 +15,16 @@ public class DatabaseConnector {
 	static final String USERNAME = "root";
 	static final String PASSWORD = "admin";
 
-	static final String LAST_MONTH_SALES = "./last-month-sales.pdf";
-	static final String TOP_FIVE_CUSTOMERS = "./top-five-customers.pdf";
-	static final String TOP_TEN_SALES = "./top-10-sales.pdf";
-
 	private static Connection con;
 	private static ReportGenerator reportGenerator;
 
 	static {
 		registerDriver();
 		initializeConnection();
+	}
+
+	public static Connection getConnection() {
+		return con;
 	}
 
 	public static void registerDriver() {
