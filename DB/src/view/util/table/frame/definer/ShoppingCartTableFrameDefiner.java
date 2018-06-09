@@ -2,6 +2,7 @@ package view.util.table.frame.definer;
 
 import controller.books.query.BookOrdersCustomerController;
 import controller.books.viewer.actions.CustomerRemoveBookAction;
+import controller.users.UserProfileController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,9 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
         this.action = new CustomerRemoveBookAction(data);
         ((CustomerRemoveBookAction) this.action).setTableFrameDefine(this);
         this.data = data;
+
     }
+
 
     @Override
     public void update(Vector<Vector<String>> data) {
@@ -39,7 +42,7 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
         columnNames.addAll(Constants.getBookTableColumnNames());
         columnNames.set(7, "Quantity");
         columnNames.remove(8);
-//        columnNames.add("Order_Id");
+        columnNames.add("Order_Id"); // 8
         return columnNames;
     }
 
@@ -76,16 +79,20 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
             if (data.size() == 0) {
                 errorLabel.setText("Error Empty Shopping Cart");
             }
-            /// TODO : Update Orders' state to Completed.
             BookOrdersCustomerController.confirmOrders();
         }
     }
 
     private void preProcessData () {
+        Vector<Vector<String>> databaseData = BookOrdersCustomerController.
+                getSpecificOrder(UserProfileController.getInstance().getCurrentLoggedInUser().getEmail());
+        int index = 0;
         for (Vector<String> dataRow : data) {
             dataRow.add(0, "Remove");
             dataRow.remove(7);
             dataRow.remove(7);
+            dataRow.add(databaseData.get(index).get(5));
+            index++;
         }
         return;
     }

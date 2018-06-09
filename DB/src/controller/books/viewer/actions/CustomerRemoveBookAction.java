@@ -1,6 +1,7 @@
 package controller.books.viewer.actions;
 
 import controller.books.query.BookOrdersCustomerController;
+import controller.users.UserProfileController;
 import view.TableFrame;
 import view.util.table.frame.definer.TableFrameDefiner;
 
@@ -23,8 +24,9 @@ public class CustomerRemoveBookAction extends UserAction {
     @Override
     public void accept(JTable jTable, Integer row) {
         data = new Vector<>();
-//        BookOrdersCustomerController.deleteSpecificOrder(jTable.getModel().getValueAt(row, col),
-//                jTable.getModel().getValueAt(row, col));
+        BookOrdersCustomerController.deleteSpecificOrder(UserProfileController.getInstance()
+                        .getCurrentLoggedInUser().getEmail(),
+                (String)jTable.getModel().getValueAt(row, jTable.getColumnCount() - 1));
         /// TODO : Order Undo (Remove from Orders' Table)
         ((DefaultTableModel)jTable.getModel()).removeRow(row);
         for (int j = 0; j < jTable.getModel().getRowCount(); j++) {

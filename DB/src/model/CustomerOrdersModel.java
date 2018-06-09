@@ -16,7 +16,7 @@ public class CustomerOrdersModel extends UserOrder {
 
     public boolean deleteSpecificOrder(String email, String orderID) {
         String deletionStmt = "DELETE FROM `ORDER` WHERE `E_mail`  = '"
-                + email + "' AND `Order_id` = '" + orderID + "';";
+                + email + "' AND `Order_id` = " + orderID + ";";
         if (DatabaseConnector.executeModify(deletionStmt)) {
             return true;
         }
@@ -24,7 +24,7 @@ public class CustomerOrdersModel extends UserOrder {
     }
 
     public ResultSet getSpecificOrders(String email) {
-        return DatabaseConnector.executeQuery("SELECT FROM `ORDER` WHERE `E_mail` = '"
+        return DatabaseConnector.executeQuery("SELECT * FROM `ORDER` WHERE `E_mail` = '"
                 + email + "' AND `State` = 'IN_PROGRESS';");
     }
 }
