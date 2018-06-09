@@ -12,6 +12,7 @@ import controller.DatabaseConnector;
 import controller.books.viewer.actions.MangerOrderAction;
 import view.ManagerFrame;
 import view.util.GUIConstants;
+import view.util.WindowClosure;
 
 public class MangerOrderTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
@@ -79,6 +80,7 @@ public class MangerOrderTableFrameDefiner extends TableFrameDefiner implements A
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
+			WindowClosure.closeActiveWindows();
 			ManagerFrame.changeWindow();
 		}
 	}

@@ -17,6 +17,7 @@ import controller.books.query.BooksQueryUtil;
 import controller.books.viewer.actions.ManagerEditBookAction;
 import view.ManagerFrame;
 import view.util.GUIConstants;
+import view.util.WindowClosure;
 
 public class BooksEditorTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
@@ -107,6 +108,7 @@ public class BooksEditorTableFrameDefiner extends TableFrameDefiner implements A
 		} else if (e.getSource() == clearButton) {
 			searchKeyTextField.setText("");
 		} else if (e.getSource() == backButton) {
+			WindowClosure.closeActiveWindows();
 			ManagerFrame.changeWindow();
 		}
 	}
