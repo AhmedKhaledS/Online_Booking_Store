@@ -1,15 +1,11 @@
 package view.util.table.frame.definer;
 
-import controller.books.query.BookOrdersCustomerController;
 import controller.books.viewer.actions.CustomerRemoveBookAction;
-import controller.users.UserProfileController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 
 import static view.util.GUIConstants.*;
@@ -78,17 +74,7 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
             if (data.size() == 0) {
                 errorLabel.setText("Error Empty Shopping Cart");
             }
-            for (Vector<String> dataRow : data) {
-                String[] insertOrderParameters = new String[5];
-                insertOrderParameters[0] = UserProfileController.getInstance()
-                        .getCurrentLoggedInUser().getEmail();
-                insertOrderParameters[1] =  dataRow.get(1);
-                insertOrderParameters[2] = dataRow.get(dataRow.size() - 1);
-                insertOrderParameters[3] = "IN_PROGRESS";
-                insertOrderParameters[4] = new SimpleDateFormat("yyyy-MM-dd").format( new Date());
-                BookOrdersCustomerController.insertOrder(insertOrderParameters);
-            }
-
+            /// TODO : Update Orders' state to Completed.
         }
     }
 

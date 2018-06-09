@@ -22,6 +22,7 @@ public class CustomerRemoveBookAction extends UserAction {
     @Override
     public void accept(JTable jTable, Integer row) {
         data = new Vector<>();
+        /// TODO : Order Undo (Remove from Orders' Table)
         ((DefaultTableModel)jTable.getModel()).removeRow(row);
         for (int j = 0; j < jTable.getModel().getRowCount(); j++) {
             Vector<String> dataRow = new Vector<>();
