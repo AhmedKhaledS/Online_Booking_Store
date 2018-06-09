@@ -99,12 +99,9 @@ public abstract class UserOrder {
         return false;
     }
 
-    public boolean deleteOrders() {
+    public void deleteOrders() {
         String confirmOrderStmt = "DELETE FROM `ORDER` WHERE `State` = 'IN_PROGRESS'";
-        if (DatabaseConnector.executeModify(confirmOrderStmt)) {
-            return true;
-        }
-        return false;
+        DatabaseConnector.executeModify(confirmOrderStmt);
     }
 
     private UserOrderDataModel getCompatibleAttributes(UserOrderDataModel order) {
