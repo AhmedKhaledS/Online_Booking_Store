@@ -14,8 +14,8 @@ public class AddItemFrame extends JFrame implements WindowChanger {
 
 	Container container = getContentPane();
 
-	private JButton buttonAddBook = new JButton("ADD BOOK");
-	private JButton btnAddPublisher = new JButton("ADD PUBLISHER");
+	private JButton buttonAddBook = new JButton("ADD NEW BOOK");
+	private JButton btnAddPublisher = new JButton("ADD NEW PUBLISHER");
 	private JButton btnBack = new JButton("BACK");
 
 	AddItemFrame() {
@@ -30,9 +30,14 @@ public class AddItemFrame extends JFrame implements WindowChanger {
 	}
 
 	public void setLocationAndSize() {
-		buttonAddBook.setBounds(145, 153, 143, 54);
-		btnAddPublisher.setBounds(145, 75, 143, 54);
-		btnBack.setBounds(12, 263, 117, 25);
+		int mainX = 385;
+		int mainY = 220;
+		int offset = 70;
+		int mainSizeX = 190;
+		int mainSizeY = 35;
+		buttonAddBook.setBounds(mainX, mainY, mainSizeX, mainSizeY);
+		btnAddPublisher.setBounds(mainX, mainY + offset, mainSizeX, mainSizeY);
+		btnBack.setBounds(39, 550, 96, 25);
 	}
 
 	public void addComponentsToContainer() {
@@ -70,7 +75,7 @@ public class AddItemFrame extends JFrame implements WindowChanger {
 		AddItemFrame frame = new AddItemFrame();
 		frame.setTitle("Add Item");
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(200, 80, 950, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// frame.setResizable(false);
 	}

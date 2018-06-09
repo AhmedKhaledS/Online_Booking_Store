@@ -3,6 +3,8 @@ package view;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,14 +43,19 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 	}
 
 	public void setLocationAndSize() {
-		btnPlaceOrder.setBounds(139, 49, 170, 25);
-		btnAddItem.setBounds(139, 88, 170, 25);
-		btnModifyItem.setBounds(139, 125, 170, 25);
-		btnManageOrders.setBounds(139, 162, 170, 25);
-		btnPromoteUser.setBounds(139, 199, 170, 25);
-		btnViewReports.setBounds(139, 236, 170, 25);
-		btnEditProfile.setBounds(139, 270, 170, 25);
-		btnLogOut.setBounds(342, 27, 96, 15);
+		int mainX = 385;
+		int mainY = 120;
+		int offset = 54;
+		int mainSizeX = 190;
+		int mainSizeY = 35;
+		btnPlaceOrder.setBounds(mainX, mainY, mainSizeX, mainSizeY);
+		btnAddItem.setBounds(mainX, mainY + offset * 1, mainSizeX, mainSizeY);
+		btnModifyItem.setBounds(mainX, mainY + offset * 2, mainSizeX, mainSizeY);
+		btnManageOrders.setBounds(mainX, mainY + offset * 3, mainSizeX, mainSizeY);
+		btnPromoteUser.setBounds(mainX, mainY + offset * 4, mainSizeX, mainSizeY);
+		btnViewReports.setBounds(mainX, mainY + offset * 5, mainSizeX, mainSizeY);
+		btnEditProfile.setBounds(mainX, mainY + offset * 6, mainSizeX, mainSizeY);
+		btnLogOut.setBounds(833, 27, 96, 25);
 	}
 
 	public void addComponentsToContainer() {
@@ -63,7 +70,7 @@ public class ManagerFrame extends JFrame implements WindowChanger {
 	}
 
 	public void addActionEvent() {
-
+		
 		btnPlaceOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TableFrame.changeWindow(new BooksOrderTableFrameDefiner());
