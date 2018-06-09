@@ -74,9 +74,10 @@ public abstract class UserOrder {
     public boolean insertOrder(UserOrderDataModel order) {
         UserOrderDataModel compatibleAttributes = getCompatibleAttributes(order);
     	DatabaseConnector.setCommitLevel(false);
-        String addOrderStmt = "INSERT INTO `ORDER` VALUES (" + compatibleAttributes.getEmail() + ","
-                                + compatibleAttributes.getIsbn() + "," + compatibleAttributes.getQuantity()
-                                + "," + compatibleAttributes.getState() + "," + compatibleAttributes.getDate() + ");";
+        String addOrderStmt = "INSERT INTO `ORDER`(`E_mail`, `ISBN`, `Quantity`, `State`, `Date`)" +
+                              " VALUES (" + compatibleAttributes.getEmail() + "," + compatibleAttributes.getIsbn() +
+                              "," + compatibleAttributes.getQuantity() + "," + compatibleAttributes.getState() +
+                              "," + compatibleAttributes.getDate() + ");";
 
         //System.out.println(addOrderStmt);
         
