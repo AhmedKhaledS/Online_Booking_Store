@@ -21,14 +21,19 @@ public class BookOrdersCustomerController {
     public static void confirmOrders() {
         if (CustomerOrdersModel.getInstance().confirmOrders()) {
             JOptionPane.showMessageDialog(null, "Orders are confirmed successfully.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error occurred while confirming order!");
         }
-        JOptionPane.showMessageDialog(null, "Error occurred while confirming order!");
     }
 
     public static void deleteOrders() {
-        if (CustomerOrdersModel.getInstance().deleteOrders()) {
-            JOptionPane.showMessageDialog(null, "Unconfirmed orders are deleted successfully.");
+        CustomerOrdersModel.getInstance().deleteOrders();
+    }
+
+    public static void deleteSpecificOrder(String email, String orderID) {
+        boolean success = CustomerOrdersModel.getInstance().deleteSpecificOrder(email, orderID);
+        if (!success) {
+            JOptionPane.showMessageDialog(null, "Error occurred while deleting specific order!");
         }
-        JOptionPane.showMessageDialog(null, "Error occurred while deleting order!");
     }
 }
