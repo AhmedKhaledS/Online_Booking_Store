@@ -18,6 +18,11 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
     private JLabel totalPriceLabel;
     private JLabel errorLabel;
 
+    private JLabel creditCardLabel = new JLabel("Credit Card No");
+    private JTextField creditCardNo = new JTextField();
+    private JLabel dateLabel = new JLabel("Expiry Date");
+    private JTextField dateTextField = new JTextField();
+
     private Vector<Vector<String>> data;
 
     public ShoppingCartTableFrameDefiner (Vector<Vector<String>> data) {
@@ -65,11 +70,23 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
         checkoutShoppingCartButton = new JButton("Check Out");
         checkoutShoppingCartButton.setBounds(initX, initY, width, height);
         totalPriceLabel.setBounds(initX, initY + offsetY * 7, width, height);
+        creditCardLabel.setBounds(initX , initY + offsetY * 8, width, height);
+        creditCardNo.setBounds(initX + offsetX, initY + offsetY * 8, width, height);
+        dateLabel.setBounds(initX + offsetX * 2, initY + offsetY * 8, width, height);
+        dateTextField.setBounds(initX + offsetX * 3, initY + offsetY * 8, width, height);
         errorLabel.setBounds(initX + offsetX, initY, width, height);
         checkoutShoppingCartButton.addActionListener(this);
         container.add(checkoutShoppingCartButton);
         container.add(totalPriceLabel);
         container.add(errorLabel);
+        container.add(creditCardNo);
+        container.add(dateTextField);
+        container.add(dateLabel);
+        container.add(creditCardLabel);
+    }
+
+    private boolean isValidCreditCardInfo () {
+        return true;
     }
 
     @Override
@@ -78,6 +95,10 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
             data = this.action.getData();
             if (data.size() == 0) {
                 errorLabel.setText("Error Empty Shopping Cart");
+                return;
+            }
+            if (!isValidCreditCardInfo ()) {
+                errorLabel.setText("Error Invalid Credit Card Info");
             }
             BookOrdersCustomerController.confirmOrders();
         }
