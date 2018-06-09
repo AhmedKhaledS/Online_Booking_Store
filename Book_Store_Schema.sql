@@ -92,7 +92,8 @@ CREATE TABLE IF NOT EXISTS `Book_Store`.`ORDER` (
   `Quantity` INT NOT NULL,
   `State` ENUM('IN_PROGRESS', 'COMPLETED') NOT NULL,
   `Date` Date NOT NULL,
-  PRIMARY KEY (`ISBN`, `E_mail`),
+  `Order_id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`Order_id`, `E_mail`),
   INDEX `E_mail_idx` (`E_mail` ASC),
   INDEX `ISBN_idx` (`ISBN` ASC),
   CONSTRAINT `E_mail_ORDER_USER_fk`

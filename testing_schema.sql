@@ -37,20 +37,20 @@ INSERT INTO `USER` VALUES ( "ahmed@ahmed3", "AhmedK3", "aks3", "2etshh", "2etsh"
 INSERT INTO `USER` VALUES ( "edited@me", "AhmedK", "aks", "khaled", "ahmed", "123123123", "100.st.inplasd", "Customer");
 
 
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 1, 5, 'IN_PROGRESS', '2018-05-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 2, 40, 'IN_PROGRESS', '2018-03-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed", 3, 12, 'IN_PROGRESS', '2018-02-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed3", 4, 3, 'IN_PROGRESS', '2018-01-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed3", 5, 6, 'IN_PROGRESS', '2018-02-20' );
-INSERT INTO `ORDER` VALUES ( "ahmed@ahmed3", 6, 17, 'IN_PROGRESS', '2018-05-20' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "ahmed@ahmed", 1, 5, 'IN_PROGRESS', '2018-05-20' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "ahmed@ahmed", 2, 40, 'IN_PROGRESS', '2018-03-20' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "ahmed@ahmed", 3, 12, 'IN_PROGRESS', '2018-02-20' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "ahmed@ahmed3", 4, 3, 'IN_PROGRESS', '2018-01-20' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "ahmed@ahmed3", 5, 6, 'IN_PROGRESS', '2018-02-20' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "ahmed@ahmed3", 6, 17, 'IN_PROGRESS', '2018-05-20' );
 
 #Edited
-INSERT INTO `ORDER` VALUES ( "edited@me", 7, 412, 'IN_PROGRESS', '2018-04-20' );
-INSERT INTO `ORDER` VALUES ( "edited@me", 8, 311, 'IN_PROGRESS', '2018-05-07' );
-INSERT INTO `ORDER` VALUES ( "edited@me", 9, 22, 'IN_PROGRESS', '2018-05-08' );
-INSERT INTO `ORDER` VALUES ( "edited@me", 10, 333, 'IN_PROGRESS', '2018-05-30' );
-INSERT INTO `ORDER` VALUES ( "edited@me", 11, 125, 'IN_PROGRESS', '2018-06-01' );
-INSERT INTO `ORDER` VALUES ( "edited@me", 12, 92, 'IN_PROGRESS', '2018-05-06' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "edited@me", 7, 412, 'IN_PROGRESS', '2018-04-20' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "edited@me", 8, 311, 'IN_PROGRESS', '2018-05-07' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "edited@me", 9, 22, 'IN_PROGRESS', '2018-05-08' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "edited@me", 10, 333, 'IN_PROGRESS', '2018-05-30' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "edited@me", 11, 125, 'IN_PROGRESS', '2018-06-01' );
+INSERT INTO `ORDER` (`E_mail`, `ISBN`, `Quantity`, `State`, `Date`) VALUES ( "edited@me", 12, 92, 'IN_PROGRESS', '2018-05-06' );
 
 
 SELECT * FROM `ORDER`;
