@@ -116,8 +116,6 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 				dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
 						columnNames);
 			}
-		} else {
-			this.observer.update(e.getSource());
 		}
 		setRowButtonSettings();
 	}
