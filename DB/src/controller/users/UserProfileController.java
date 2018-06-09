@@ -42,7 +42,7 @@ public class UserProfileController {
                 | UserModel.getInstance().updateEmail(currentEmailUser, user.getEmail());
         if (successfullyUpdated) {
             currentLoggedInUser = user;
-            JOptionPane.showMessageDialog(null, "Your is updated successfully.");
+            JOptionPane.showMessageDialog(null, "Your Profile is updated successfully.");
         } else {
         JOptionPane.showMessageDialog(null, "Error occurred while updating profile!");
         }
