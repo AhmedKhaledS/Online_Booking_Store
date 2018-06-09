@@ -14,6 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema Book_Store
 -- -----------------------------------------------------
+Drop schema `book_store`;
 CREATE SCHEMA IF NOT EXISTS `Book_Store` DEFAULT CHARACTER SET utf8 ;
 USE `Book_Store` ;
 
@@ -70,7 +71,7 @@ ENGINE = InnoDB;
 -- Table `Book_Store`.`USER`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Book_Store`.`USER` (
-  `E_mail` VARCHAR(45) NOT NULL,
+  E_mail VARCHAR(45) NOT NULL,
   `Username` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `Lastname` VARCHAR(45) NOT NULL,
@@ -86,7 +87,7 @@ ENGINE = InnoDB;
 -- Table `Book_Store`.`ORDER`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Book_Store`.`ORDER` (
-  `E_mail` VARCHAR(45) NOT NULL,
+  E_mail VARCHAR(45) NOT NULL,
   `ISBN` INT NOT NULL,
   `Quantity` INT NOT NULL,
   `State` ENUM('IN_PROGRESS', 'COMPLETED') NOT NULL,

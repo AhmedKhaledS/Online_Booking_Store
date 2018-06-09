@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-public abstract class UserQuery {
+public abstract class UserOrder {
 
     private final String NULLSTRING = "NULL";
 
@@ -87,6 +87,14 @@ public abstract class UserQuery {
         }
         DatabaseConnector.rollDB();
         DatabaseConnector.setCommitLevel(true);
+        return false;
+    }
+
+    public boolean confirmOrders() {
+        String confirmOrderStmt = "UPDATE `ORDER` SET `State` = 'COMPLETED' WHERE `State` = 'IN_PROGRESS'";
+        if (DatabaseConnector.executeModify(confirmOrderStmt)) {
+            return true;
+        }
         return false;
     }
 

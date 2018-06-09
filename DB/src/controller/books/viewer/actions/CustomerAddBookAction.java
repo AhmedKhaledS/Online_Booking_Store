@@ -25,11 +25,13 @@ public class CustomerAddBookAction extends UserAction {
     @Override
     public void accept(JTable jTable, Integer row) {
         Vector<String> dataRow = new Vector<>();
+        Vector<String> orderRow = new Vector<>();
         for (int i = 1; i < jTable.getModel().getColumnCount(); i++) {
             dataRow.add((String) jTable.getModel().getValueAt(row, i));
+            orderRow.add((String) jTable.getModel().getValueAt(row, i));
         }
         shoppingCart.add(dataRow);
-        placeOrder(dataRow);
+        placeOrder(orderRow);
     }
 
     @Override
@@ -70,6 +72,9 @@ public class CustomerAddBookAction extends UserAction {
             insertOrderParameters[2] = dataRow.get(dataRow.size() - 1);
             insertOrderParameters[3] = "IN_PROGRESS";
             insertOrderParameters[4] = new SimpleDateFormat("yyyy-MM-dd").format( new Date());
+            for (String param: insertOrderParameters) {
+                System.out.println(param);
+            }
             BookOrdersCustomerController.insertOrder(insertOrderParameters);
     }
 

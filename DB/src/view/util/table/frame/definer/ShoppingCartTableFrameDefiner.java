@@ -1,5 +1,6 @@
 package view.util.table.frame.definer;
 
+import controller.books.query.BookOrdersCustomerController;
 import controller.books.viewer.actions.CustomerRemoveBookAction;
 
 import javax.swing.*;
@@ -75,6 +76,7 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
                 errorLabel.setText("Error Empty Shopping Cart");
             }
             /// TODO : Update Orders' state to Completed.
+            BookOrdersCustomerController.confirmOrders();
         }
     }
 
