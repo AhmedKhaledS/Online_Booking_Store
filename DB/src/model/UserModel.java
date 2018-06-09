@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 public class UserModel {
 
+    private final String NULLVALUE = "NULL";
     private static UserModel ourInstance = new UserModel();
 
     public static UserModel getInstance() {
@@ -22,7 +23,7 @@ public class UserModel {
     }
 
     public boolean isRegisteredUser(String email) {
-        String getUserStmt = "SELECT * FROM USER WHERE `E-mail`=" + "'" + email + "';";
+        String getUserStmt = "SELECT * FROM `USER` WHERE `E-mail`=" + "'" + email + "';";
         ResultSet rs = DatabaseConnector.executeQuery(getUserStmt);
         try {
             if (rs.next()) {
@@ -40,11 +41,14 @@ public class UserModel {
             JOptionPane.showMessageDialog(null,
                     "Error: You are already registered!");
         }
-        String registerStmt = "INSERT INTO USER VALUES ("  + "'" + user.getEmail()
-                + "'" + "," + "'" + user.getUsername() + "'" + "," +
-                "'" + user.getPassword() + "'" + "," + "'" + user.getLastName() +
-                "'" + "," + "'" + user.getFirstName() + "'" + "," +
-                "'" + user.getPhoneNum() + "'" + "," + "'" + user.getShoppingAddress()
+        String registerStmt = "INSERT INTO `USER` VALUES ("
+                + "'" + (user.getEmail().isEmpty() ? NULLVALUE : user.getEmail() )
+                + "'" + "," + "'" + (user.getUsername().isEmpty() ? NULLVALUE : user.getUsername())
+                + "'" + "," + "'" + (user.getPassword().isEmpty() ? NULLVALUE : user.getPassword())
+                + "'" + "," + "'" + (user.getLastName().isEmpty() ? NULLVALUE : user.getLastName())
+                + "'" + "," + "'" + (user.getFirstName().isEmpty() ? NULLVALUE : user.getFirstName())
+                + "'" + "," + "'" + (user.getPhoneNum().isEmpty() ? NULLVALUE : user.getPhoneNum())
+                + "'" + "," + "'" + (user.getShoppingAddress().isEmpty() ? NULLVALUE : user.getShoppingAddress())
                 + "'" + "," + "'" + getStringType(user.getType()) + "');";
         if (DatabaseConnector.executeModify(registerStmt)) {
             JOptionPane.showMessageDialog(null,
@@ -64,7 +68,10 @@ public class UserModel {
         return "Manager";
     }
 
-    public boolean updateEmail(final String email, final String newEmail) {
+    public boolean updateEmail(final String email, String newEmail) {
+        if (newEmail.isEmpty()) {
+            newEmail = NULLVALUE;
+        }
         String queryStmt = "UPDATE USER SET `E-mail`=" + "'" + newEmail + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
@@ -74,7 +81,10 @@ public class UserModel {
         return true;
     }
 
-    public boolean updateUserName(final String email, final String newUserName) {
+    public boolean updateUserName(final String email, String newUserName) {
+        if (newUserName.isEmpty()) {
+            newUserName = NULLVALUE;
+        }
         String queryStmt = "UPDATE USER SET `Username`=" + "'" + newUserName + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
@@ -84,7 +94,10 @@ public class UserModel {
         return true;
     }
 
-    public boolean updatePassword(final String email, final String newPassword) {
+    public boolean updatePassword(final String email, String newPassword) {
+        if (newPassword.isEmpty()) {
+            newPassword = NULLVALUE;
+        }
         String queryStmt = "UPDATE USER SET `Password`=" + "'" + newPassword + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
@@ -94,7 +107,10 @@ public class UserModel {
         return true;
     }
 
-    public boolean updateLastName(final String email, final String newLastName) {
+    public boolean updateLastName(final String email, String newLastName) {
+        if (newLastName.isEmpty()) {
+            newLastName = NULLVALUE;
+        }
         String queryStmt = "UPDATE USER SET `Lastname`=" + "'" + newLastName + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
@@ -104,7 +120,10 @@ public class UserModel {
         return true;
     }
 
-    public boolean updateFirstName(final String email, final String newFirstName) {
+    public boolean updateFirstName(final String email, String newFirstName) {
+        if (newFirstName.isEmpty()) {
+            newFirstName = NULLVALUE;
+        }
         String queryStmt = "UPDATE USER SET `Firstname`=" + "'" + newFirstName + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
@@ -114,7 +133,10 @@ public class UserModel {
         return true;
     }
 
-    public boolean updatePhoneNum(final String email, final String newPhoneNum) {
+    public boolean updatePhoneNum(final String email, String newPhoneNum) {
+        if (newPhoneNum.isEmpty()) {
+            newPhoneNum = NULLVALUE;
+        }
         String queryStmt = "UPDATE USER SET `Phone_number`=" + "'" + newPhoneNum + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
@@ -124,7 +146,10 @@ public class UserModel {
         return true;
     }
 
-    public boolean upadteShoppingAddress(final String email, final String newShoppingAddress) {
+    public boolean upadteShoppingAddress(final String email, String newShoppingAddress) {
+        if (newShoppingAddress.isEmpty()) {
+            newShoppingAddress = NULLVALUE;
+        }
         String queryStmt = "UPDATE USER SET `Shopping_address`=" + "'" + newShoppingAddress + "'" +
                 " WHERE `E-mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
