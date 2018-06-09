@@ -33,14 +33,14 @@ public class UserProfileController {
         String currentEmailUser = currentLoggedInUser.getEmail();
         DatabaseConnector.setCommitLevel(false);
         boolean successfullyUpdated = UserModel.getInstance().updatePassword(currentEmailUser, user.getPassword())
-                | UserModel.getInstance().updateFirstName(currentEmailUser, user.getFirstName())
-                | UserModel.getInstance().updateLastName(currentEmailUser, user.getLastName())
-                | UserModel.getInstance().updatePhoneNum(currentEmailUser, user.getPhoneNum())
-                | UserModel.getInstance().upadteShoppingAddress(currentEmailUser, user.getShoppingAddress())
-                | UserModel.getInstance().updateUserName(currentEmailUser, user.getUsername())
-                | UserModel.getInstance().updateUserType(currentEmailUser, user.getType() == UsersUtil.UserType.MANAGER ?
+                && UserModel.getInstance().updateFirstName(currentEmailUser, user.getFirstName())
+                && UserModel.getInstance().updateLastName(currentEmailUser, user.getLastName())
+                && UserModel.getInstance().updatePhoneNum(currentEmailUser, user.getPhoneNum())
+                && UserModel.getInstance().upadteShoppingAddress(currentEmailUser, user.getShoppingAddress())
+                && UserModel.getInstance().updateUserName(currentEmailUser, user.getUsername())
+                && UserModel.getInstance().updateUserType(currentEmailUser, user.getType() == UsersUtil.UserType.MANAGER ?
                 "Manager" : "Customer")
-                | UserModel.getInstance().updateEmail(currentEmailUser, user.getEmail());
+                && UserModel.getInstance().updateEmail(currentEmailUser, user.getEmail());
         if (successfullyUpdated) {
             currentLoggedInUser = user;
             DatabaseConnector.commitDB();

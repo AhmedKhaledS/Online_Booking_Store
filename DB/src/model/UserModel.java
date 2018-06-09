@@ -167,7 +167,7 @@ public class UserModel {
         String queryStmt = "UPDATE USER SET `Shopping_address`=" + newShoppingAddress +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
-            System.out.println("Error occurred while updating Shopping number!");
+            System.out.println("Error occurred while updating Shopping address!");
             return false;
         }
         return true;
