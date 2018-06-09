@@ -5,6 +5,9 @@ import model.CustomerOrdersModel;
 import model.UserOrderDataModel;
 
 import javax.swing.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
 public class BookOrdersCustomerController {
 
@@ -35,5 +38,25 @@ public class BookOrdersCustomerController {
         if (!success) {
             JOptionPane.showMessageDialog(null, "Error occurred while deleting specific order!");
         }
+    }
+
+    public static Vector<Vector<String>> getSpecificOrder(String email) {
+        ResultSet orders = CustomerOrdersModel.getInstance().getSpecificOrders(email);
+        Vector<Vector<String>> data = new Vector<>();
+        try {
+            while (orders.next()) {
+                Vector<String> dataRow = new Vector<>();
+                dataRow.add(orders.getString(1));
+                dataRow.add(String.valueOf(orders.getInt(2)));
+                dataRow.add(String.valueOf(orders.getInt(3)));
+                dataRow.add(orders.getString(4));
+                dataRow.add(orders.getString(/**/5));
+                dataRow.add(String.valueOf(orders.getInt(6)));
+                data.add(dataRow);
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        return data;
     }
 }

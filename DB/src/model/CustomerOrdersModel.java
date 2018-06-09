@@ -2,6 +2,8 @@ package model;
 
 import controller.DatabaseConnector;
 
+import java.sql.ResultSet;
+
 public class CustomerOrdersModel extends UserOrder {
     private static CustomerOrdersModel ourInstance = new CustomerOrdersModel();
 
@@ -19,5 +21,10 @@ public class CustomerOrdersModel extends UserOrder {
             return true;
         }
         return false;
+    }
+
+    public ResultSet getSpecificOrders(String email) {
+        return DatabaseConnector.executeQuery("SELECT FROM `ORDER` WHERE `E_mail` = '"
+                + email + "' AND `State` = 'IN_PROGRESS';");
     }
 }
