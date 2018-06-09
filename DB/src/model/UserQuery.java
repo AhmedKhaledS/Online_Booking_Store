@@ -74,7 +74,7 @@ public abstract class UserQuery {
     public boolean insertOrder(UserOrderDataModel order) {
         UserOrderDataModel compatibleAttributes = getCompatibleAttributes(order);
     	DatabaseConnector.setCommitLevel(false);
-        String addOrderStmt = "INSERT INTO ORDER VALUES (" + compatibleAttributes.getEmail() + ","
+        String addOrderStmt = "INSERT INTO `ORDER` VALUES (" + compatibleAttributes.getEmail() + ","
                                 + compatibleAttributes.getIsbn() + "," + compatibleAttributes.getQuantity()
                                 + "," + compatibleAttributes.getState() + "," + compatibleAttributes.getDate() + ");";
 
@@ -92,11 +92,11 @@ public abstract class UserQuery {
 
     private UserOrderDataModel getCompatibleAttributes(UserOrderDataModel order) {
         UserOrderDataModel compatibleOrder = new UserOrderDataModel(
-                                            order.getEmail().isEmpty() ? NULLSTRING : Utils.encloseInQuotes(order.getEmail())
+                                            order.getEmail().isEmpty() ? NULLSTRING : "'" + order.getEmail() + "'"
                                           , order.getIsbn().isEmpty() ? NULLSTRING : order.getIsbn()
                                           , order.getQuantity().isEmpty() ? NULLSTRING : order.getQuantity()
-                                          , order.getState().isEmpty() ? NULLSTRING : Utils.encloseInQuotes(order.getState())
-                                          , order.getDate().isEmpty() ? NULLSTRING : Utils.encloseInQuotes(order.getDate()));
+                                          , order.getState().isEmpty() ? NULLSTRING : "'" + order.getState() + "'"
+                                          , order.getDate().isEmpty() ? NULLSTRING : "'" + order.getDate() + "'");
         return compatibleOrder;
     }
 
