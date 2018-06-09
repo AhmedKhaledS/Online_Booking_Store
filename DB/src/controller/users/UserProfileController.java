@@ -31,6 +31,7 @@ public class UserProfileController {
 
     public void updateUser(UserProfile user) {
         String currentEmailUser = currentLoggedInUser.getEmail();
+        DatabaseConnector.setCommitLevel(false);
         boolean successfullyUpdated = UserModel.getInstance().updatePassword(currentEmailUser, user.getPassword())
                 | UserModel.getInstance().updateFirstName(currentEmailUser, user.getFirstName())
                 | UserModel.getInstance().updateLastName(currentEmailUser, user.getLastName())
@@ -42,9 +43,13 @@ public class UserProfileController {
                 | UserModel.getInstance().updateEmail(currentEmailUser, user.getEmail());
         if (successfullyUpdated) {
             currentLoggedInUser = user;
+            DatabaseConnector.commitDB();
+            DatabaseConnector.setCommitLevel(true);
             JOptionPane.showMessageDialog(null, "Your Profile is updated successfully.");
         } else {
-        JOptionPane.showMessageDialog(null, "Error occurred while updating profile!");
+            DatabaseConnector.rollDB();
+            DatabaseConnector.setCommitLevel(true);
+            JOptionPane.showMessageDialog(null, "Error occurred while updating profile!");
         }
     }
 

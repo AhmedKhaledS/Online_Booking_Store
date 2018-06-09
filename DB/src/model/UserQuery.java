@@ -78,7 +78,7 @@ public abstract class UserQuery {
                                 + compatibleAttributes.getIsbn() + "," + compatibleAttributes.getQuantity()
                                 + "," + compatibleAttributes.getState() + "," + compatibleAttributes.getDate() + ");";
 
-        System.out.println(addOrderStmt);
+        //System.out.println(addOrderStmt);
         
         if (DatabaseConnector.executeModify(addOrderStmt)) {
             DatabaseConnector.commitDB();

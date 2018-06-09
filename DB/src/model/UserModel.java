@@ -71,8 +71,10 @@ public class UserModel {
     public boolean updateEmail(final String email, String newEmail) {
         if (newEmail.isEmpty()) {
             newEmail = NULLVALUE;
+        } else {
+            newEmail = "'" + newEmail + "'";
         }
-        String queryStmt = "UPDATE USER SET `E_mail`=" + "'" + newEmail + "'" +
+        String queryStmt = "UPDATE USER SET `E_mail`=" + newEmail +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
             System.out.println("Error occurred while updating E-mail!");
@@ -84,8 +86,10 @@ public class UserModel {
     public boolean updateUserName(final String email, String newUserName) {
         if (newUserName.isEmpty()) {
             newUserName = NULLVALUE;
+        } else {
+            newUserName = "'" + newUserName + "'";
         }
-        String queryStmt = "UPDATE USER SET `Username`=" + "'" + newUserName + "'" +
+        String queryStmt = "UPDATE USER SET `Username`=" + newUserName +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
             System.out.println("Error occurred while updating Username!");
@@ -97,8 +101,10 @@ public class UserModel {
     public boolean updatePassword(final String email, String newPassword) {
         if (newPassword.isEmpty()) {
             newPassword = NULLVALUE;
+        } else {
+            newPassword = "'" + newPassword + "'";
         }
-        String queryStmt = "UPDATE USER SET `Password`=" + "'" + newPassword + "'" +
+        String queryStmt = "UPDATE USER SET `Password`=" + newPassword +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
             System.out.println("Error occurred while updating Password!");
@@ -110,8 +116,10 @@ public class UserModel {
     public boolean updateLastName(final String email, String newLastName) {
         if (newLastName.isEmpty()) {
             newLastName = NULLVALUE;
+        } else {
+            newLastName = "'" + newLastName + "'";
         }
-        String queryStmt = "UPDATE USER SET `Lastname`=" + "'" + newLastName + "'" +
+        String queryStmt = "UPDATE USER SET `Lastname`=" + newLastName +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
             System.out.println("Error occurred while updating Last name!");
@@ -123,8 +131,10 @@ public class UserModel {
     public boolean updateFirstName(final String email, String newFirstName) {
         if (newFirstName.isEmpty()) {
             newFirstName = NULLVALUE;
+        } else {
+            newFirstName = "'" + newFirstName + "'";
         }
-        String queryStmt = "UPDATE USER SET `Firstname`=" + "'" + newFirstName + "'" +
+        String queryStmt = "UPDATE USER SET `Firstname`=" + newFirstName +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
             System.out.println("Error occurred while updating First name!");
@@ -136,8 +146,10 @@ public class UserModel {
     public boolean updatePhoneNum(final String email, String newPhoneNum) {
         if (newPhoneNum.isEmpty()) {
             newPhoneNum = NULLVALUE;
+        } else {
+            newPhoneNum = "'" + newPhoneNum + "'";
         }
-        String queryStmt = "UPDATE USER SET `Phone_number`=" + "'" + newPhoneNum + "'" +
+        String queryStmt = "UPDATE USER SET `Phone_number`=" + newPhoneNum +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
             System.out.println("Error occurred while updating Phone number!");
@@ -149,8 +161,10 @@ public class UserModel {
     public boolean upadteShoppingAddress(final String email, String newShoppingAddress) {
         if (newShoppingAddress.isEmpty()) {
             newShoppingAddress = NULLVALUE;
+        } else {
+            newShoppingAddress = "'" + newShoppingAddress + "'";
         }
-        String queryStmt = "UPDATE USER SET `Shopping_address`=" + "'" + newShoppingAddress + "'" +
+        String queryStmt = "UPDATE USER SET `Shopping_address`=" + newShoppingAddress +
                 " WHERE `E_mail`=" + "'" + email + "';";
         if (!DatabaseConnector.executeModify(queryStmt)) {
             System.out.println("Error occurred while updating Shopping number!");
