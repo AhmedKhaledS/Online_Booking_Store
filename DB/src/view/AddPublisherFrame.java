@@ -129,7 +129,7 @@ public class AddPublisherFrame extends JFrame implements WindowChanger {
 		AddPublisherFrame frame = new AddPublisherFrame();
 		frame.setTitle("Add New Publisher");
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(200, 80, 950, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// frame.setResizable(false);
 	}
