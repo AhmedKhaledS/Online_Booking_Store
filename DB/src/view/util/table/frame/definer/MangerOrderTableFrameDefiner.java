@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 import controller.DatabaseConnector;
 import controller.books.viewer.actions.MangerOrderAction;
+import view.ManagerFrame;
 import view.util.GUIConstants;
 
 public class MangerOrderTableFrameDefiner extends TableFrameDefiner implements ActionListener {
@@ -78,7 +79,7 @@ public class MangerOrderTableFrameDefiner extends TableFrameDefiner implements A
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
-			System.out.println("BACK");
+			ManagerFrame.changeWindow();
 		}
 	}
 }
