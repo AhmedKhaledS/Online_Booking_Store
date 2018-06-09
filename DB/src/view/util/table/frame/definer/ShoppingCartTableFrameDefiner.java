@@ -85,7 +85,7 @@ public class ShoppingCartTableFrameDefiner extends TableFrameDefiner implements 
                 insertOrderParameters[1] =  dataRow.get(1);
                 insertOrderParameters[2] = dataRow.get(dataRow.size() - 1);
                 insertOrderParameters[3] = "IN_PROGRESS";
-                insertOrderParameters[4] = new SimpleDateFormat("yyyy-MM-dd").format( new Date());
+                insertOrderParameters[4] = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                 BookOrdersCustomerController.insertOrder(insertOrderParameters);
             }
 

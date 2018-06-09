@@ -6,7 +6,7 @@ import controller.DatabaseConnector;
 import view.TableFrame;
 import view.util.table.frame.definer.PromoteUserTableFrameDefiner;
 
-public class ManagerOrdersModel extends UserQuery {
+public class ManagerOrdersModel extends UserOrder {
 
 	private static ManagerOrdersModel instance;
 
