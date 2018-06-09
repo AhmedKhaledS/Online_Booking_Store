@@ -71,7 +71,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
     private  void setLocationAndSize() {
         dm.setDataVector(new Vector<>(),columnNames);
         table.getColumn(actionName).setCellRenderer(new RowButtonRenderer(action));
-        table.getColumn(actionName).setCellEditor(new RowButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellEditor(new RowButtonEditor(new JCheckBox(), action, table));
         table.setVisible(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         scroll = new JScrollPane(table);
@@ -145,7 +145,7 @@ public class BooksViewerFrame extends JFrame implements ActionListener, WindowCh
             }
         }
         table.getColumn(actionName).setCellRenderer(new RowButtonRenderer(action));
-        table.getColumn(actionName).setCellEditor(new RowButtonEditor(new JCheckBox()));
+        table.getColumn(actionName).setCellEditor(new RowButtonEditor(new JCheckBox(), action, table));
     }
 
     public static void changeWindow(String actionName, UserAction action) {
@@ -183,7 +183,6 @@ class RowButtonRenderer extends JButton implements TableCellRenderer {
             setForeground(table.getSelectionForeground());
             setBackground(table.getSelectionBackground());
             System.out.println("Renderer1 : Row #" + row);
-            action.accept(table, row);
         } else {
             setForeground(table.getForeground());
             setBackground(UIManager.getColor("Button.background"));
@@ -198,8 +197,10 @@ class RowButtonEditor extends DefaultCellEditor {
     protected JButton button;
     private String label;
     private boolean isPushed;
+    private JTable table;
+    private UserAction action;
 
-    public RowButtonEditor(JCheckBox checkBox) {
+    public RowButtonEditor(JCheckBox checkBox, UserAction action, JTable table) {
         super(checkBox);
         button = new JButton();
         button.setOpaque(true);
@@ -209,6 +210,8 @@ class RowButtonEditor extends DefaultCellEditor {
                 fireEditingStopped();
             }
         });
+        this.action = action;
+        this.table = table;
     }
 
     @Override
@@ -231,7 +234,8 @@ class RowButtonEditor extends DefaultCellEditor {
     @Override
     public Object getCellEditorValue() {
         if (isPushed) {
-            JOptionPane.showMessageDialog(button, label + ": Item Added");
+//            JOptionPane.showMessageDialog(button, label + ": Item Added");
+            this.action.accept(table, table.getSelectedRow());
         }
         isPushed = false;
         return label;

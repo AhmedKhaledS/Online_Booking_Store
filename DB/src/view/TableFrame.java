@@ -75,6 +75,9 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scroll = new JScrollPane(table);
 		scroll.setVisible(true);
+		table.setPreferredScrollableViewportSize(table.getPreferredSize());
+		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+
 		setData(getAllBooks());
 	}
 
@@ -84,7 +87,6 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 
 	public void setLocationAndSize() {
 
-		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		scroll.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY,
 				GUIConstants.width * 4, GUIConstants.height * 10);
 		nextPageButton.setBounds(GUIConstants.initX + GUIConstants.offsetX * 3,
@@ -159,13 +161,13 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 //				rowButtonAction.accept(table, modelRow);
 			}
 		};
-//		ButtonColumn buttonColumn = new ButtonColumn(table, buttonAction, 0);
+//		ButtonColumn buttonColumn = new ButtonColumn(this.table, buttonAction, 0);
 //		buttonColumn.setMnemonic(KeyEvent.VK_D);
 //		table.getColumn(rowButtonActionName).setCellRenderer(buttonColumn);
 //		table.getColumn(rowButtonActionName).setCellEditor(buttonColumn);
 
-		table.getColumn(rowButtonActionName).setCellRenderer(new ButtonRenderer(rowButtonAction));
-		table.getColumn(rowButtonActionName).setCellEditor(new ButtonEditor(new JCheckBox(), rowButtonAction));
+		table.getColumn(rowButtonActionName).setCellRenderer(new RowButtonRenderer(rowButtonAction));
+		table.getColumn(rowButtonActionName).setCellEditor(new RowButtonEditor(new JCheckBox(), rowButtonAction, table));
 	}
 
 	@Override
