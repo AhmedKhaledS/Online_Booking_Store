@@ -71,14 +71,21 @@ public abstract class UserQuery {
     }
 
     public boolean insertOrder(String email, UserOrderDataModel order) {
+    	
+    	DatabaseConnector.setCommitLevel(false);
+    	
         String addOrderStmt = "INSERT INTO ORDER VALUES ('" + order.getEmail() + "'," + order.getIsbn() + "," +
                 order.getQuantity() + ",'" + order.getState() + "','" + order.getDate() + "');";
 
+        System.out.println(addOrderStmt);
+        
         if (DatabaseConnector.executeModify(addOrderStmt)) {
             DatabaseConnector.commitDB();
+            DatabaseConnector.setCommitLevel(true);
             return true;
         }
         DatabaseConnector.rollDB();
+        DatabaseConnector.setCommitLevel(true);
         return false;
     }
 

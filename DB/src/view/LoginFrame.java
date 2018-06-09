@@ -77,9 +77,11 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
             UserProfileController.getInstance().login(currentUser);
             // After return from login the type of user has been set.
             if (currentUser.getType() == UsersUtil.UserType.MANAGER) {
+            	dispose();
                 ManagerFrame.changeWindow();
             } else if (currentUser.getType() == UsersUtil.UserType.CUSTOMER) {
-                CustomerFrame.changeWindow();
+            	dispose();
+            	CustomerFrame.changeWindow();
             } else {
                 /// TODO : Invalid user Window
             }
@@ -105,7 +107,7 @@ public class LoginFrame extends JFrame implements ActionListener, WindowChanger{
         LoginFrame frame = new LoginFrame();
         frame.setTitle("Login Form");
         frame.setVisible(true);
-        frame.setBounds(10, 10, 370, 600);
+        frame.setBounds(200, 80, 950, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
