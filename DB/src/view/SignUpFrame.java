@@ -41,10 +41,6 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
     JButton signUpButton = new JButton("Sign Up");
     JButton resetButton = new JButton("Reset");
 
-    //Radio Buttons for Account Type
-    JRadioButton customerRB = new JRadioButton("Customer");
-    JRadioButton managerRB = new JRadioButton("Manager");
-
     SignUpFrame() {
         setLayoutManager();
         setLocationAndSize();
@@ -81,14 +77,6 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
         shoppingAddressLabel.setBounds(initX, initY + 6 *offsetY, width, height);
         shoppingAddressTextField.setBounds(initX + offsetX, initY + 6 *offsetY, width, height);
 
-        accountTypeLabel.setBounds(initX, initY + 7 * offsetY, width, height);
-        customerRB.setBounds(initX + 100, initY + 7 * offsetY, width, height);
-        managerRB.setBounds(initX + width * 2, initY + offsetY * 7, width, height);
-        ButtonGroup group = new ButtonGroup();
-        group.add(customerRB);
-        group.add(managerRB);
-
-
         signUpButton.setBounds(initX, initY + 8 * offsetY, width, height);
         resetButton.setBounds(initX + offsetX, initY + 8 * offsetY, width, height);
 
@@ -112,8 +100,6 @@ public class SignUpFrame extends JFrame implements ActionListener, WindowChanger
         container.add(phoneTextField);
         container.add(shoppingAddressLabel);
         container.add(shoppingAddressTextField);
-        container.add(customerRB);
-        container.add(managerRB);
         container.add(accountTypeLabel);
         container.add(errorLabel);
     }
