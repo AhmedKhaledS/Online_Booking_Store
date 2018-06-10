@@ -49,7 +49,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
         errorLabel = new JLabel("");
         searchKeyLabel = new JLabel("Search By");
         searchKeyTextField = new JTextField();
-        String[] keys = {"Title", "Publisher_Name", "Publication_Year", "Category"};
+        String[] keys = {"Title", "Publisher_Name", "Publication_Year", "Category", "Author_name"};
         possibleKeys = new JComboBox<>(keys);
         searchButton = new JButton("Search");
         clearButton = new JButton("Clear");

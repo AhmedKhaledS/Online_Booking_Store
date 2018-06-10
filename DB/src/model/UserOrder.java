@@ -18,8 +18,9 @@ public abstract class UserOrder {
             key = "Name";
         }
         ResultSet books = DatabaseConnector
-                .executeQuery("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity"
-                        + " FROM BOOK AS B JOIN PUBLISHER AS P ON B.publisher_id = P.publisher_id " + " WHERE " + key
+                .executeQuery("SELECT B.isbn, title, name, publication_year, category, price, no_of_copies, min_quantity"
+                        + " FROM BOOK AS B JOIN PUBLISHER AS P ON B.publisher_id = P.publisher_id JOIN BOOK_AUTHORS AS BA ON " +
+                        "BA.isbn = B.isbn " + " WHERE " + key
                         + this.getOperatorString(operator)
                         + (operator == BooksQueryUtil.Operator.LIKE ? Utils.encloseInLikeFormat(value)
                         : Utils.encloseInQuotes(value)));
