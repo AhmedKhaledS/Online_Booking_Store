@@ -114,6 +114,32 @@ public abstract class UserOrder {
         return compatibleOrder;
     }
 
+    public Vector<Vector<String>> getSomeTuples(final int limit, final int offset) {
+        ResultSet books = DatabaseConnector
+                .executeQuery("SELECT isbn, title, name, publication_year, category, price, no_of_copies, min_quantity"
+                        + " FROM BOOK AS B JOIN PUBLISHER AS P ON B.publisher_id = P.publisher_id LIMIT " + limit
+                        + " OFFSET " + offset + " ;");
+        Vector<Vector<String>> data = new Vector<>();
+        try {
+            while (books.next()) {
+                Vector<String> dataRow = new Vector<>();
+                dataRow.add("Add");
+                dataRow.add(String.valueOf(books.getInt(1)));
+                dataRow.add(books.getString(2));
+                dataRow.add(books.getString(3));
+                dataRow.add(String.valueOf(books.getInt(4)));
+                dataRow.add(books.getString(/**/5));
+                dataRow.add(String.valueOf(books.getInt(6)));
+                dataRow.add(String.valueOf(books.getInt(7)));
+                dataRow.add(String.valueOf(books.getInt(8)));
+                data.add(dataRow);
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        return data;
+    }
+
     private String getOperatorString(BooksQueryUtil.Operator operator) {
         if (operator == BooksQueryUtil.Operator.EQUALITY) {
             return " = ";

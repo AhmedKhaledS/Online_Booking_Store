@@ -71,11 +71,12 @@ public class CustomerAddBookAction extends UserAction {
             insertOrderParameters[1] =  dataRow.get(1);
             insertOrderParameters[2] = dataRow.get(dataRow.size() - 1);
             insertOrderParameters[3] = "IN_PROGRESS";
-            insertOrderParameters[4] = new SimpleDateFormat("yyyy-MM-dd").format( new Date());
-            for (String param: insertOrderParameters) {
-                System.out.println(param);
+            insertOrderParameters[4] = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            if (insertOrderParameters[2] != null) { // Check on the quantity.
+                BookOrdersCustomerController.insertOrder(insertOrderParameters);
+                return;
             }
-            BookOrdersCustomerController.insertOrder(insertOrderParameters);
+            JOptionPane.showMessageDialog(null, "Please specify the quantity!");
     }
 
     private void preProcessData (Vector<String> dataRow) {

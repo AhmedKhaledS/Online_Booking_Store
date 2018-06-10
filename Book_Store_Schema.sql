@@ -14,7 +14,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema Book_Store
 -- -----------------------------------------------------
-Drop schema `book_store`;
 CREATE SCHEMA IF NOT EXISTS `Book_Store` DEFAULT CHARACTER SET utf8 ;
 USE `Book_Store` ;
 
@@ -26,7 +25,8 @@ CREATE TABLE IF NOT EXISTS `Book_Store`.`PUBLISHER` (
   `Name` VARCHAR(45) NULL,
   `Address` VARCHAR(45) NULL,
   `Telephone_number` VARCHAR(20) NULL,
-  PRIMARY KEY (`Publisher_id`))
+  PRIMARY KEY (`Publisher_id`),
+  INDEX `Name_idx` (`Name` ASC))
 ENGINE = InnoDB;
 
 
@@ -44,6 +44,9 @@ CREATE TABLE IF NOT EXISTS `Book_Store`.`BOOK` (
   `Min_Quantity` INT NOT NULL,
   PRIMARY KEY (`ISBN`),
   INDEX `Publisher_id_idx` (`Publisher_id` ASC),
+  INDEX `Title_idx` (`Title` ASC),
+  INDEX `Publication_year_idx` (`Publication_year` ASC),
+  INDEX `Category` (`Category` ASC),
   CONSTRAINT `Publisher_id_BOOK_AUTHORS_PUBLISHER_fk`
     FOREIGN KEY (`Publisher_id`)
     REFERENCES `Book_Store`.`PUBLISHER` (`Publisher_id`)
@@ -58,6 +61,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Book_Store`.`BOOK_AUTHORS` (
   `ISBN` INT NOT NULL,
   `Author_name` VARCHAR(45) NOT NULL,
+  INDEX `Author_name_idx` (`Author_name` ASC),
   PRIMARY KEY (`ISBN`, `Author_name`),
   CONSTRAINT `ISBN_BOOK_AUTHORS_BOOK_fk`
     FOREIGN KEY (`ISBN`)
@@ -71,7 +75,7 @@ ENGINE = InnoDB;
 -- Table `Book_Store`.`USER`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Book_Store`.`USER` (
-  E_mail VARCHAR(45) NOT NULL,
+  `E_mail` VARCHAR(45) NOT NULL,
   `Username` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
   `Lastname` VARCHAR(45) NOT NULL,
@@ -87,7 +91,7 @@ ENGINE = InnoDB;
 -- Table `Book_Store`.`ORDER`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Book_Store`.`ORDER` (
-  E_mail VARCHAR(45) NOT NULL,
+  `E_mail` VARCHAR(45) NOT NULL,
   `ISBN` INT NOT NULL,
   `Quantity` INT NOT NULL,
   `State` ENUM('IN_PROGRESS', 'COMPLETED') NOT NULL,
@@ -168,6 +172,11 @@ END$$
 
 
 DELIMITER ;
+
+OPTIMIZE TABLE BOOK;
+OPTIMIZE TABLE PUBLISHER;
+OPTIMIZE TABLE BOOK_AUTHORS;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

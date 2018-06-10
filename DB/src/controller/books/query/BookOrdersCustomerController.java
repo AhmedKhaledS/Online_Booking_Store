@@ -59,4 +59,8 @@ public class BookOrdersCustomerController {
         }
         return data;
     }
+
+    public static Vector<Vector<String>> getSpecifiedTuples(int limit, int offset) {
+        return CustomerOrdersModel.getInstance().getSomeTuples(limit, offset);
+    }
 }

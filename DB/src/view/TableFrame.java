@@ -1,5 +1,6 @@
 package view;
 
+import controller.books.query.BookOrdersCustomerController;
 import controller.books.viewer.actions.UserAction;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
@@ -78,7 +79,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		table.setPreferredScrollableViewportSize(table.getPreferredSize());
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
 
-		setData(getAllBooks());
+		setData(BookOrdersCustomerController.getSpecifiedTuples(MAX_PAGE_LEN, pageIndex));
 	}
 
 	public void setLayoutManager() {
@@ -109,17 +110,24 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == nextPageButton) {
-			if (pageIndex + MAX_PAGE_LEN < data.size()) {
+			Vector<Vector<String>> books = BookOrdersCustomerController.getSpecifiedTuples(MAX_PAGE_LEN,
+					pageIndex + MAX_PAGE_LEN);
+			if (!books.isEmpty()) {
 				pageIndex += MAX_PAGE_LEN;
-				dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
-						columnNames);
+				//dm.setDataVector(books, columnNames);
+				setData(books);
 			}
 		} else if (e.getSource() == prevPageButton) {
-			if (pageIndex - MAX_PAGE_LEN >= 0) {
+		    if (pageIndex - MAX_PAGE_LEN < 0) {
+		        return;
+            }
+			Vector<Vector<String>> books = BookOrdersCustomerController.getSpecifiedTuples(MAX_PAGE_LEN,
+					pageIndex - MAX_PAGE_LEN);
+			if (!books.isEmpty()) {
 				pageIndex -= MAX_PAGE_LEN;
-				dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
-						columnNames);
-			}
+				//dm.setDataVector(books, columnNames);
+                setData(books);
+            }
 		}
 		setRowButtonSettings();
 	}
@@ -137,9 +145,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	@Override
 	public void setData (Vector<Vector<String>> data) {
 		this.data = data;
-		pageIndex = 0;
-		dm.setDataVector(new Vector<>(data.subList(pageIndex, Math.min(pageIndex + MAX_PAGE_LEN, data.size()))),
-				columnNames);
+		dm.setDataVector(data, columnNames);
 		setRowButtonSettings();
 		return;
 	}
