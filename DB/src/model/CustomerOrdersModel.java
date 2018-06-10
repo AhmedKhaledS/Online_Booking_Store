@@ -16,7 +16,7 @@ public class CustomerOrdersModel extends UserOrder {
 
     public boolean deleteSpecificOrder(String email, String orderID) {
         String deletionStmt = "DELETE FROM `ORDER` WHERE `E_mail`  = '"
-                + email + "' AND `Order_id` = '" + orderID + "';";
+                + email + "' AND `Order_id` = " + orderID + ";";
         if (DatabaseConnector.executeModify(deletionStmt)) {
             return true;
         }
