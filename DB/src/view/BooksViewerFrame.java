@@ -173,6 +173,7 @@ class RowButtonRenderer extends JButton implements TableCellRenderer {
 
     public RowButtonRenderer(BiConsumer action) {
         setOpaque(true);
+        this.setEnabled(true);
         this.action = action;
     }
 
@@ -204,9 +205,11 @@ class RowButtonEditor extends DefaultCellEditor {
         super(checkBox);
         button = new JButton();
         button.setOpaque(true);
+        button.setEnabled(true);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Before Firing Editing");
                 fireEditingStopped();
             }
         });

@@ -46,12 +46,12 @@ public class BookOrdersCustomerController {
         try {
             while (orders.next()) {
                 Vector<String> dataRow = new Vector<>();
-                dataRow.add(orders.getString(1));
-                dataRow.add(String.valueOf(orders.getInt(2)));
-                dataRow.add(String.valueOf(orders.getInt(3)));
-                dataRow.add(orders.getString(4));
-                dataRow.add(orders.getString(/**/5));
-                dataRow.add(String.valueOf(orders.getInt(6)));
+                dataRow.add(orders.getString(1));  // Email
+                dataRow.add(String.valueOf(orders.getInt(2))); // ISBN
+                dataRow.add(String.valueOf(orders.getInt(3))); // Quantity
+                dataRow.add(orders.getString(4));  // State
+                dataRow.add(orders.getString(/**/5)); // Date
+                dataRow.add(String.valueOf(orders.getInt(6))); // Order_Id
                 data.add(dataRow);
             }
         } catch (SQLException e1) {

@@ -38,7 +38,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	DefaultTableModel dm = new DefaultTableModel() {
 		@Override
 		public boolean isCellEditable (int row, int column) {
-			return editableColumns.contains(new Integer(column));
+			return column == 0 || editableColumns.contains(new Integer(column));
 		}
 	};
 	JTable table = new JTable(dm);
@@ -96,9 +96,9 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	}
 
 	public void addComponentsToContainer() {
-		container.add(scroll);
 		container.add(nextPageButton);
 		container.add(prevPageButton);
+		container.add(scroll);
 	}
 
 	public void addActionEvent() {
@@ -146,7 +146,7 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 
 	@Override
 	public void setEditableColumn(int editableColumn) {
-		this.editableColumns.add(new Integer(editableColumn));
+		this.editableColumns.add(editableColumn);
 	}
 
 	private void setRowButtonSettings () {
@@ -154,20 +154,14 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				System.out.println("Here");
 				JTable table = (JTable)e.getSource();
 				int modelRow = Integer.valueOf( e.getActionCommand() );
-				((DefaultTableModel)table.getModel()).removeRow(modelRow);
-//				rowButtonAction.accept(table, modelRow);
+				rowButtonAction.accept(table, modelRow);
 			}
 		};
-//		ButtonColumn buttonColumn = new ButtonColumn(this.table, buttonAction, 0);
-//		buttonColumn.setMnemonic(KeyEvent.VK_D);
-//		table.getColumn(rowButtonActionName).setCellRenderer(buttonColumn);
-//		table.getColumn(rowButtonActionName).setCellEditor(buttonColumn);
+		ButtonColumn buttonColumn = new ButtonColumn(this.table, buttonAction, 0);
+		buttonColumn.setMnemonic(KeyEvent.VK_D);
 
-		table.getColumn(rowButtonActionName).setCellRenderer(new RowButtonRenderer(rowButtonAction));
-		table.getColumn(rowButtonActionName).setCellEditor(new RowButtonEditor(new JCheckBox(), rowButtonAction, table));
 	}
 
 	@Override

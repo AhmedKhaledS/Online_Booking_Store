@@ -10,7 +10,9 @@ import javax.swing.JButton;
 
 import controller.DatabaseConnector;
 import controller.books.viewer.actions.PromoteUserAction;
+import view.ManagerFrame;
 import view.util.GUIConstants;
+import view.util.WindowClosure;
 
 public class PromoteUserTableFrameDefiner extends TableFrameDefiner implements ActionListener {
 
@@ -74,7 +76,8 @@ public class PromoteUserTableFrameDefiner extends TableFrameDefiner implements A
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
-			System.out.println("BACK");
+			WindowClosure.closeActiveWindows();
+			ManagerFrame.changeWindow();
 		}
 	}
 }

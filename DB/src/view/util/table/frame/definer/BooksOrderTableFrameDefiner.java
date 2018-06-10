@@ -116,7 +116,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
             try {
                 int requiredQuantity = Integer.parseInt(dataRow.get(dataRow.size() - 1));
                 int noOfCopies = Integer.parseInt(dataRow.get(dataRow.size() - 3));
-                if (noOfCopies <= requiredQuantity) {
+                if (noOfCopies < requiredQuantity) {
                     errorLabel.setText("Error : Insufficient inventory of the required book.");
                     return false;
                 }

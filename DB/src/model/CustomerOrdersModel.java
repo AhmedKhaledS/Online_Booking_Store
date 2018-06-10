@@ -24,7 +24,7 @@ public class CustomerOrdersModel extends UserOrder {
     }
 
     public ResultSet getSpecificOrders(String email) {
-        return DatabaseConnector.executeQuery("SELECT FROM `ORDER` WHERE `E_mail` = '"
+        return DatabaseConnector.executeQuery("SELECT * FROM `ORDER` WHERE `E_mail` = '"
                 + email + "' AND `State` = 'IN_PROGRESS';");
     }
 }
