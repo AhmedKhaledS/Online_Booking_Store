@@ -106,6 +106,7 @@ public class BooksOrderTableFrameDefiner extends TableFrameDefiner implements Ac
                 return;
             }
             ShoppingCartTableFrameDefiner spCartDefiner = new ShoppingCartTableFrameDefiner(this.action.getData());
+            ((JFrame) this.definableTableFrame).dispose();
             TableFrame.changeWindow(spCartDefiner);
         }
         return;
