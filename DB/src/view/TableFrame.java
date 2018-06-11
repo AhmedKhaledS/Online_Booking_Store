@@ -2,6 +2,8 @@ package view;
 
 import controller.books.query.BookOrdersCustomerController;
 import controller.books.viewer.actions.UserAction;
+import controller.users.UserProfileController;
+import controller.users.UsersUtil;
 import view.util.GUIConstants;
 import view.util.WindowChanger;
 import view.util.table.ButtonColumn;
@@ -23,6 +25,9 @@ import java.util.HashSet;
 import java.util.Vector;
 
 import static controller.books.query.BookOrdersManagerController.getAllBooks;
+import static view.util.GUIConstants.initX;
+import static view.util.GUIConstants.initY;
+import static view.util.GUIConstants.offsetY;
 
 public class TableFrame extends JFrame implements ActionListener, WindowChanger, DefinableTableFrame {
 
@@ -46,6 +51,8 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 	JScrollPane scroll;
 	JButton nextPageButton = new JButton("Next");
 	JButton prevPageButton = new JButton("Prev");
+
+	JButton backButton = new JButton("Back");
 
 	String rowButtonActionName;
 	UserAction rowButtonAction;
@@ -88,23 +95,26 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 
 	public void setLocationAndSize() {
 
-		scroll.setBounds(GUIConstants.initX, GUIConstants.initY + GUIConstants.offsetY,
+		scroll.setBounds(initX, GUIConstants.initY + offsetY,
 				GUIConstants.width * 4, GUIConstants.height * 10);
-		nextPageButton.setBounds(GUIConstants.initX + GUIConstants.offsetX * 3,
-				GUIConstants.initY + GUIConstants.offsetY, GUIConstants.width, GUIConstants.height);
-		prevPageButton.setBounds(GUIConstants.initX + GUIConstants.offsetX * 3,
-				GUIConstants.initY + GUIConstants.offsetY * 2, GUIConstants.width, GUIConstants.height);
+		nextPageButton.setBounds(initX + GUIConstants.offsetX * 3,
+				GUIConstants.initY + offsetY, GUIConstants.width, GUIConstants.height);
+		prevPageButton.setBounds(initX + GUIConstants.offsetX * 3,
+				GUIConstants.initY + offsetY * 2, GUIConstants.width, GUIConstants.height);
+		backButton.setBounds(initX, initY + offsetY * 9, GUIConstants.width, GUIConstants.height);
 	}
 
 	public void addComponentsToContainer() {
 		container.add(nextPageButton);
 		container.add(prevPageButton);
+		container.add(backButton);
 		container.add(scroll);
 	}
 
 	public void addActionEvent() {
 		nextPageButton.addActionListener(this);
 		prevPageButton.addActionListener(this);
+		backButton.addActionListener(this);
 	}
 
 	@Override
@@ -128,6 +138,14 @@ public class TableFrame extends JFrame implements ActionListener, WindowChanger,
 				//dm.setDataVector(books, columnNames);
                 setData(books);
             }
+		} else if (e.getSource() == backButton) {
+			dispose();
+			UsersUtil.UserType userType = UserProfileController.getInstance().getCurrentLoggedInUser().getType();
+			if (userType == UsersUtil.UserType.CUSTOMER) {
+				CustomerFrame.changeWindow();
+			} else if (userType == UsersUtil.UserType.MANAGER) {
+				ManagerFrame.changeWindow();
+			}
 		}
 		setRowButtonSettings();
 	}
